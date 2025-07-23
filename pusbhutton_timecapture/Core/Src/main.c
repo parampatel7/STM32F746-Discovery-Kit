@@ -1,190 +1,147 @@
-/* USER CODE BEGIN Header */
-/**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
+/*Wiring Type	    | Released State	|  Pressed State  |	Rising Edge =  |	Falling Edge =
+ Pull-up resistor	|   HIGH	        |      LOW	      |    Release     |	   Press
+ Pull-down resistor	|   LOW	            |  HIGH	          |    Press	   |       Release         */
+
+/*In your case:
+    Start timer on falling edge (button press)
+    Stop timer on rising edge (button release)
+
+So your EXTI configuration should:
+    Trigger interrupt on FALLING → start timer
+    Trigger interrupt on RISING → stop timer and read TIMx->CNT*/
+
+
+#include "stm32f7xx.h"
 #include "main.h"
-/*check time for which pushbutton is pressed and blink led for same time*/
-/*check for clock*/
+/*Timer used as counter to measure the push button pressed time*/
+static void gpio_init(void);
+void systemclock_init(void);
+void tim6_init(void);
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
+volatile uint32_t duration_ms = 0;
+volatile uint8_t button_pressed = 0;
 
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
-
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
-
-/**
-  * @brief  The application entry point.
-  * @retval int
-  */
 int main(void)
 {
+    HAL_Init();
+    systemclock_init();
+    gpio_init();
+    tim6_init();
+    GPIOD->ODR |= (1 <<5);
+    while (1)
+    {
+        if (duration_ms > 0)
+        {
+            // LED ON (active-low)
+            GPIOD->ODR &= ~(1 << 5);
+            HAL_Delay(duration_ms);
 
-  /* USER CODE BEGIN 1 */
+            // LED OFF
+            GPIOD->ODR |= (1 << 5);
+            HAL_Delay(duration_ms);
 
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
-  SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
-  /* USER CODE BEGIN 2 */
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
+             duration_ms =0;// Prevent re-trigger
+        }
+    }
 }
 
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
-void SystemClock_Config(void)
+void EXTI15_10_IRQHandler(void)
 {
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+    if (EXTI->PR & EXTI_PR_PR11)
+    {
+        EXTI->PR = EXTI_PR_PR11;
 
-  /** Configure the main internal regulator output voltage
-  */
-  __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+        if ((GPIOI->IDR & (1 << 11)) != 0)
+        {
+            // rising edge = button pressed
+            TIM6->CNT = 0;
+            TIM6->CR1 |= TIM_CR1_CEN;
+        }
+        else
+        {
+            // falling edge = button released
+        	duration_ms = TIM6->CNT;
+        	TIM6->CR1 &= ~TIM_CR1_CEN;
 
-  /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_OFF;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 25;
-  RCC_OscInitStruct.PLL.PLLN = 400;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 9;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Activate the Over-Drive mode
-  */
-  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
-
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_6) != HAL_OK)
-  {
-    Error_Handler();
-  }
+        }
+    }
 }
 
-/* USER CODE BEGIN 4 */
-
-/* USER CODE END 4 */
-
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
-void Error_Handler(void)
+void tim6_init(void)
 {
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */
+    RCC->APB1ENR |= RCC_APB1ENR_TIM6EN;
+
+    // Timer6 1ms tick
+    // Assuming APB1 Timer Clock = 108MHz
+    // (PSC + 1) * (ARR + 1) = 108000 → PSC=10799, ARR=9
+
+    TIM6->PSC = 10799U;     // Prescaler
+    TIM6->ARR = 0xFFFF;     // Max ARR (we use CNT anyway)
+    TIM6->EGR = TIM_EGR_UG; // Load prescaler
+    TIM6->CR1 |= TIM_CR1_ARPE;
+    TIM6->CR1 &= ~TIM_CR1_CEN; // Initially off
 }
 
-#ifdef  USE_FULL_ASSERT
-/**
-  * @brief  Reports the name of the source file and the source line number
-  *         where the assert_param error has occurred.
-  * @param  file: pointer to the source file name
-  * @param  line: assert_param error line source number
-  * @retval None
-  */
-void assert_failed(uint8_t *file, uint32_t line)
+void gpio_init(void)
 {
-  /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+    // Clock Enable
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+    __HAL_RCC_GPIOI_CLK_ENABLE();
+    __HAL_RCC_SYSCFG_CLK_ENABLE();
+
+    // Configure PD5 as output (LED)
+    GPIO_InitStruct.Pin = GPIO_PIN_5;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+    // Configure PI11 as input with interrupt on both edges
+    GPIO_InitStruct.Pin = GPIO_PIN_11;
+    GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;  // Use pull-up if button pulls to GND
+    HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+
+    // EXTI Configuration for PI11
+    SYSCFG->EXTICR[2] &= ~(0xF << 12);   // Clear EXTI11 bits
+    SYSCFG->EXTICR[2] |= (0x8 << 12);    // Set EXTI11 to port I
+
+    EXTI->IMR |= (1 << 11);              // Unmask EXTI11
+    EXTI->RTSR |= (1 << 11);             // Rising edge
+
+
+    // NVIC Interrupt Enable
+    NVIC_SetPriority(EXTI15_10_IRQn, 1);
+    NVIC_EnableIRQ(EXTI15_10_IRQn);
 }
-#endif /* USE_FULL_ASSERT */
+
+void systemclock_init(void)
+{
+    RCC->CR |= RCC_CR_HSEON;
+    while (!(RCC->CR & RCC_CR_HSERDY));
+
+    RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+    PWR->CR1 |= PWR_CR1_ODEN;
+    while (!(PWR->CSR1 & PWR_CSR1_ODRDY));
+    PWR->CR1 |= PWR_CR1_ODSWEN;
+    while (!(PWR->CSR1 & PWR_CSR1_ODSWRDY));
+
+    FLASH->ACR = FLASH_ACR_LATENCY_7WS | FLASH_ACR_PRFTEN | FLASH_ACR_ARTEN;
+
+    RCC->PLLCFGR = (25 << RCC_PLLCFGR_PLLM_Pos) |
+                   (432 << RCC_PLLCFGR_PLLN_Pos) |
+                   (0 << RCC_PLLCFGR_PLLP_Pos) |     // PLLP = 2
+                   (RCC_PLLCFGR_PLLSRC_HSE) |
+                   (9 << RCC_PLLCFGR_PLLQ_Pos);      // PLLQ = 9
+
+    RCC->CR |= RCC_CR_PLLON;
+    while (!(RCC->CR & RCC_CR_PLLRDY));
+
+    RCC->CFGR = RCC_CFGR_HPRE_DIV1 | RCC_CFGR_PPRE1_DIV4 | RCC_CFGR_PPRE2_DIV2;
+
+    RCC->CFGR &= ~RCC_CFGR_SW;
+    RCC->CFGR |= RCC_CFGR_SW_PLL;
+    while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
+}

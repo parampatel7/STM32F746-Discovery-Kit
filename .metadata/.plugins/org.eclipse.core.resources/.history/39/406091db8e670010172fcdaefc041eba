@@ -1,0 +1,66 @@
+#include "stm32f7xx.h"
+
+volatile uint32_t press_duration = 0;
+
+void setup_GPIO(void) {
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOIEN | RCC_AHB1ENR_GPIODEN;
+
+    // PI11 as input with pull-up
+    GPIOI->MODER &= ~(3UL << (11 * 2));
+    GPIOI->PUPDR |= (1UL << (11 * 2));  // pull-up
+
+    // PD5 as output
+    GPIOD->MODER &= ~(3UL << (5 * 2));
+    GPIOD->MODER |= (1UL << (5 * 2));
+}
+
+void setup_TIM2(void) {
+    RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+
+    TIM2->PSC = 21600 - 1;      // 216MHz/21600 = 10kHz → 0.1ms tick
+    TIM2->ARR = 0xFFFFFFFF;     // Max count
+    TIM2->CR1 = 0;              // Disable counter (starts on button press)
+}
+
+void setup_TIM5(void) {
+    RCC->APB1ENR |= RCC_APB1ENR_TIM5EN;
+
+    TIM5->PSC = 21600 - 1;      // Same tick rate (0.1ms)
+    TIM5->ARR = press_duration * 10;  // Convert ms to 0.1ms ticks
+    TIM5->CNT = 0;
+    TIM5->CR1 = TIM_CR1_CEN;    // Start timer
+}
+
+void wait_with_TIM5(void) {
+    TIM5->CNT = 0;
+    TIM5->SR = 0;               // Clear update flag
+    TIM5->CR1 = TIM_CR1_CEN;    // Start
+
+    while ((TIM5->SR & TIM_SR_UIF) == 0);  // Wait for overflow
+    TIM5->CR1 = 0;             // Stop
+}
+
+int main(void) {
+    setup_GPIO();
+    setup_TIM2();
+GPIOD->ORD |= (1 << 5);
+    while (1) {
+        // Wait until button is pressed
+        while ((GPIOI->IDR & (1UL << 11)) != 0);
+
+        TIM2->CNT = 0;
+        TIM2->CR1 = TIM_CR1_CEN;
+
+        // Wait while button is held down
+        while ((GPIOI->IDR & (1UL << 11)) == 0);
+
+        TIM2->CR1 = 0;
+        press_duration = TIM2->CNT / 10;  // Convert 0.1ms ticks to ms
+
+        // Blink LED for captured duration
+        GPIOD->ODR ^= (1UL << 5); // ON
+        setup_TIM5();
+        wait_with_TIM5();
+        GPIOD->ODR &= ~(1UL << 5); // OFF
+    }
+}

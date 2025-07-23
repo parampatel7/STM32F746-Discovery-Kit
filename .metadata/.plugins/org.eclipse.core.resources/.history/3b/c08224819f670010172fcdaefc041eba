@@ -1,0 +1,158 @@
+/*Wiring Type	    | Released State	|  Pressed State  |	Rising Edge =  |	Falling Edge =
+ Pull-up resistor	|   HIGH	        |      LOW	      |    Release     |	   Press
+ Pull-down resistor	|   LOW	            |  HIGH	          |    Press	   |       Release         */
+
+/*In your case:
+    Start timer on falling edge (button press)
+    Stop timer on rising edge (button release)
+
+So your EXTI configuration should:
+    Trigger interrupt on FALLING → start timer
+    Trigger interrupt on RISING → stop timer and read TIMx->CNT*/
+
+#include "stm32f7xx.h"
+#include "main.h"
+
+static void gpio_init(void);
+void systemclock_init(void);
+void tim6_init(void);
+void tim2_count(volatile uint32_t totaltime);
+
+volatile uint32_t total_time=0;
+volatile uint32_t count =0;
+
+int main()
+
+{
+	gpio_init();
+	tim6_init();
+	systemclock_init();
+
+	while(1)
+	{
+
+	}
+}
+void EXTI15_10_IRQHandler(void)
+{
+	if(EXTI->PR & EXTI_PR_PR11){ //CHECKS WHETHER INTERRUPT TRIGGERED, PR REGISTER HAS PENDING INTERRUPT FLAGS FOR ALL EXTI LINES
+		EXTI->PR = EXTI_PR_PR11;
+	while((GPIOI->IDR & (1 << 11 ))==0)
+	{
+		TIM6->CR1 |= TIM_CR1_CEN;
+		while((TIM6->SR & TIM_SR_UIF) == 0);
+		TIM6->SR &= ~TIM_SR_UIF; //CLEAR UPDATE FLAG
+
+		count++;
+		//tim capture start or count ++
+	}
+		tim2_count(count);
+		//timer capture stop
+    }
+}
+void tim2_count(volatile uint32_t totaltime)
+{	GPIOD->ODR &= ~(1 << 5);
+	while(count != 0)
+	{   TIM6->CR1 |= TIM_CR1_CEN;
+		while((TIM6->SR & TIM_SR_UIF) == 0);
+		TIM6->SR &= ~TIM_SR_UIF;
+		count--;
+	}
+	GPIOD->ODR |= (1 << 5);
+}
+void tim6_init()
+{
+	RCC->APB1ENR |= RCC_APB1ENR_TIM6EN; //ENABLES TIMER6 CLOCK
+	//SET PRESCALER AND AUTORELOAD FOR 1MS
+	//ASSUMING APB1 TIMER CLOCK = 108MHZ (FROM 216MHZ SYSTEM CLOCK)
+	//TO GET 1MS TICK: (PSC + 1) * (ARR + 1) = 108000
+	// PSC=10799, ARR=9
+
+	TIM6->PSC= 10799U;  //PRESCALER  108000
+	TIM6->ARR = 9U;     //AUTORELOAD
+	TIM6->EGR = TIM_EGR_UG; // force update to load PSC/ARR
+	TIM6->SR = 0;           // clear flags
+	TIM6->CR1 |= TIM_CR1_ARPE; // optional preload
+			//ENABLE COUNTER
+}
+
+
+static void gpio_init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+
+  /* USER CODE END MX_GPIO_Init_1 */
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOI_CLK_ENABLE();
+  __HAL_RCC_GPIOH_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : PD5 */
+  GPIO_InitStruct.Pin = GPIO_PIN_5;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PI11 */
+  GPIO_InitStruct.Pin = GPIO_PIN_11;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING ; // <------------Mode change for interrupt configuration
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+
+
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  SYSCFG->EXTICR[2] &= ~(0xF << 12);   // Clear EXTI11 bits, OXF IS GOOD PRACTISE TO CLEAR BITS
+      SYSCFG->EXTICR[2] |=  (0x8 << 12);   // Set EXTI11 to Port I, 0X8 IS GOOD PRACTISE TO SET BITS AS ALL BITS NEED TO BE OPERATED TO PREVENT MALFUNCITON
+
+      EXTI->IMR  |= (1 << 11);             // Interrupt request from line 11 is not masked, ALLOWING IT TO GENERATE INTERRUPT, IF NOT DONE NOTHING TRIGGERS
+      EXTI->RTSR |= (1 << 11);             // Rising trigger enabled (for Event and Interrupt) for input line
+
+      // Enable NVIC for EXTI15_10
+      NVIC_EnableIRQ(EXTI15_10_IRQn);  //Activates the interrupt handler for lines 10–15
+      NVIC_SetPriority(EXTI15_10_IRQn, 1);
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+
+  /* USER CODE END MX_GPIO_Init_2 */
+}
+
+
+void systemclock_init(void)
+{
+	RCC->CR |= RCC_CR_HSEON ;
+		  while(!(RCC->CR & RCC_CR_HSERDY));
+
+		  RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+		  PWR-> CR1 |= PWR_CR1_ODEN;
+		  while(!(PWR->CSR1 & PWR_CSR1_ODRDY));
+
+		  PWR->CR1 |= PWR_CR1_ODSWEN;
+		  while(!(PWR->CSR1 & PWR_CSR1_ODSWRDY));
+
+		  FLASH->ACR = FLASH_ACR_LATENCY_7WS | FLASH_ACR_PRFTEN | FLASH_ACR_ARTEN;
+//HSE=25MHz SYSCLK WE NEED 216MHz
+		  RCC->PLLCFGR = (25 << RCC_PLLCFGR_PLLM_Pos) |
+				  (432 << RCC_PLLCFGR_PLLN_Pos) |
+				   (0 << RCC_PLLCFGR_PLLP_Pos)   |//issue caused by this line
+/*      PLLP = 2 is encoded as 00 (i.e., 0)
+        PLLP = 4 → 01 (1)
+        PLLP = 6 → 10 (2)
+        PLLP = 8 → 11 (3)
+ * */
+				                     (RCC_PLLCFGR_PLLSRC_HSE)      |
+				                     (9 << RCC_PLLCFGR_PLLQ_Pos);    // PLLQ = 9
+
+		  RCC-> CR |= RCC_CR_PLLON;
+		  while(!(RCC->CR & RCC_CR_PLLRDY));
+
+		  RCC->CFGR = RCC_CFGR_HPRE_DIV1 | RCC_CFGR_PPRE1_DIV4 | RCC_CFGR_PPRE2_DIV2;
+
+		  RCC->CFGR &= ~RCC_CFGR_SW;
+		  RCC->CFGR |= RCC_CFGR_SW_PLL;
+		  while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
+}

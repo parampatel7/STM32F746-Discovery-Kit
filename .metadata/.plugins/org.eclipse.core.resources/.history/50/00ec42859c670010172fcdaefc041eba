@@ -1,0 +1,50 @@
+/*Wiring Type	    | Released State	|  Pressed State  |	Rising Edge =  |	Falling Edge =
+ Pull-up resistor	|   HIGH	        |      LOW	      |    Release     |	   Press
+ Pull-down resistor	|   LOW	            |  HIGH	          |    Press	   |       Release         */
+
+/*In your case:
+    Start timer on falling edge (button press)
+    Stop timer on rising edge (button release)
+
+So your EXTI configuration should:
+    Trigger interrupt on FALLING → start timer
+    Trigger interrupt on RISING → stop timer and read TIMx->CNT*/
+
+#include "stm32f7xx.h"
+#include "main.h"
+
+void gpio_init(void);
+void systemclock_init(void);
+void tim6_init(void);
+
+volatile uint32_t total_time;
+
+
+int main()
+
+{
+	gpio_init();
+	tim6_init();
+	systemclock_init();
+	HAL_init();
+
+	while(1)
+	{
+
+	}
+}
+void EXTI15_10_IRQHandler(void)
+{
+	if(EXTI->PR & EXTI_PR_PR11){ //CHECKS WHETHER INTERRUPT TRIGGERED, PR REGISTER HAS PENDING INTERRUPT FLAGS FOR ALL EXTI LINES
+		EXTI->PR = EXTI_PR_PR11;
+	if(GPIOI->IDR & (1 <<11 )==0)
+	{
+		//tim capture start
+	}
+	else
+	{
+		//timer capture stop
+	}
+	}
+
+}

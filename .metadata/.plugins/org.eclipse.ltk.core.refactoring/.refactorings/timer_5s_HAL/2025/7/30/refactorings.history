@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;timer_5s_HAL/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf_template.h&apos; to &apos;stm32f7xx_hal_conf.h&apos;" description="Rename resource &apos;stm32f7xx_hal_conf_template.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf_template.h" name="stm32f7xx_hal_conf.h" stamp="1753265731108" updateReferences="true"/>
+</session>

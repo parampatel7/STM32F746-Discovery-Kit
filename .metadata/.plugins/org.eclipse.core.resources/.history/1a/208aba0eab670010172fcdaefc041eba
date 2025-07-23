@@ -1,0 +1,175 @@
+/*Wiring Type	    | Released State	|  Pressed State  |	Rising Edge =  |	Falling Edge =
+ Pull-up resistor	|   HIGH	        |      LOW	      |    Release     |	   Press
+ Pull-down resistor	|   LOW	            |  HIGH	          |    Press	   |       Release         */
+
+/*In your case:
+    Start timer on falling edge (button press)
+    Stop timer on rising edge (button release)
+
+So your EXTI configuration should:
+    Trigger interrupt on FALLING → start timer
+    Trigger interrupt on RISING → stop timer and read TIMx->CNT*/
+
+
+#include "stm32f7xx.h"
+#include "main.h"
+
+static void gpio_init(void);
+void systemclock_init(void);
+void tim6_init(void);
+
+volatile uint32_t accumulated_time_ms = 0;
+volatile uint8_t button_pressed = 0;
+volatile uint8_t measure_enabled = 0;
+
+int main(void)
+{
+    HAL_Init();
+    systemclock_init();
+    gpio_init();
+    tim6_init();
+
+    GPIOD->ODR |= (1 << 5); // LED OFF initially
+
+    measure_enabled = 1;
+    HAL_Delay(10000);       // 10 second measurement window
+    measure_enabled = 0;
+
+    // If button is still pressed when measurement ends, stop timer and accumulate
+    if (button_pressed)
+    {
+        TIM6->CR1 &= ~TIM_CR1_CEN;
+        accumulated_time_ms += TIM6->CNT;
+        button_pressed = 0;
+    }
+
+    // Disable EXTI interrupt after 10s
+    EXTI->IMR &= ~(1 << 11);
+
+    // Failsafe test blink (LED works?)
+    GPIOD->ODR &= ~(1 << 5); // LED ON
+    HAL_Delay(200);
+    GPIOD->ODR |= (1 << 5);  // LED OFF
+    HAL_Delay(200);
+
+    // Blink LED with accumulated measured time (if any)
+    if (accumulated_time_ms > 0)
+    {
+        GPIOD->ODR &= ~(1 << 5); // LED ON
+        HAL_Delay(accumulated_time_ms);
+
+        GPIOD->ODR |= (1 << 5);  // LED OFF
+        HAL_Delay(accumulated_time_ms);
+    }
+
+    while (1)
+    {
+        // Do nothing
+    }
+}
+
+void EXTI15_10_IRQHandler(void)
+{
+    if (EXTI->PR & EXTI_PR_PR11)
+    {
+        EXTI->PR = EXTI_PR_PR11;  // Clear interrupt flag
+
+        if (!measure_enabled) return;
+
+        if ((GPIOI->IDR & (1 << 11)) == 0)  // Button pressed (falling edge)
+        {
+            TIM6->CNT = 0;              // Reset counter
+            TIM6->CR1 |= TIM_CR1_CEN;   // Start timer
+            button_pressed = 1;
+
+            GPIOD->ODR &= ~(1 << 5);    // LED ON (debug)
+        }
+        else  // Button released (rising edge)
+        {
+            TIM6->CR1 &= ~TIM_CR1_CEN;  // Stop timer
+            accumulated_time_ms += TIM6->CNT;  // CNT is in ms now
+            button_pressed = 0;
+
+            GPIOD->ODR |= (1 << 5);     // LED OFF (debug)
+        }
+    }
+}
+
+void tim6_init(void)
+{
+    RCC->APB1ENR |= RCC_APB1ENR_TIM6EN;
+
+    // TIM6 counts at 1 kHz = 1 tick per 1 ms
+    // System clock = 216 MHz / (PSC + 1)
+    // PSC = 216000 - 1 => 216 MHz / 216000 = 1 kHz
+    TIM6->PSC = 216000 - 1;
+    TIM6->ARR = 0xFFFF;
+    TIM6->EGR = TIM_EGR_UG;       // Update registers
+    TIM6->CR1 |= TIM_CR1_ARPE;    // Enable ARR preload
+    TIM6->CR1 &= ~TIM_CR1_CEN;    // Timer disabled initially
+}
+
+void gpio_init(void)
+{
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+    __HAL_RCC_GPIOI_CLK_ENABLE();
+    __HAL_RCC_SYSCFG_CLK_ENABLE();
+
+    // LED pin: PD5 output
+    GPIO_InitStruct.Pin = GPIO_PIN_5;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+    // Button pin: PI11 input with pull-up and EXTI interrupt on rising and falling edges
+    GPIO_InitStruct.Pin = GPIO_PIN_11;
+    GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+
+    // Connect EXTI line 11 to port I pin 11
+    SYSCFG->EXTICR[2] &= ~(0xF << 12);  // Clear bits for EXTI11
+    SYSCFG->EXTICR[2] |= (0x8 << 12);   // Set port I (8) for EXTI11
+
+    // Enable EXTI line 11 interrupt
+    EXTI->IMR |= (1 << 11);
+    EXTI->RTSR |= (1 << 11);
+    EXTI->FTSR |= (1 << 11);
+
+    // Set interrupt priority and enable IRQ
+    NVIC_SetPriority(EXTI15_10_IRQn, 1);
+    NVIC_EnableIRQ(EXTI15_10_IRQn);
+}
+
+void systemclock_init(void)
+{
+    RCC->CR |= RCC_CR_HSEON;
+    while (!(RCC->CR & RCC_CR_HSERDY));
+
+    RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+    PWR->CR1 |= PWR_CR1_ODEN;
+    while (!(PWR->CSR1 & PWR_CSR1_ODRDY));
+    PWR->CR1 |= PWR_CR1_ODSWEN;
+    while (!(PWR->CSR1 & PWR_CSR1_ODSWRDY));
+
+    FLASH->ACR = FLASH_ACR_LATENCY_7WS | FLASH_ACR_PRFTEN | FLASH_ACR_ARTEN;
+
+    RCC->PLLCFGR = (25 << RCC_PLLCFGR_PLLM_Pos) |
+                   (432 << RCC_PLLCFGR_PLLN_Pos) |
+                   (0 << RCC_PLLCFGR_PLLP_Pos) |
+                   (RCC_PLLCFGR_PLLSRC_HSE) |
+                   (9 << RCC_PLLCFGR_PLLQ_Pos);
+
+    RCC->CR |= RCC_CR_PLLON;
+    while (!(RCC->CR & RCC_CR_PLLRDY));
+
+    RCC->CFGR = RCC_CFGR_HPRE_DIV1 | RCC_CFGR_PPRE1_DIV4 | RCC_CFGR_PPRE2_DIV2;
+
+    RCC->CFGR &= ~RCC_CFGR_SW;
+    RCC->CFGR |= RCC_CFGR_SW_PLL;
+    while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
+}
+

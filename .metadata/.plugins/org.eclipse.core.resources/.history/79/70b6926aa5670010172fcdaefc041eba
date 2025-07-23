@@ -1,0 +1,115 @@
+#include "stm32f7xx.h"
+
+// Global variable to store press duration
+volatile uint32_t press_duration_ms = 0;
+
+void systemclock_init(void);
+void gpio_init(void);
+void tim6_init(void);
+void delay_ms(uint32_t ms);
+
+int main(void) {
+    systemclock_init();
+    gpio_init();
+    tim6_init();
+
+    while (1) {
+        // Passive main loop – interrupt does everything
+    }
+}
+
+// External Interrupt Handler for EXTI11 (PI11)
+void EXTI15_10_IRQHandler(void) {
+    if (EXTI->PR & EXTI_PR_PR11) {
+        EXTI->PR = EXTI_PR_PR11; // Clear flag
+
+        if ((GPIOI->IDR & (1 << 11)) == 0) {
+            // 🔻 Falling edge: Button pressed → Start timer
+            TIM6->CNT = 0;
+            TIM6->CR1 |= TIM_CR1_CEN;
+        } else {
+            // 🔺 Rising edge: Button released → Stop timer
+            TIM6->CR1 &= ~TIM_CR1_CEN;
+            press_duration_ms = TIM6->CNT;
+
+            // Blink LED for press_duration_ms milliseconds
+            GPIOD->ODR |= (1 << 5); // LED ON
+            delay_ms(press_duration_ms);
+            GPIOD->ODR &= ~(1 << 5); // LED OFF
+        }
+    }
+}
+
+// Blink delay using TIM6
+void delay_ms(uint32_t ms) {
+    TIM6->CNT = 0;
+    TIM6->CR1 |= TIM_CR1_CEN;
+    while (TIM6->CNT < ms);
+    TIM6->CR1 &= ~TIM_CR1_CEN;
+}
+
+// Timer6 configuration for 1ms tick
+void tim6_init(void) {
+    RCC->APB1ENR |= RCC_APB1ENR_TIM6EN;
+    TIM6->PSC = 10799; // 108 MHz / (10799 + 1) = 10 kHz → 0.1 ms tick
+    TIM6->ARR = 9;     // Overflow every 1 ms
+    TIM6->EGR = TIM_EGR_UG;  // Apply prescaler
+    TIM6->CR1 |= TIM_CR1_ARPE;
+    TIM6->SR = 0;
+}
+
+// GPIO configuration
+void gpio_init(void) {
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN | RCC_AHB1ENR_GPIOIEN;
+    RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
+
+    // PD5: LED output
+    GPIOD->MODER &= ~(3UL << (5 * 2));
+    GPIOD->MODER |= (1UL << (5 * 2));
+
+    // PI11: Button input with pull-up
+    GPIOI->MODER &= ~(3UL << (11 * 2));
+    GPIOI->PUPDR &= ~(3UL << (11 * 2));
+    GPIOI->PUPDR |= (1UL << (11 * 2)); // pull-up
+
+    // Configure EXTI11
+    SYSCFG->EXTICR[2] &= ~(0xF << 12); // Clear
+    SYSCFG->EXTICR[2] |=  (0x8 << 12); // Port I
+
+    EXTI->IMR  |= (1 << 11);  // Unmask
+    EXTI->RTSR |= (1 << 11);  // Rising edge
+    EXTI->FTSR |= (1 << 11);  // Falling edge
+
+    // NVIC config
+    NVIC_EnableIRQ(EXTI15_10_IRQn);
+    NVIC_SetPriority(EXTI15_10_IRQn, 1);
+}
+
+// Clock configuration for 216 MHz SYSCLK from HSE
+void systemclock_init(void) {
+    RCC->CR |= RCC_CR_HSEON;
+    while (!(RCC->CR & RCC_CR_HSERDY));
+
+    RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+    PWR->CR1 |= PWR_CR1_ODEN;
+    while (!(PWR->CSR1 & PWR_CSR1_ODRDY));
+    PWR->CR1 |= PWR_CR1_ODSWEN;
+    while (!(PWR->CSR1 & PWR_CSR1_ODSWRDY));
+
+    FLASH->ACR = FLASH_ACR_LATENCY_7WS | FLASH_ACR_PRFTEN | FLASH_ACR_ARTEN;
+
+    RCC->PLLCFGR = (25 << RCC_PLLCFGR_PLLM_Pos) |
+                   (432 << RCC_PLLCFGR_PLLN_Pos) |
+                   (0 << RCC_PLLCFGR_PLLP_Pos) |
+                   RCC_PLLCFGR_PLLSRC_HSE |
+                   (9 << RCC_PLLCFGR_PLLQ_Pos);
+
+    RCC->CR |= RCC_CR_PLLON;
+    while (!(RCC->CR & RCC_CR_PLLRDY));
+
+    RCC->CFGR = RCC_CFGR_HPRE_DIV1 | RCC_CFGR_PPRE1_DIV4 | RCC_CFGR_PPRE2_DIV2;
+
+    RCC->CFGR &= ~RCC_CFGR_SW;
+    RCC->CFGR |= RCC_CFGR_SW_PLL;
+    while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);
+}

@@ -1,0 +1,72 @@
+/*Wiring Type	    | Released State	|  Pressed State  |	Rising Edge =  |	Falling Edge =
+ Pull-up resistor	|   HIGH	        |      LOW	      |    Release     |	   Press
+ Pull-down resistor	|   LOW	            |  HIGH	          |    Press	   |       Release         */
+
+/*In your case:
+    Start timer on falling edge (button press)
+    Stop timer on rising edge (button release)
+
+So your EXTI configuration should:
+    Trigger interrupt on FALLING → start timer
+    Trigger interrupt on RISING → stop timer and read TIMx->CNT*/
+
+#include "stm32f7xx.h"
+
+volatile uint32_t press_time_ms = 0;
+volatile uint32_t measure_window_ms = 10000; // 10 seconds
+
+void setup_gpio(void) {
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN | RCC_AHB1ENR_GPIOIEN;
+
+    // PD5 as output
+    GPIOD->MODER &= ~(3UL << (5 * 2));
+    GPIOD->MODER |=  (1UL << (5 * 2));
+
+    // PI11 as input with pull-up
+    GPIOI->MODER &= ~(3UL << (11 * 2));
+    GPIOI->PUPDR &= ~(3UL << (11 * 2));
+    GPIOI->PUPDR |=  (1UL << (11 * 2)); // Pull-up
+}
+
+void setup_tim2(void) {
+    RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+
+    TIM2->PSC = 21600 - 1;     // 216MHz / 21600 = 10kHz → 0.1ms tick
+    TIM2->ARR = 10 - 1;        // 10 ticks → 1ms overflow
+    TIM2->CNT = 0;
+    TIM2->CR1 = TIM_CR1_CEN;   // Start timer
+}
+
+uint32_t wait_for_tick(void) {
+    while ((TIM2->SR & TIM_SR_UIF) == 0); // Wait for overflow
+    TIM2->SR &= ~TIM_SR_UIF;              // Clear flag
+    return 1;
+}
+
+int main(void) {
+    setup_gpio();
+    setup_tim2();
+
+    uint32_t elapsed_ms = 0;
+
+    // 🔹 Measure button press time during 10-second window
+    while (elapsed_ms < measure_window_ms) {
+        wait_for_tick(); // Wait 1ms
+        elapsed_ms++;
+
+        if ((GPIOI->IDR & (1UL << 11)) == 0) {
+            press_time_ms++;
+        }
+    }
+
+    // 🔸 Blink LED for that duration
+    for (uint32_t i = 0; i < press_time_ms; i++) {
+        GPIOD->ODR ^= (1UL << 5); // Toggle PD5
+        for (volatile uint32_t d = 0; d < 10000; d++); // ~500ms delay (adjustable)
+    }
+
+    // Turn LED off
+    GPIOD->ODR &= ~(1UL << 5);
+
+    while (1); // Done
+}
