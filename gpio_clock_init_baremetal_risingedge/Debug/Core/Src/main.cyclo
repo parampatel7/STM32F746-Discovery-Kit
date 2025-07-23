@@ -1,0 +1,8 @@
+../Core/Src/main.c:18:5:main	2
+../Core/Src/main.c:39:5:check_rising_edge	3
+../Core/Src/main.c:49:6:buttonstate_presentstate_to_laststate	1
+../Core/Src/main.c:54:6:toggle_LED_state	1
+../Core/Src/main.c:59:6:output_to_LEDPin	2
+../Core/Src/main.c:67:13:MX_GPIO_Init	1
+../Core/Src/main.c:86:6:SystemClock_Config	6
+../Core/Src/main.c:125:6:Error_Handler	1

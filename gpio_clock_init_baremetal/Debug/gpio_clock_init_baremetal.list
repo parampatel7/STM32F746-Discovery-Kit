@@ -1,0 +1,1320 @@
+
+gpio_clock_init_baremetal.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   000001c8  08000000  08000000  00001000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00000664  080001c8  080001c8  000011c8  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000000  0800082c  0800082c  0000200c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .ARM.extab    00000000  0800082c  0800082c  0000200c  2**0
+                  CONTENTS, READONLY
+  4 .ARM          00000000  0800082c  0800082c  0000200c  2**0
+                  CONTENTS, READONLY
+  5 .preinit_array 00000000  0800082c  0800082c  0000200c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  0800082c  0800082c  0000182c  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  7 .fini_array   00000004  08000830  08000830  00001830  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  8 .data         0000000c  20000000  08000834  00002000  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .bss          00000020  2000000c  08000840  0000200c  2**2
+                  ALLOC
+ 10 ._user_heap_stack 00000604  2000002c  08000840  0000202c  2**0
+                  ALLOC
+ 11 .ARM.attributes 00000030  00000000  00000000  0000200c  2**0
+                  CONTENTS, READONLY
+ 12 .debug_info   00002892  00000000  00000000  0000203c  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 13 .debug_abbrev 00000962  00000000  00000000  000048ce  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 14 .debug_aranges 00000330  00000000  00000000  00005230  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_rnglists 00000246  00000000  00000000  00005560  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_macro  00023228  00000000  00000000  000057a6  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_line   000031c3  00000000  00000000  000289ce  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_str    000dc37d  00000000  00000000  0002bb91  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 19 .comment      00000043  00000000  00000000  00107f0e  2**0
+                  CONTENTS, READONLY
+ 20 .debug_frame  00000ae4  00000000  00000000  00107f54  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 21 .debug_line_str 0000006d  00000000  00000000  00108a38  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+080001c8 <__do_global_dtors_aux>:
+ 80001c8:	b510      	push	{r4, lr}
+ 80001ca:	4c05      	ldr	r4, [pc, #20]	@ (80001e0 <__do_global_dtors_aux+0x18>)
+ 80001cc:	7823      	ldrb	r3, [r4, #0]
+ 80001ce:	b933      	cbnz	r3, 80001de <__do_global_dtors_aux+0x16>
+ 80001d0:	4b04      	ldr	r3, [pc, #16]	@ (80001e4 <__do_global_dtors_aux+0x1c>)
+ 80001d2:	b113      	cbz	r3, 80001da <__do_global_dtors_aux+0x12>
+ 80001d4:	4804      	ldr	r0, [pc, #16]	@ (80001e8 <__do_global_dtors_aux+0x20>)
+ 80001d6:	f3af 8000 	nop.w
+ 80001da:	2301      	movs	r3, #1
+ 80001dc:	7023      	strb	r3, [r4, #0]
+ 80001de:	bd10      	pop	{r4, pc}
+ 80001e0:	2000000c 	.word	0x2000000c
+ 80001e4:	00000000 	.word	0x00000000
+ 80001e8:	08000814 	.word	0x08000814
+
+080001ec <frame_dummy>:
+ 80001ec:	b508      	push	{r3, lr}
+ 80001ee:	4b03      	ldr	r3, [pc, #12]	@ (80001fc <frame_dummy+0x10>)
+ 80001f0:	b11b      	cbz	r3, 80001fa <frame_dummy+0xe>
+ 80001f2:	4903      	ldr	r1, [pc, #12]	@ (8000200 <frame_dummy+0x14>)
+ 80001f4:	4803      	ldr	r0, [pc, #12]	@ (8000204 <frame_dummy+0x18>)
+ 80001f6:	f3af 8000 	nop.w
+ 80001fa:	bd08      	pop	{r3, pc}
+ 80001fc:	00000000 	.word	0x00000000
+ 8000200:	20000010 	.word	0x20000010
+ 8000204:	08000814 	.word	0x08000814
+
+08000208 <main>:
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+ 8000208:	b580      	push	{r7, lr}
+ 800020a:	b082      	sub	sp, #8
+ 800020c:	af00      	add	r7, sp, #0
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+ 800020e:	f000 f976 	bl	80004fe <HAL_Init>
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+ 8000212:	f000 f87d 	bl	8000310 <SystemClock_Config>
+
+  /* Initialize all configured peripherals */
+  /* USER CODE BEGIN 2 */
+
+  /* USER CODE END 2 */
+MX_GPIO_Init();
+ 8000216:	f000 f837 	bl	8000288 <MX_GPIO_Init>
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+uint8_t buttonstate = 1;
+ 800021a:	2301      	movs	r3, #1
+ 800021c:	717b      	strb	r3, [r7, #5]
+uint8_t lastbuttonstate = 1;
+ 800021e:	2301      	movs	r3, #1
+ 8000220:	71fb      	strb	r3, [r7, #7]
+uint8_t ledstate = 0;
+ 8000222:	2300      	movs	r3, #0
+ 8000224:	71bb      	strb	r3, [r7, #6]
+  while (1)
+  {
+    /* USER CODE END WHILE */
+	  buttonstate = (GPIOI->IDR & (1U << 11)) ? 1 : 0;//conditional operator, of true first condition
+ 8000226:	4b16      	ldr	r3, [pc, #88]	@ (8000280 <main+0x78>)
+ 8000228:	691b      	ldr	r3, [r3, #16]
+ 800022a:	f403 6300 	and.w	r3, r3, #2048	@ 0x800
+ 800022e:	2b00      	cmp	r3, #0
+ 8000230:	bf14      	ite	ne
+ 8000232:	2301      	movne	r3, #1
+ 8000234:	2300      	moveq	r3, #0
+ 8000236:	b2db      	uxtb	r3, r3
+ 8000238:	717b      	strb	r3, [r7, #5]
+	 	  if(buttonstate == 0 && lastbuttonstate == 1)//detect rising edge of push button
+ 800023a:	797b      	ldrb	r3, [r7, #5]
+ 800023c:	2b00      	cmp	r3, #0
+ 800023e:	d11c      	bne.n	800027a <main+0x72>
+ 8000240:	79fb      	ldrb	r3, [r7, #7]
+ 8000242:	2b01      	cmp	r3, #1
+ 8000244:	d119      	bne.n	800027a <main+0x72>
+	 	  {
+	 		  ledstate =! ledstate;//toggle led state if rising edge detected
+ 8000246:	79bb      	ldrb	r3, [r7, #6]
+ 8000248:	2b00      	cmp	r3, #0
+ 800024a:	bf0c      	ite	eq
+ 800024c:	2301      	moveq	r3, #1
+ 800024e:	2300      	movne	r3, #0
+ 8000250:	b2db      	uxtb	r3, r3
+ 8000252:	71bb      	strb	r3, [r7, #6]
+
+	 	  	  if(ledstate)//LED is logic low
+ 8000254:	79bb      	ldrb	r3, [r7, #6]
+ 8000256:	2b00      	cmp	r3, #0
+ 8000258:	d006      	beq.n	8000268 <main+0x60>
+	 	  	  {
+	 	  		  GPIOD-> ODR &= ~(1U << 5);//clear bit of output data register, to turn ON LED
+ 800025a:	4b0a      	ldr	r3, [pc, #40]	@ (8000284 <main+0x7c>)
+ 800025c:	695b      	ldr	r3, [r3, #20]
+ 800025e:	4a09      	ldr	r2, [pc, #36]	@ (8000284 <main+0x7c>)
+ 8000260:	f023 0320 	bic.w	r3, r3, #32
+ 8000264:	6153      	str	r3, [r2, #20]
+ 8000266:	e005      	b.n	8000274 <main+0x6c>
+	 	  	  }
+	 	  	  else
+	 	  	  {
+	 	  		  GPIOD-> ODR |= (1U << 5);//set bit of ORD to turn OFF LED
+ 8000268:	4b06      	ldr	r3, [pc, #24]	@ (8000284 <main+0x7c>)
+ 800026a:	695b      	ldr	r3, [r3, #20]
+ 800026c:	4a05      	ldr	r2, [pc, #20]	@ (8000284 <main+0x7c>)
+ 800026e:	f043 0320 	orr.w	r3, r3, #32
+ 8000272:	6153      	str	r3, [r2, #20]
+	 	  	  }
+	 	  HAL_Delay(200); //DEBOUNCE
+ 8000274:	20c8      	movs	r0, #200	@ 0xc8
+ 8000276:	f000 f99f 	bl	80005b8 <HAL_Delay>
+	 	  }
+	 	  lastbuttonstate = buttonstate;
+ 800027a:	797b      	ldrb	r3, [r7, #5]
+ 800027c:	71fb      	strb	r3, [r7, #7]
+	  buttonstate = (GPIOI->IDR & (1U << 11)) ? 1 : 0;//conditional operator, of true first condition
+ 800027e:	e7d2      	b.n	8000226 <main+0x1e>
+ 8000280:	40022000 	.word	0x40022000
+ 8000284:	40020c00 	.word	0x40020c00
+
+08000288 <MX_GPIO_Init>:
+  }
+  /* USER CODE END 3 */
+}
+
+
+static void MX_GPIO_Init(void){ //AHB CONNECT CPU TO MEMORY AND PERIPHERALS
+ 8000288:	b480      	push	{r7}
+ 800028a:	af00      	add	r7, sp, #0
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN | RCC_AHB1ENR_GPIOIEN;
+ 800028c:	4b1d      	ldr	r3, [pc, #116]	@ (8000304 <MX_GPIO_Init+0x7c>)
+ 800028e:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000290:	4a1c      	ldr	r2, [pc, #112]	@ (8000304 <MX_GPIO_Init+0x7c>)
+ 8000292:	f443 7384 	orr.w	r3, r3, #264	@ 0x108
+ 8000296:	6313      	str	r3, [r2, #48]	@ 0x30
+
+	GPIOD->MODER &= ~(3U << 10); //10 BECAUSE WE CONFIGURE THE PD5 PIN, HENCE MODE5
+ 8000298:	4b1b      	ldr	r3, [pc, #108]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 800029a:	681b      	ldr	r3, [r3, #0]
+ 800029c:	4a1a      	ldr	r2, [pc, #104]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 800029e:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
+ 80002a2:	6013      	str	r3, [r2, #0]
+	GPIOD->MODER |= (1U << 10);
+ 80002a4:	4b18      	ldr	r3, [pc, #96]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 80002a6:	681b      	ldr	r3, [r3, #0]
+ 80002a8:	4a17      	ldr	r2, [pc, #92]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 80002aa:	f443 6380 	orr.w	r3, r3, #1024	@ 0x400
+ 80002ae:	6013      	str	r3, [r2, #0]
+
+	GPIOD->OSPEEDR&= ~(3U << 10);//OUTPUT SPEED REGISTER
+ 80002b0:	4b15      	ldr	r3, [pc, #84]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 80002b2:	689b      	ldr	r3, [r3, #8]
+ 80002b4:	4a14      	ldr	r2, [pc, #80]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 80002b6:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
+ 80002ba:	6093      	str	r3, [r2, #8]
+	GPIOD->OSPEEDR |= (1U <<10);
+ 80002bc:	4b12      	ldr	r3, [pc, #72]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 80002be:	689b      	ldr	r3, [r3, #8]
+ 80002c0:	4a11      	ldr	r2, [pc, #68]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 80002c2:	f443 6380 	orr.w	r3, r3, #1024	@ 0x400
+ 80002c6:	6093      	str	r3, [r2, #8]
+
+	GPIOD-> PUPDR &= ~(3U << 10);
+ 80002c8:	4b0f      	ldr	r3, [pc, #60]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 80002ca:	68db      	ldr	r3, [r3, #12]
+ 80002cc:	4a0e      	ldr	r2, [pc, #56]	@ (8000308 <MX_GPIO_Init+0x80>)
+ 80002ce:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
+ 80002d2:	60d3      	str	r3, [r2, #12]
+
+	GPIOI->MODER &= ~(3U << 22); //22 BECAUSE WE CONFIGURE THE PI11 PIN, HENCE MODE5
+ 80002d4:	4b0d      	ldr	r3, [pc, #52]	@ (800030c <MX_GPIO_Init+0x84>)
+ 80002d6:	681b      	ldr	r3, [r3, #0]
+ 80002d8:	4a0c      	ldr	r2, [pc, #48]	@ (800030c <MX_GPIO_Init+0x84>)
+ 80002da:	f423 0340 	bic.w	r3, r3, #12582912	@ 0xc00000
+ 80002de:	6013      	str	r3, [r2, #0]
+	GPIOI->PUPDR &= ~(3U <<22);
+ 80002e0:	4b0a      	ldr	r3, [pc, #40]	@ (800030c <MX_GPIO_Init+0x84>)
+ 80002e2:	68db      	ldr	r3, [r3, #12]
+ 80002e4:	4a09      	ldr	r2, [pc, #36]	@ (800030c <MX_GPIO_Init+0x84>)
+ 80002e6:	f423 0340 	bic.w	r3, r3, #12582912	@ 0xc00000
+ 80002ea:	60d3      	str	r3, [r2, #12]
+	GPIOI->PUPDR |= (1U <<22);
+ 80002ec:	4b07      	ldr	r3, [pc, #28]	@ (800030c <MX_GPIO_Init+0x84>)
+ 80002ee:	68db      	ldr	r3, [r3, #12]
+ 80002f0:	4a06      	ldr	r2, [pc, #24]	@ (800030c <MX_GPIO_Init+0x84>)
+ 80002f2:	f443 0380 	orr.w	r3, r3, #4194304	@ 0x400000
+ 80002f6:	60d3      	str	r3, [r2, #12]
+
+}
+ 80002f8:	bf00      	nop
+ 80002fa:	46bd      	mov	sp, r7
+ 80002fc:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000300:	4770      	bx	lr
+ 8000302:	bf00      	nop
+ 8000304:	40023800 	.word	0x40023800
+ 8000308:	40020c00 	.word	0x40020c00
+ 800030c:	40022000 	.word	0x40022000
+
+08000310 <SystemClock_Config>:
+  * @retval None
+  */
+
+
+
+void SystemClock_Config(void) {
+ 8000310:	b480      	push	{r7}
+ 8000312:	af00      	add	r7, sp, #0
+    // 1. Enable HSE
+    RCC->CR |= RCC_CR_HSEON;
+ 8000314:	4b2e      	ldr	r3, [pc, #184]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 8000316:	681b      	ldr	r3, [r3, #0]
+ 8000318:	4a2d      	ldr	r2, [pc, #180]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 800031a:	f443 3380 	orr.w	r3, r3, #65536	@ 0x10000
+ 800031e:	6013      	str	r3, [r2, #0]
+    while (!(RCC->CR & RCC_CR_HSERDY));  // Wait until HSE is ready
+ 8000320:	bf00      	nop
+ 8000322:	4b2b      	ldr	r3, [pc, #172]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 8000324:	681b      	ldr	r3, [r3, #0]
+ 8000326:	f403 3300 	and.w	r3, r3, #131072	@ 0x20000
+ 800032a:	2b00      	cmp	r3, #0
+ 800032c:	d0f9      	beq.n	8000322 <SystemClock_Config+0x12>
+
+    // 3. Enable overdrive mode from power control registers (needed for 216 MHz)
+    /*ODEN This bit enables the OverDrive mode, which is required when running the core at frequencies above 180 MHz
+     The internal voltage regulator must supply more power to the CPU when running at high speeds.
+OverDrive mode boosts the regulator’s output to ensure stable operation at high frequencies.*/
+    RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+ 800032e:	4b28      	ldr	r3, [pc, #160]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 8000330:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000332:	4a27      	ldr	r2, [pc, #156]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 8000334:	f043 5380 	orr.w	r3, r3, #268435456	@ 0x10000000
+ 8000338:	6413      	str	r3, [r2, #64]	@ 0x40
+    PWR->CR1 |= PWR_CR1_ODEN;  // Overdrive enable
+ 800033a:	4b26      	ldr	r3, [pc, #152]	@ (80003d4 <SystemClock_Config+0xc4>)
+ 800033c:	681b      	ldr	r3, [r3, #0]
+ 800033e:	4a25      	ldr	r2, [pc, #148]	@ (80003d4 <SystemClock_Config+0xc4>)
+ 8000340:	f443 3380 	orr.w	r3, r3, #65536	@ 0x10000
+ 8000344:	6013      	str	r3, [r2, #0]
+    while (!(PWR->CSR1 & PWR_CSR1_ODRDY));//wait till overdrive is ready
+ 8000346:	bf00      	nop
+ 8000348:	4b22      	ldr	r3, [pc, #136]	@ (80003d4 <SystemClock_Config+0xc4>)
+ 800034a:	685b      	ldr	r3, [r3, #4]
+ 800034c:	f403 3380 	and.w	r3, r3, #65536	@ 0x10000
+ 8000350:	2b00      	cmp	r3, #0
+ 8000352:	d0f9      	beq.n	8000348 <SystemClock_Config+0x38>
+
+    PWR->CR1 |= PWR_CR1_ODSWEN;  // Switch Overdrive,/It starts the transition from regular voltage regulator mode to OverDrive mode.
+ 8000354:	4b1f      	ldr	r3, [pc, #124]	@ (80003d4 <SystemClock_Config+0xc4>)
+ 8000356:	681b      	ldr	r3, [r3, #0]
+ 8000358:	4a1e      	ldr	r2, [pc, #120]	@ (80003d4 <SystemClock_Config+0xc4>)
+ 800035a:	f443 3300 	orr.w	r3, r3, #131072	@ 0x20000
+ 800035e:	6013      	str	r3, [r2, #0]
+    //This is necessary to fully apply the OverDrive settings and allow the system clock to run at up to 216 MHz
+    while (!(PWR->CSR1 & PWR_CSR1_ODSWRDY)); // Wait till OD switch ready
+ 8000360:	bf00      	nop
+ 8000362:	4b1c      	ldr	r3, [pc, #112]	@ (80003d4 <SystemClock_Config+0xc4>)
+ 8000364:	685b      	ldr	r3, [r3, #4]
+ 8000366:	f403 3300 	and.w	r3, r3, #131072	@ 0x20000
+ 800036a:	2b00      	cmp	r3, #0
+ 800036c:	d0f9      	beq.n	8000362 <SystemClock_Config+0x52>
+
+    // 4. Configure Flash latency(7 wait states for 216 MHz)
+    /*The Flash access control register is used to enable/disable the acceleration features and
+   control the Flash memory access time according to CPU frequency.*/
+    FLASH->ACR = FLASH_ACR_LATENCY_7WS | FLASH_ACR_PRFTEN | FLASH_ACR_ARTEN;//latency for 216MHz, Enable Prefetch, Enable Adaptice Real Time accelerator
+ 800036e:	4b1a      	ldr	r3, [pc, #104]	@ (80003d8 <SystemClock_Config+0xc8>)
+ 8000370:	f240 3207 	movw	r2, #775	@ 0x307
+ 8000374:	601a      	str	r2, [r3, #0]
+
+    // 5. Configure PLL
+    RCC->PLLCFGR = (25 << RCC_PLLCFGR_PLLM_Pos)  | // PLLM = 25
+ 8000376:	4b16      	ldr	r3, [pc, #88]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 8000378:	4a18      	ldr	r2, [pc, #96]	@ (80003dc <SystemClock_Config+0xcc>)
+ 800037a:	605a      	str	r2, [r3, #4]
+                   (0 << RCC_PLLCFGR_PLLP_Pos)   | // PLLP = 2 (00 = /2)
+                   (RCC_PLLCFGR_PLLSRC_HSE)      |
+                   (9 << RCC_PLLCFGR_PLLQ_Pos);    // PLLQ = 9
+
+    // 5. Enable PLL
+    RCC->CR |= RCC_CR_PLLON;
+ 800037c:	4b14      	ldr	r3, [pc, #80]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 800037e:	681b      	ldr	r3, [r3, #0]
+ 8000380:	4a13      	ldr	r2, [pc, #76]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 8000382:	f043 7380 	orr.w	r3, r3, #16777216	@ 0x1000000
+ 8000386:	6013      	str	r3, [r2, #0]
+    while (!(RCC->CR & RCC_CR_PLLRDY));  // Wait for PLL to lock
+ 8000388:	bf00      	nop
+ 800038a:	4b11      	ldr	r3, [pc, #68]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 800038c:	681b      	ldr	r3, [r3, #0]
+ 800038e:	f003 7300 	and.w	r3, r3, #33554432	@ 0x2000000
+ 8000392:	2b00      	cmp	r3, #0
+ 8000394:	d0f9      	beq.n	800038a <SystemClock_Config+0x7a>
+
+    // 6. Configure clock dividers, Set AHB, APB1, and APB2 prescalers before switching system clock
+    RCC->CFGR = RCC_CFGR_HPRE_DIV1 |    // AHB = SYSCLK / 1
+ 8000396:	4b0e      	ldr	r3, [pc, #56]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 8000398:	f44f 4214 	mov.w	r2, #37888	@ 0x9400
+ 800039c:	609a      	str	r2, [r3, #8]
+                RCC_CFGR_PPRE1_DIV4 |   // APB1 = AHB / 4
+                RCC_CFGR_PPRE2_DIV2;    // APB2 = AHB / 2
+
+    // 7. Switch system clock to PLL
+    RCC->CFGR &= ~RCC_CFGR_SW;
+ 800039e:	4b0c      	ldr	r3, [pc, #48]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 80003a0:	689b      	ldr	r3, [r3, #8]
+ 80003a2:	4a0b      	ldr	r2, [pc, #44]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 80003a4:	f023 0303 	bic.w	r3, r3, #3
+ 80003a8:	6093      	str	r3, [r2, #8]
+    RCC->CFGR |= RCC_CFGR_SW_PLL;
+ 80003aa:	4b09      	ldr	r3, [pc, #36]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 80003ac:	689b      	ldr	r3, [r3, #8]
+ 80003ae:	4a08      	ldr	r2, [pc, #32]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 80003b0:	f043 0302 	orr.w	r3, r3, #2
+ 80003b4:	6093      	str	r3, [r2, #8]
+    while ((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_PLL);  // Wait until PLL is system clock
+ 80003b6:	bf00      	nop
+ 80003b8:	4b05      	ldr	r3, [pc, #20]	@ (80003d0 <SystemClock_Config+0xc0>)
+ 80003ba:	689b      	ldr	r3, [r3, #8]
+ 80003bc:	f003 030c 	and.w	r3, r3, #12
+ 80003c0:	2b08      	cmp	r3, #8
+ 80003c2:	d1f9      	bne.n	80003b8 <SystemClock_Config+0xa8>
+}
+ 80003c4:	bf00      	nop
+ 80003c6:	bf00      	nop
+ 80003c8:	46bd      	mov	sp, r7
+ 80003ca:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80003ce:	4770      	bx	lr
+ 80003d0:	40023800 	.word	0x40023800
+ 80003d4:	40007000 	.word	0x40007000
+ 80003d8:	40023c00 	.word	0x40023c00
+ 80003dc:	09406c19 	.word	0x09406c19
+
+080003e0 <HAL_MspInit>:
+/* USER CODE END 0 */
+/**
+  * Initializes the Global MSP.
+  */
+void HAL_MspInit(void)
+{
+ 80003e0:	b480      	push	{r7}
+ 80003e2:	b083      	sub	sp, #12
+ 80003e4:	af00      	add	r7, sp, #0
+
+  /* USER CODE BEGIN MspInit 0 */
+
+  /* USER CODE END MspInit 0 */
+
+  __HAL_RCC_PWR_CLK_ENABLE();
+ 80003e6:	4b0f      	ldr	r3, [pc, #60]	@ (8000424 <HAL_MspInit+0x44>)
+ 80003e8:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80003ea:	4a0e      	ldr	r2, [pc, #56]	@ (8000424 <HAL_MspInit+0x44>)
+ 80003ec:	f043 5380 	orr.w	r3, r3, #268435456	@ 0x10000000
+ 80003f0:	6413      	str	r3, [r2, #64]	@ 0x40
+ 80003f2:	4b0c      	ldr	r3, [pc, #48]	@ (8000424 <HAL_MspInit+0x44>)
+ 80003f4:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80003f6:	f003 5380 	and.w	r3, r3, #268435456	@ 0x10000000
+ 80003fa:	607b      	str	r3, [r7, #4]
+ 80003fc:	687b      	ldr	r3, [r7, #4]
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+ 80003fe:	4b09      	ldr	r3, [pc, #36]	@ (8000424 <HAL_MspInit+0x44>)
+ 8000400:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000402:	4a08      	ldr	r2, [pc, #32]	@ (8000424 <HAL_MspInit+0x44>)
+ 8000404:	f443 4380 	orr.w	r3, r3, #16384	@ 0x4000
+ 8000408:	6453      	str	r3, [r2, #68]	@ 0x44
+ 800040a:	4b06      	ldr	r3, [pc, #24]	@ (8000424 <HAL_MspInit+0x44>)
+ 800040c:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800040e:	f403 4380 	and.w	r3, r3, #16384	@ 0x4000
+ 8000412:	603b      	str	r3, [r7, #0]
+ 8000414:	683b      	ldr	r3, [r7, #0]
+  /* System interrupt init*/
+
+  /* USER CODE BEGIN MspInit 1 */
+
+  /* USER CODE END MspInit 1 */
+}
+ 8000416:	bf00      	nop
+ 8000418:	370c      	adds	r7, #12
+ 800041a:	46bd      	mov	sp, r7
+ 800041c:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000420:	4770      	bx	lr
+ 8000422:	bf00      	nop
+ 8000424:	40023800 	.word	0x40023800
+
+08000428 <NMI_Handler>:
+/******************************************************************************/
+/**
+  * @brief This function handles Non maskable interrupt.
+  */
+void NMI_Handler(void)
+{
+ 8000428:	b480      	push	{r7}
+ 800042a:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+
+  /* USER CODE END NonMaskableInt_IRQn 0 */
+  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+   while (1)
+ 800042c:	bf00      	nop
+ 800042e:	e7fd      	b.n	800042c <NMI_Handler+0x4>
+
+08000430 <HardFault_Handler>:
+
+/**
+  * @brief This function handles Hard fault interrupt.
+  */
+void HardFault_Handler(void)
+{
+ 8000430:	b480      	push	{r7}
+ 8000432:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN HardFault_IRQn 0 */
+
+  /* USER CODE END HardFault_IRQn 0 */
+  while (1)
+ 8000434:	bf00      	nop
+ 8000436:	e7fd      	b.n	8000434 <HardFault_Handler+0x4>
+
+08000438 <MemManage_Handler>:
+
+/**
+  * @brief This function handles Memory management fault.
+  */
+void MemManage_Handler(void)
+{
+ 8000438:	b480      	push	{r7}
+ 800043a:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+
+  /* USER CODE END MemoryManagement_IRQn 0 */
+  while (1)
+ 800043c:	bf00      	nop
+ 800043e:	e7fd      	b.n	800043c <MemManage_Handler+0x4>
+
+08000440 <BusFault_Handler>:
+
+/**
+  * @brief This function handles Pre-fetch fault, memory access fault.
+  */
+void BusFault_Handler(void)
+{
+ 8000440:	b480      	push	{r7}
+ 8000442:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN BusFault_IRQn 0 */
+
+  /* USER CODE END BusFault_IRQn 0 */
+  while (1)
+ 8000444:	bf00      	nop
+ 8000446:	e7fd      	b.n	8000444 <BusFault_Handler+0x4>
+
+08000448 <UsageFault_Handler>:
+
+/**
+  * @brief This function handles Undefined instruction or illegal state.
+  */
+void UsageFault_Handler(void)
+{
+ 8000448:	b480      	push	{r7}
+ 800044a:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN UsageFault_IRQn 0 */
+
+  /* USER CODE END UsageFault_IRQn 0 */
+  while (1)
+ 800044c:	bf00      	nop
+ 800044e:	e7fd      	b.n	800044c <UsageFault_Handler+0x4>
+
+08000450 <SVC_Handler>:
+
+/**
+  * @brief This function handles System service call via SWI instruction.
+  */
+void SVC_Handler(void)
+{
+ 8000450:	b480      	push	{r7}
+ 8000452:	af00      	add	r7, sp, #0
+
+  /* USER CODE END SVCall_IRQn 0 */
+  /* USER CODE BEGIN SVCall_IRQn 1 */
+
+  /* USER CODE END SVCall_IRQn 1 */
+}
+ 8000454:	bf00      	nop
+ 8000456:	46bd      	mov	sp, r7
+ 8000458:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800045c:	4770      	bx	lr
+
+0800045e <DebugMon_Handler>:
+
+/**
+  * @brief This function handles Debug monitor.
+  */
+void DebugMon_Handler(void)
+{
+ 800045e:	b480      	push	{r7}
+ 8000460:	af00      	add	r7, sp, #0
+
+  /* USER CODE END DebugMonitor_IRQn 0 */
+  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
+
+  /* USER CODE END DebugMonitor_IRQn 1 */
+}
+ 8000462:	bf00      	nop
+ 8000464:	46bd      	mov	sp, r7
+ 8000466:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800046a:	4770      	bx	lr
+
+0800046c <PendSV_Handler>:
+
+/**
+  * @brief This function handles Pendable request for system service.
+  */
+void PendSV_Handler(void)
+{
+ 800046c:	b480      	push	{r7}
+ 800046e:	af00      	add	r7, sp, #0
+
+  /* USER CODE END PendSV_IRQn 0 */
+  /* USER CODE BEGIN PendSV_IRQn 1 */
+
+  /* USER CODE END PendSV_IRQn 1 */
+}
+ 8000470:	bf00      	nop
+ 8000472:	46bd      	mov	sp, r7
+ 8000474:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000478:	4770      	bx	lr
+
+0800047a <SysTick_Handler>:
+
+/**
+  * @brief This function handles System tick timer.
+  */
+void SysTick_Handler(void)
+{
+ 800047a:	b580      	push	{r7, lr}
+ 800047c:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN SysTick_IRQn 0 */
+
+  /* USER CODE END SysTick_IRQn 0 */
+  HAL_IncTick();
+ 800047e:	f000 f87b 	bl	8000578 <HAL_IncTick>
+  /* USER CODE BEGIN SysTick_IRQn 1 */
+
+  /* USER CODE END SysTick_IRQn 1 */
+}
+ 8000482:	bf00      	nop
+ 8000484:	bd80      	pop	{r7, pc}
+	...
+
+08000488 <SystemInit>:
+  *         SystemFrequency variable.
+  * @param  None
+  * @retval None
+  */
+void SystemInit(void)
+{
+ 8000488:	b480      	push	{r7}
+ 800048a:	af00      	add	r7, sp, #0
+  /* FPU settings ------------------------------------------------------------*/
+#if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
+  SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
+ 800048c:	4b06      	ldr	r3, [pc, #24]	@ (80004a8 <SystemInit+0x20>)
+ 800048e:	f8d3 3088 	ldr.w	r3, [r3, #136]	@ 0x88
+ 8000492:	4a05      	ldr	r2, [pc, #20]	@ (80004a8 <SystemInit+0x20>)
+ 8000494:	f443 0370 	orr.w	r3, r3, #15728640	@ 0xf00000
+ 8000498:	f8c2 3088 	str.w	r3, [r2, #136]	@ 0x88
+
+  /* Configure the Vector Table location -------------------------------------*/
+#if defined(USER_VECT_TAB_ADDRESS)
+  SCB->VTOR = VECT_TAB_BASE_ADDRESS | VECT_TAB_OFFSET; /* Vector Table Relocation in Internal SRAM */
+#endif /* USER_VECT_TAB_ADDRESS */
+}
+ 800049c:	bf00      	nop
+ 800049e:	46bd      	mov	sp, r7
+ 80004a0:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80004a4:	4770      	bx	lr
+ 80004a6:	bf00      	nop
+ 80004a8:	e000ed00 	.word	0xe000ed00
+
+080004ac <Reset_Handler>:
+
+    .section  .text.Reset_Handler
+  .weak  Reset_Handler
+  .type  Reset_Handler, %function
+Reset_Handler:  
+  ldr   sp, =_estack      /* set stack pointer */
+ 80004ac:	f8df d034 	ldr.w	sp, [pc, #52]	@ 80004e4 <LoopFillZerobss+0xe>
+  
+/* Call the clock system initialization function.*/
+  bl  SystemInit   
+ 80004b0:	f7ff ffea 	bl	8000488 <SystemInit>
+
+/* Copy the data segment initializers from flash to SRAM */  
+  ldr r0, =_sdata
+ 80004b4:	480c      	ldr	r0, [pc, #48]	@ (80004e8 <LoopFillZerobss+0x12>)
+  ldr r1, =_edata
+ 80004b6:	490d      	ldr	r1, [pc, #52]	@ (80004ec <LoopFillZerobss+0x16>)
+  ldr r2, =_sidata
+ 80004b8:	4a0d      	ldr	r2, [pc, #52]	@ (80004f0 <LoopFillZerobss+0x1a>)
+  movs r3, #0
+ 80004ba:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 80004bc:	e002      	b.n	80004c4 <LoopCopyDataInit>
+
+080004be <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 80004be:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 80004c0:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 80004c2:	3304      	adds	r3, #4
+
+080004c4 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 80004c4:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 80004c6:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 80004c8:	d3f9      	bcc.n	80004be <CopyDataInit>
+  
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 80004ca:	4a0a      	ldr	r2, [pc, #40]	@ (80004f4 <LoopFillZerobss+0x1e>)
+  ldr r4, =_ebss
+ 80004cc:	4c0a      	ldr	r4, [pc, #40]	@ (80004f8 <LoopFillZerobss+0x22>)
+  movs r3, #0
+ 80004ce:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 80004d0:	e001      	b.n	80004d6 <LoopFillZerobss>
+
+080004d2 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 80004d2:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 80004d4:	3204      	adds	r2, #4
+
+080004d6 <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 80004d6:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 80004d8:	d3fb      	bcc.n	80004d2 <FillZerobss>
+  
+/* Call static constructors */
+    bl __libc_init_array
+ 80004da:	f000 f977 	bl	80007cc <__libc_init_array>
+/* Call the application's entry point.*/
+  bl  main
+ 80004de:	f7ff fe93 	bl	8000208 <main>
+  bx  lr    
+ 80004e2:	4770      	bx	lr
+  ldr   sp, =_estack      /* set stack pointer */
+ 80004e4:	20050000 	.word	0x20050000
+  ldr r0, =_sdata
+ 80004e8:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 80004ec:	2000000c 	.word	0x2000000c
+  ldr r2, =_sidata
+ 80004f0:	08000834 	.word	0x08000834
+  ldr r2, =_sbss
+ 80004f4:	2000000c 	.word	0x2000000c
+  ldr r4, =_ebss
+ 80004f8:	2000002c 	.word	0x2000002c
+
+080004fc <ADC_IRQHandler>:
+ * @retval None       
+*/
+    .section  .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b  Infinite_Loop
+ 80004fc:	e7fe      	b.n	80004fc <ADC_IRQHandler>
+
+080004fe <HAL_Init>:
+  *         need to ensure that the SysTick time base is always set to 1 millisecond
+  *         to have correct HAL operation.
+  * @retval HAL status
+  */
+HAL_StatusTypeDef HAL_Init(void)
+{
+ 80004fe:	b580      	push	{r7, lr}
+ 8000500:	af00      	add	r7, sp, #0
+#if (PREFETCH_ENABLE != 0U)
+  __HAL_FLASH_PREFETCH_BUFFER_ENABLE();
+#endif /* PREFETCH_ENABLE */
+
+  /* Set Interrupt Group Priority */
+  HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
+ 8000502:	2003      	movs	r0, #3
+ 8000504:	f000 f92e 	bl	8000764 <HAL_NVIC_SetPriorityGrouping>
+
+  /* Use systick as time base source and configure 1ms tick (default clock after Reset is HSI) */
+  HAL_InitTick(TICK_INT_PRIORITY);
+ 8000508:	200f      	movs	r0, #15
+ 800050a:	f000 f805 	bl	8000518 <HAL_InitTick>
+
+  /* Init the low level hardware */
+  HAL_MspInit();
+ 800050e:	f7ff ff67 	bl	80003e0 <HAL_MspInit>
+
+  /* Return function status */
+  return HAL_OK;
+ 8000512:	2300      	movs	r3, #0
+}
+ 8000514:	4618      	mov	r0, r3
+ 8000516:	bd80      	pop	{r7, pc}
+
+08000518 <HAL_InitTick>:
+  *       implementation  in user file.
+  * @param TickPriority Tick interrupt priority.
+  * @retval HAL status
+  */
+__weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
+{
+ 8000518:	b580      	push	{r7, lr}
+ 800051a:	b082      	sub	sp, #8
+ 800051c:	af00      	add	r7, sp, #0
+ 800051e:	6078      	str	r0, [r7, #4]
+  /* Configure the SysTick to have interrupt in 1ms time basis*/
+  if (HAL_SYSTICK_Config(SystemCoreClock / (1000U / uwTickFreq)) > 0U)
+ 8000520:	4b12      	ldr	r3, [pc, #72]	@ (800056c <HAL_InitTick+0x54>)
+ 8000522:	681a      	ldr	r2, [r3, #0]
+ 8000524:	4b12      	ldr	r3, [pc, #72]	@ (8000570 <HAL_InitTick+0x58>)
+ 8000526:	781b      	ldrb	r3, [r3, #0]
+ 8000528:	4619      	mov	r1, r3
+ 800052a:	f44f 737a 	mov.w	r3, #1000	@ 0x3e8
+ 800052e:	fbb3 f3f1 	udiv	r3, r3, r1
+ 8000532:	fbb2 f3f3 	udiv	r3, r2, r3
+ 8000536:	4618      	mov	r0, r3
+ 8000538:	f000 f93b 	bl	80007b2 <HAL_SYSTICK_Config>
+ 800053c:	4603      	mov	r3, r0
+ 800053e:	2b00      	cmp	r3, #0
+ 8000540:	d001      	beq.n	8000546 <HAL_InitTick+0x2e>
+  {
+    return HAL_ERROR;
+ 8000542:	2301      	movs	r3, #1
+ 8000544:	e00e      	b.n	8000564 <HAL_InitTick+0x4c>
+  }
+
+  /* Configure the SysTick IRQ priority */
+  if (TickPriority < (1UL << __NVIC_PRIO_BITS))
+ 8000546:	687b      	ldr	r3, [r7, #4]
+ 8000548:	2b0f      	cmp	r3, #15
+ 800054a:	d80a      	bhi.n	8000562 <HAL_InitTick+0x4a>
+  {
+    HAL_NVIC_SetPriority(SysTick_IRQn, TickPriority, 0U);
+ 800054c:	2200      	movs	r2, #0
+ 800054e:	6879      	ldr	r1, [r7, #4]
+ 8000550:	f04f 30ff 	mov.w	r0, #4294967295	@ 0xffffffff
+ 8000554:	f000 f911 	bl	800077a <HAL_NVIC_SetPriority>
+    uwTickPrio = TickPriority;
+ 8000558:	4a06      	ldr	r2, [pc, #24]	@ (8000574 <HAL_InitTick+0x5c>)
+ 800055a:	687b      	ldr	r3, [r7, #4]
+ 800055c:	6013      	str	r3, [r2, #0]
+  {
+    return HAL_ERROR;
+  }
+
+  /* Return function status */
+  return HAL_OK;
+ 800055e:	2300      	movs	r3, #0
+ 8000560:	e000      	b.n	8000564 <HAL_InitTick+0x4c>
+    return HAL_ERROR;
+ 8000562:	2301      	movs	r3, #1
+}
+ 8000564:	4618      	mov	r0, r3
+ 8000566:	3708      	adds	r7, #8
+ 8000568:	46bd      	mov	sp, r7
+ 800056a:	bd80      	pop	{r7, pc}
+ 800056c:	20000000 	.word	0x20000000
+ 8000570:	20000008 	.word	0x20000008
+ 8000574:	20000004 	.word	0x20000004
+
+08000578 <HAL_IncTick>:
+ * @note This function is declared as __weak to be overwritten in case of other 
+  *      implementations in user file.
+  * @retval None
+  */
+__weak void HAL_IncTick(void)
+{
+ 8000578:	b480      	push	{r7}
+ 800057a:	af00      	add	r7, sp, #0
+  uwTick += uwTickFreq;
+ 800057c:	4b06      	ldr	r3, [pc, #24]	@ (8000598 <HAL_IncTick+0x20>)
+ 800057e:	781b      	ldrb	r3, [r3, #0]
+ 8000580:	461a      	mov	r2, r3
+ 8000582:	4b06      	ldr	r3, [pc, #24]	@ (800059c <HAL_IncTick+0x24>)
+ 8000584:	681b      	ldr	r3, [r3, #0]
+ 8000586:	4413      	add	r3, r2
+ 8000588:	4a04      	ldr	r2, [pc, #16]	@ (800059c <HAL_IncTick+0x24>)
+ 800058a:	6013      	str	r3, [r2, #0]
+}
+ 800058c:	bf00      	nop
+ 800058e:	46bd      	mov	sp, r7
+ 8000590:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000594:	4770      	bx	lr
+ 8000596:	bf00      	nop
+ 8000598:	20000008 	.word	0x20000008
+ 800059c:	20000028 	.word	0x20000028
+
+080005a0 <HAL_GetTick>:
+  * @note This function is declared as __weak to be overwritten in case of other 
+  *       implementations in user file.
+  * @retval tick value
+  */
+__weak uint32_t HAL_GetTick(void)
+{
+ 80005a0:	b480      	push	{r7}
+ 80005a2:	af00      	add	r7, sp, #0
+  return uwTick;
+ 80005a4:	4b03      	ldr	r3, [pc, #12]	@ (80005b4 <HAL_GetTick+0x14>)
+ 80005a6:	681b      	ldr	r3, [r3, #0]
+}
+ 80005a8:	4618      	mov	r0, r3
+ 80005aa:	46bd      	mov	sp, r7
+ 80005ac:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80005b0:	4770      	bx	lr
+ 80005b2:	bf00      	nop
+ 80005b4:	20000028 	.word	0x20000028
+
+080005b8 <HAL_Delay>:
+  *       implementations in user file.
+  * @param Delay  specifies the delay time length, in milliseconds.
+  * @retval None
+  */
+__weak void HAL_Delay(uint32_t Delay)
+{
+ 80005b8:	b580      	push	{r7, lr}
+ 80005ba:	b084      	sub	sp, #16
+ 80005bc:	af00      	add	r7, sp, #0
+ 80005be:	6078      	str	r0, [r7, #4]
+  uint32_t tickstart = HAL_GetTick();
+ 80005c0:	f7ff ffee 	bl	80005a0 <HAL_GetTick>
+ 80005c4:	60b8      	str	r0, [r7, #8]
+  uint32_t wait = Delay;
+ 80005c6:	687b      	ldr	r3, [r7, #4]
+ 80005c8:	60fb      	str	r3, [r7, #12]
+
+  /* Add a freq to guarantee minimum wait */
+  if (wait < HAL_MAX_DELAY)
+ 80005ca:	68fb      	ldr	r3, [r7, #12]
+ 80005cc:	f1b3 3fff 	cmp.w	r3, #4294967295	@ 0xffffffff
+ 80005d0:	d005      	beq.n	80005de <HAL_Delay+0x26>
+  {
+    wait += (uint32_t)(uwTickFreq);
+ 80005d2:	4b0a      	ldr	r3, [pc, #40]	@ (80005fc <HAL_Delay+0x44>)
+ 80005d4:	781b      	ldrb	r3, [r3, #0]
+ 80005d6:	461a      	mov	r2, r3
+ 80005d8:	68fb      	ldr	r3, [r7, #12]
+ 80005da:	4413      	add	r3, r2
+ 80005dc:	60fb      	str	r3, [r7, #12]
+  }
+
+  while ((HAL_GetTick() - tickstart) < wait)
+ 80005de:	bf00      	nop
+ 80005e0:	f7ff ffde 	bl	80005a0 <HAL_GetTick>
+ 80005e4:	4602      	mov	r2, r0
+ 80005e6:	68bb      	ldr	r3, [r7, #8]
+ 80005e8:	1ad3      	subs	r3, r2, r3
+ 80005ea:	68fa      	ldr	r2, [r7, #12]
+ 80005ec:	429a      	cmp	r2, r3
+ 80005ee:	d8f7      	bhi.n	80005e0 <HAL_Delay+0x28>
+  {
+  }
+}
+ 80005f0:	bf00      	nop
+ 80005f2:	bf00      	nop
+ 80005f4:	3710      	adds	r7, #16
+ 80005f6:	46bd      	mov	sp, r7
+ 80005f8:	bd80      	pop	{r7, pc}
+ 80005fa:	bf00      	nop
+ 80005fc:	20000008 	.word	0x20000008
+
+08000600 <__NVIC_SetPriorityGrouping>:
+           In case of a conflict between priority grouping and available
+           priority bits (__NVIC_PRIO_BITS), the smallest possible priority group is set.
+  \param [in]      PriorityGroup  Priority grouping field.
+ */
+__STATIC_INLINE void __NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
+{
+ 8000600:	b480      	push	{r7}
+ 8000602:	b085      	sub	sp, #20
+ 8000604:	af00      	add	r7, sp, #0
+ 8000606:	6078      	str	r0, [r7, #4]
+  uint32_t reg_value;
+  uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07UL);             /* only values 0..7 are used          */
+ 8000608:	687b      	ldr	r3, [r7, #4]
+ 800060a:	f003 0307 	and.w	r3, r3, #7
+ 800060e:	60fb      	str	r3, [r7, #12]
+
+  reg_value  =  SCB->AIRCR;                                                   /* read old register configuration    */
+ 8000610:	4b0b      	ldr	r3, [pc, #44]	@ (8000640 <__NVIC_SetPriorityGrouping+0x40>)
+ 8000612:	68db      	ldr	r3, [r3, #12]
+ 8000614:	60bb      	str	r3, [r7, #8]
+  reg_value &= ~((uint32_t)(SCB_AIRCR_VECTKEY_Msk | SCB_AIRCR_PRIGROUP_Msk)); /* clear bits to change               */
+ 8000616:	68ba      	ldr	r2, [r7, #8]
+ 8000618:	f64f 03ff 	movw	r3, #63743	@ 0xf8ff
+ 800061c:	4013      	ands	r3, r2
+ 800061e:	60bb      	str	r3, [r7, #8]
+  reg_value  =  (reg_value                                   |
+                ((uint32_t)0x5FAUL << SCB_AIRCR_VECTKEY_Pos) |
+                (PriorityGroupTmp << SCB_AIRCR_PRIGROUP_Pos)  );              /* Insert write key and priority group */
+ 8000620:	68fb      	ldr	r3, [r7, #12]
+ 8000622:	021a      	lsls	r2, r3, #8
+                ((uint32_t)0x5FAUL << SCB_AIRCR_VECTKEY_Pos) |
+ 8000624:	68bb      	ldr	r3, [r7, #8]
+ 8000626:	431a      	orrs	r2, r3
+  reg_value  =  (reg_value                                   |
+ 8000628:	4b06      	ldr	r3, [pc, #24]	@ (8000644 <__NVIC_SetPriorityGrouping+0x44>)
+ 800062a:	4313      	orrs	r3, r2
+ 800062c:	60bb      	str	r3, [r7, #8]
+  SCB->AIRCR =  reg_value;
+ 800062e:	4a04      	ldr	r2, [pc, #16]	@ (8000640 <__NVIC_SetPriorityGrouping+0x40>)
+ 8000630:	68bb      	ldr	r3, [r7, #8]
+ 8000632:	60d3      	str	r3, [r2, #12]
+}
+ 8000634:	bf00      	nop
+ 8000636:	3714      	adds	r7, #20
+ 8000638:	46bd      	mov	sp, r7
+ 800063a:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800063e:	4770      	bx	lr
+ 8000640:	e000ed00 	.word	0xe000ed00
+ 8000644:	05fa0000 	.word	0x05fa0000
+
+08000648 <__NVIC_GetPriorityGrouping>:
+  \brief   Get Priority Grouping
+  \details Reads the priority grouping field from the NVIC Interrupt Controller.
+  \return                Priority grouping field (SCB->AIRCR [10:8] PRIGROUP field).
+ */
+__STATIC_INLINE uint32_t __NVIC_GetPriorityGrouping(void)
+{
+ 8000648:	b480      	push	{r7}
+ 800064a:	af00      	add	r7, sp, #0
+  return ((uint32_t)((SCB->AIRCR & SCB_AIRCR_PRIGROUP_Msk) >> SCB_AIRCR_PRIGROUP_Pos));
+ 800064c:	4b04      	ldr	r3, [pc, #16]	@ (8000660 <__NVIC_GetPriorityGrouping+0x18>)
+ 800064e:	68db      	ldr	r3, [r3, #12]
+ 8000650:	0a1b      	lsrs	r3, r3, #8
+ 8000652:	f003 0307 	and.w	r3, r3, #7
+}
+ 8000656:	4618      	mov	r0, r3
+ 8000658:	46bd      	mov	sp, r7
+ 800065a:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800065e:	4770      	bx	lr
+ 8000660:	e000ed00 	.word	0xe000ed00
+
+08000664 <__NVIC_SetPriority>:
+  \param [in]      IRQn  Interrupt number.
+  \param [in]  priority  Priority to set.
+  \note    The priority cannot be set for every processor exception.
+ */
+__STATIC_INLINE void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
+{
+ 8000664:	b480      	push	{r7}
+ 8000666:	b083      	sub	sp, #12
+ 8000668:	af00      	add	r7, sp, #0
+ 800066a:	4603      	mov	r3, r0
+ 800066c:	6039      	str	r1, [r7, #0]
+ 800066e:	71fb      	strb	r3, [r7, #7]
+  if ((int32_t)(IRQn) >= 0)
+ 8000670:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 8000674:	2b00      	cmp	r3, #0
+ 8000676:	db0a      	blt.n	800068e <__NVIC_SetPriority+0x2a>
+  {
+    NVIC->IP[((uint32_t)IRQn)]                = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+ 8000678:	683b      	ldr	r3, [r7, #0]
+ 800067a:	b2da      	uxtb	r2, r3
+ 800067c:	490c      	ldr	r1, [pc, #48]	@ (80006b0 <__NVIC_SetPriority+0x4c>)
+ 800067e:	f997 3007 	ldrsb.w	r3, [r7, #7]
+ 8000682:	0112      	lsls	r2, r2, #4
+ 8000684:	b2d2      	uxtb	r2, r2
+ 8000686:	440b      	add	r3, r1
+ 8000688:	f883 2300 	strb.w	r2, [r3, #768]	@ 0x300
+  }
+  else
+  {
+    SCB->SHPR[(((uint32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+  }
+}
+ 800068c:	e00a      	b.n	80006a4 <__NVIC_SetPriority+0x40>
+    SCB->SHPR[(((uint32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+ 800068e:	683b      	ldr	r3, [r7, #0]
+ 8000690:	b2da      	uxtb	r2, r3
+ 8000692:	4908      	ldr	r1, [pc, #32]	@ (80006b4 <__NVIC_SetPriority+0x50>)
+ 8000694:	79fb      	ldrb	r3, [r7, #7]
+ 8000696:	f003 030f 	and.w	r3, r3, #15
+ 800069a:	3b04      	subs	r3, #4
+ 800069c:	0112      	lsls	r2, r2, #4
+ 800069e:	b2d2      	uxtb	r2, r2
+ 80006a0:	440b      	add	r3, r1
+ 80006a2:	761a      	strb	r2, [r3, #24]
+}
+ 80006a4:	bf00      	nop
+ 80006a6:	370c      	adds	r7, #12
+ 80006a8:	46bd      	mov	sp, r7
+ 80006aa:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80006ae:	4770      	bx	lr
+ 80006b0:	e000e100 	.word	0xe000e100
+ 80006b4:	e000ed00 	.word	0xe000ed00
+
+080006b8 <NVIC_EncodePriority>:
+  \param [in]   PreemptPriority  Preemptive priority value (starting from 0).
+  \param [in]       SubPriority  Subpriority value (starting from 0).
+  \return                        Encoded priority. Value can be used in the function \ref NVIC_SetPriority().
+ */
+__STATIC_INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority)
+{
+ 80006b8:	b480      	push	{r7}
+ 80006ba:	b089      	sub	sp, #36	@ 0x24
+ 80006bc:	af00      	add	r7, sp, #0
+ 80006be:	60f8      	str	r0, [r7, #12]
+ 80006c0:	60b9      	str	r1, [r7, #8]
+ 80006c2:	607a      	str	r2, [r7, #4]
+  uint32_t PriorityGroupTmp = (PriorityGroup & (uint32_t)0x07UL);   /* only values 0..7 are used          */
+ 80006c4:	68fb      	ldr	r3, [r7, #12]
+ 80006c6:	f003 0307 	and.w	r3, r3, #7
+ 80006ca:	61fb      	str	r3, [r7, #28]
+  uint32_t PreemptPriorityBits;
+  uint32_t SubPriorityBits;
+
+  PreemptPriorityBits = ((7UL - PriorityGroupTmp) > (uint32_t)(__NVIC_PRIO_BITS)) ? (uint32_t)(__NVIC_PRIO_BITS) : (uint32_t)(7UL - PriorityGroupTmp);
+ 80006cc:	69fb      	ldr	r3, [r7, #28]
+ 80006ce:	f1c3 0307 	rsb	r3, r3, #7
+ 80006d2:	2b04      	cmp	r3, #4
+ 80006d4:	bf28      	it	cs
+ 80006d6:	2304      	movcs	r3, #4
+ 80006d8:	61bb      	str	r3, [r7, #24]
+  SubPriorityBits     = ((PriorityGroupTmp + (uint32_t)(__NVIC_PRIO_BITS)) < (uint32_t)7UL) ? (uint32_t)0UL : (uint32_t)((PriorityGroupTmp - 7UL) + (uint32_t)(__NVIC_PRIO_BITS));
+ 80006da:	69fb      	ldr	r3, [r7, #28]
+ 80006dc:	3304      	adds	r3, #4
+ 80006de:	2b06      	cmp	r3, #6
+ 80006e0:	d902      	bls.n	80006e8 <NVIC_EncodePriority+0x30>
+ 80006e2:	69fb      	ldr	r3, [r7, #28]
+ 80006e4:	3b03      	subs	r3, #3
+ 80006e6:	e000      	b.n	80006ea <NVIC_EncodePriority+0x32>
+ 80006e8:	2300      	movs	r3, #0
+ 80006ea:	617b      	str	r3, [r7, #20]
+
+  return (
+           ((PreemptPriority & (uint32_t)((1UL << (PreemptPriorityBits)) - 1UL)) << SubPriorityBits) |
+ 80006ec:	f04f 32ff 	mov.w	r2, #4294967295	@ 0xffffffff
+ 80006f0:	69bb      	ldr	r3, [r7, #24]
+ 80006f2:	fa02 f303 	lsl.w	r3, r2, r3
+ 80006f6:	43da      	mvns	r2, r3
+ 80006f8:	68bb      	ldr	r3, [r7, #8]
+ 80006fa:	401a      	ands	r2, r3
+ 80006fc:	697b      	ldr	r3, [r7, #20]
+ 80006fe:	409a      	lsls	r2, r3
+           ((SubPriority     & (uint32_t)((1UL << (SubPriorityBits    )) - 1UL)))
+ 8000700:	f04f 31ff 	mov.w	r1, #4294967295	@ 0xffffffff
+ 8000704:	697b      	ldr	r3, [r7, #20]
+ 8000706:	fa01 f303 	lsl.w	r3, r1, r3
+ 800070a:	43d9      	mvns	r1, r3
+ 800070c:	687b      	ldr	r3, [r7, #4]
+ 800070e:	400b      	ands	r3, r1
+           ((PreemptPriority & (uint32_t)((1UL << (PreemptPriorityBits)) - 1UL)) << SubPriorityBits) |
+ 8000710:	4313      	orrs	r3, r2
+         );
+}
+ 8000712:	4618      	mov	r0, r3
+ 8000714:	3724      	adds	r7, #36	@ 0x24
+ 8000716:	46bd      	mov	sp, r7
+ 8000718:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800071c:	4770      	bx	lr
+	...
+
+08000720 <SysTick_Config>:
+  \note    When the variable <b>__Vendor_SysTickConfig</b> is set to 1, then the
+           function <b>SysTick_Config</b> is not included. In this case, the file <b><i>device</i>.h</b>
+           must contain a vendor-specific implementation of this function.
+ */
+__STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
+{
+ 8000720:	b580      	push	{r7, lr}
+ 8000722:	b082      	sub	sp, #8
+ 8000724:	af00      	add	r7, sp, #0
+ 8000726:	6078      	str	r0, [r7, #4]
+  if ((ticks - 1UL) > SysTick_LOAD_RELOAD_Msk)
+ 8000728:	687b      	ldr	r3, [r7, #4]
+ 800072a:	3b01      	subs	r3, #1
+ 800072c:	f1b3 7f80 	cmp.w	r3, #16777216	@ 0x1000000
+ 8000730:	d301      	bcc.n	8000736 <SysTick_Config+0x16>
+  {
+    return (1UL);                                                   /* Reload value impossible */
+ 8000732:	2301      	movs	r3, #1
+ 8000734:	e00f      	b.n	8000756 <SysTick_Config+0x36>
+  }
+
+  SysTick->LOAD  = (uint32_t)(ticks - 1UL);                         /* set reload register */
+ 8000736:	4a0a      	ldr	r2, [pc, #40]	@ (8000760 <SysTick_Config+0x40>)
+ 8000738:	687b      	ldr	r3, [r7, #4]
+ 800073a:	3b01      	subs	r3, #1
+ 800073c:	6053      	str	r3, [r2, #4]
+  NVIC_SetPriority (SysTick_IRQn, (1UL << __NVIC_PRIO_BITS) - 1UL); /* set Priority for Systick Interrupt */
+ 800073e:	210f      	movs	r1, #15
+ 8000740:	f04f 30ff 	mov.w	r0, #4294967295	@ 0xffffffff
+ 8000744:	f7ff ff8e 	bl	8000664 <__NVIC_SetPriority>
+  SysTick->VAL   = 0UL;                                             /* Load the SysTick Counter Value */
+ 8000748:	4b05      	ldr	r3, [pc, #20]	@ (8000760 <SysTick_Config+0x40>)
+ 800074a:	2200      	movs	r2, #0
+ 800074c:	609a      	str	r2, [r3, #8]
+  SysTick->CTRL  = SysTick_CTRL_CLKSOURCE_Msk |
+ 800074e:	4b04      	ldr	r3, [pc, #16]	@ (8000760 <SysTick_Config+0x40>)
+ 8000750:	2207      	movs	r2, #7
+ 8000752:	601a      	str	r2, [r3, #0]
+                   SysTick_CTRL_TICKINT_Msk   |
+                   SysTick_CTRL_ENABLE_Msk;                         /* Enable SysTick IRQ and SysTick Timer */
+  return (0UL);                                                     /* Function successful */
+ 8000754:	2300      	movs	r3, #0
+}
+ 8000756:	4618      	mov	r0, r3
+ 8000758:	3708      	adds	r7, #8
+ 800075a:	46bd      	mov	sp, r7
+ 800075c:	bd80      	pop	{r7, pc}
+ 800075e:	bf00      	nop
+ 8000760:	e000e010 	.word	0xe000e010
+
+08000764 <HAL_NVIC_SetPriorityGrouping>:
+  * @note   When the NVIC_PriorityGroup_0 is selected, IRQ preemption is no more possible. 
+  *         The pending IRQ priority will be managed only by the subpriority. 
+  * @retval None
+  */
+void HAL_NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
+{
+ 8000764:	b580      	push	{r7, lr}
+ 8000766:	b082      	sub	sp, #8
+ 8000768:	af00      	add	r7, sp, #0
+ 800076a:	6078      	str	r0, [r7, #4]
+  /* Check the parameters */
+  assert_param(IS_NVIC_PRIORITY_GROUP(PriorityGroup));
+  
+  /* Set the PRIGROUP[10:8] bits according to the PriorityGroup parameter value */
+  NVIC_SetPriorityGrouping(PriorityGroup);
+ 800076c:	6878      	ldr	r0, [r7, #4]
+ 800076e:	f7ff ff47 	bl	8000600 <__NVIC_SetPriorityGrouping>
+}
+ 8000772:	bf00      	nop
+ 8000774:	3708      	adds	r7, #8
+ 8000776:	46bd      	mov	sp, r7
+ 8000778:	bd80      	pop	{r7, pc}
+
+0800077a <HAL_NVIC_SetPriority>:
+  *         This parameter can be a value between 0 and 15
+  *         A lower priority value indicates a higher priority.          
+  * @retval None
+  */
+void HAL_NVIC_SetPriority(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority)
+{ 
+ 800077a:	b580      	push	{r7, lr}
+ 800077c:	b086      	sub	sp, #24
+ 800077e:	af00      	add	r7, sp, #0
+ 8000780:	4603      	mov	r3, r0
+ 8000782:	60b9      	str	r1, [r7, #8]
+ 8000784:	607a      	str	r2, [r7, #4]
+ 8000786:	73fb      	strb	r3, [r7, #15]
+  uint32_t prioritygroup = 0x00;
+ 8000788:	2300      	movs	r3, #0
+ 800078a:	617b      	str	r3, [r7, #20]
+  
+  /* Check the parameters */
+  assert_param(IS_NVIC_SUB_PRIORITY(SubPriority));
+  assert_param(IS_NVIC_PREEMPTION_PRIORITY(PreemptPriority));
+  
+  prioritygroup = NVIC_GetPriorityGrouping();
+ 800078c:	f7ff ff5c 	bl	8000648 <__NVIC_GetPriorityGrouping>
+ 8000790:	6178      	str	r0, [r7, #20]
+  
+  NVIC_SetPriority(IRQn, NVIC_EncodePriority(prioritygroup, PreemptPriority, SubPriority));
+ 8000792:	687a      	ldr	r2, [r7, #4]
+ 8000794:	68b9      	ldr	r1, [r7, #8]
+ 8000796:	6978      	ldr	r0, [r7, #20]
+ 8000798:	f7ff ff8e 	bl	80006b8 <NVIC_EncodePriority>
+ 800079c:	4602      	mov	r2, r0
+ 800079e:	f997 300f 	ldrsb.w	r3, [r7, #15]
+ 80007a2:	4611      	mov	r1, r2
+ 80007a4:	4618      	mov	r0, r3
+ 80007a6:	f7ff ff5d 	bl	8000664 <__NVIC_SetPriority>
+}
+ 80007aa:	bf00      	nop
+ 80007ac:	3718      	adds	r7, #24
+ 80007ae:	46bd      	mov	sp, r7
+ 80007b0:	bd80      	pop	{r7, pc}
+
+080007b2 <HAL_SYSTICK_Config>:
+  * @param  TicksNumb Specifies the ticks Number of ticks between two interrupts.
+  * @retval status:  - 0  Function succeeded.
+  *                  - 1  Function failed.
+  */
+uint32_t HAL_SYSTICK_Config(uint32_t TicksNumb)
+{
+ 80007b2:	b580      	push	{r7, lr}
+ 80007b4:	b082      	sub	sp, #8
+ 80007b6:	af00      	add	r7, sp, #0
+ 80007b8:	6078      	str	r0, [r7, #4]
+   return SysTick_Config(TicksNumb);
+ 80007ba:	6878      	ldr	r0, [r7, #4]
+ 80007bc:	f7ff ffb0 	bl	8000720 <SysTick_Config>
+ 80007c0:	4603      	mov	r3, r0
+}
+ 80007c2:	4618      	mov	r0, r3
+ 80007c4:	3708      	adds	r7, #8
+ 80007c6:	46bd      	mov	sp, r7
+ 80007c8:	bd80      	pop	{r7, pc}
+	...
+
+080007cc <__libc_init_array>:
+ 80007cc:	b570      	push	{r4, r5, r6, lr}
+ 80007ce:	4d0d      	ldr	r5, [pc, #52]	@ (8000804 <__libc_init_array+0x38>)
+ 80007d0:	4c0d      	ldr	r4, [pc, #52]	@ (8000808 <__libc_init_array+0x3c>)
+ 80007d2:	1b64      	subs	r4, r4, r5
+ 80007d4:	10a4      	asrs	r4, r4, #2
+ 80007d6:	2600      	movs	r6, #0
+ 80007d8:	42a6      	cmp	r6, r4
+ 80007da:	d109      	bne.n	80007f0 <__libc_init_array+0x24>
+ 80007dc:	4d0b      	ldr	r5, [pc, #44]	@ (800080c <__libc_init_array+0x40>)
+ 80007de:	4c0c      	ldr	r4, [pc, #48]	@ (8000810 <__libc_init_array+0x44>)
+ 80007e0:	f000 f818 	bl	8000814 <_init>
+ 80007e4:	1b64      	subs	r4, r4, r5
+ 80007e6:	10a4      	asrs	r4, r4, #2
+ 80007e8:	2600      	movs	r6, #0
+ 80007ea:	42a6      	cmp	r6, r4
+ 80007ec:	d105      	bne.n	80007fa <__libc_init_array+0x2e>
+ 80007ee:	bd70      	pop	{r4, r5, r6, pc}
+ 80007f0:	f855 3b04 	ldr.w	r3, [r5], #4
+ 80007f4:	4798      	blx	r3
+ 80007f6:	3601      	adds	r6, #1
+ 80007f8:	e7ee      	b.n	80007d8 <__libc_init_array+0xc>
+ 80007fa:	f855 3b04 	ldr.w	r3, [r5], #4
+ 80007fe:	4798      	blx	r3
+ 8000800:	3601      	adds	r6, #1
+ 8000802:	e7f2      	b.n	80007ea <__libc_init_array+0x1e>
+ 8000804:	0800082c 	.word	0x0800082c
+ 8000808:	0800082c 	.word	0x0800082c
+ 800080c:	0800082c 	.word	0x0800082c
+ 8000810:	08000830 	.word	0x08000830
+
+08000814 <_init>:
+ 8000814:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000816:	bf00      	nop
+ 8000818:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800081a:	bc08      	pop	{r3}
+ 800081c:	469e      	mov	lr, r3
+ 800081e:	4770      	bx	lr
+
+08000820 <_fini>:
+ 8000820:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000822:	bf00      	nop
+ 8000824:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000826:	bc08      	pop	{r3}
+ 8000828:	469e      	mov	lr, r3
+ 800082a:	4770      	bx	lr
