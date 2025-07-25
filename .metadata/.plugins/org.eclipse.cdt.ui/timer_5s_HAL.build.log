@@ -1,15 +1,103 @@
-15:53:34 **** Incremental Build of configuration Debug for project timer_5s_HAL ****
+14:07:47 **** Build of configuration Debug for project timer_5s_HAL ****
 make -j12 all 
-arm-none-eabi-gcc -o "timer_5s_HAL.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/timer_5s_HAL/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="timer_5s_HAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-/opt/st/stm32cubeide_1.18.1/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/main.o: in function `main':
-/home/invadl0640/Desktop/STM32 Codes/timer_5s_HAL/Debug/../Core/Src/main.c:123:(.text.main+0x26): undefined reference to `HAL_TIM_Base_Start'
-/opt/st/stm32cubeide_1.18.1/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/invadl0640/Desktop/STM32 Codes/timer_5s_HAL/Debug/../Core/Src/main.c:126:(.text.main+0x46): undefined reference to `HAL_TIM_Base_Stop'
-/opt/st/stm32cubeide_1.18.1/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/main.o: in function `MX_TIM6_Init':
-/home/invadl0640/Desktop/STM32 Codes/timer_5s_HAL/Debug/../Core/Src/main.c:215:(.text.MX_TIM6_Init+0x34): undefined reference to `HAL_TIM_Base_Init'
-/opt/st/stm32cubeide_1.18.1/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: /home/invadl0640/Desktop/STM32 Codes/timer_5s_HAL/Debug/../Core/Src/main.c:221:(.text.MX_TIM6_Init+0x50): undefined reference to `HAL_TIMEx_MasterConfigSynchronization'
-collect2: error: ld returned 1 exit status
-make: *** [makefile:64: timer_5s_HAL.elf] Error 1
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.o"
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c:323:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c:108:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c:82:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.c:55:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.c:98:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c:24:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.c:86:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o] Error 1
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.o] Error 1
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o] Error 1
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.o] Error 1
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c:46:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o] Error 1
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c:36:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.o] Error 1
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.c:39:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c:25:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.o] Error 1
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o] Error 1
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.o] Error 1
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.o] Error 1
+In file included from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.c:83:
+../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_conf.h:302:12: fatal error: stm32f7xx_hal_dma2d.h: No such file or directory
+  302 |   #include "stm32f7xx_hal_dma2d.h"
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [Drivers/STM32F7xx_HAL_Driver/Src/subdir.mk:64: Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.o] Error 1
 "make -j12 all" terminated with exit code 2. Build might be incomplete.
 
-15:53:34 Build Failed. 5 errors, 0 warnings. (took 246ms)
+14:07:47 Build Failed. 25 errors, 0 warnings. (took 321ms)
 

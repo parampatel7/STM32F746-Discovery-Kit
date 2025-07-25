@@ -1,0 +1,66 @@
+#include "stm32f7xx.h"
+
+void SysTick_Init(void);
+void delay_ms(uint32_t ms);
+void LED_Init(void);
+void LED_Toggle(void);
+void IWDG_Init(void);
+
+int main(void) {
+    SysTick_Init();     // 1 ms delay using SysTick
+    LED_Init();         // Configure PD5 for output
+    IWDG_Init();        // Set up Independent Watchdog
+
+    uint8_t refresh_count = 0;
+
+    while (1) {
+        LED_Toggle();
+        delay_ms(1000); // Wait 1 second
+
+        if (refresh_count < 5) {
+            IWDG->KR = 0xAAAA;  // Refresh watchdog 🐾
+            refresh_count++;
+        }
+        // After 5 loops, watchdog isn’t refreshed → MCU reset
+    }
+}
+
+void SysTick_Init(void) {
+    SysTick->LOAD = 216000 - 1;        // 1 ms delay assuming 216MHz clock
+    SysTick->VAL = 0;
+    SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk |
+                    SysTick_CTRL_ENABLE_Msk;
+}
+
+void delay_ms(uint32_t ms) {
+    for (uint32_t i = 0; i < ms; i++) {
+        while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == 0);
+    }
+}
+
+void LED_Init(void) {
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
+    GPIOD->MODER &= ~(0x3 << (5 * 2));
+    GPIOD->MODER |=  (0x1 << (5 * 2));
+    GPIOD->OTYPER &= ~(1 << 5);
+    GPIOD->OSPEEDR &= ~(0x3 << (5 * 2));
+    GPIOD->PUPDR &= ~(0x3 << (5 * 2));
+    GPIOD->ODR |= (1 << 5);            // LED OFF (active low)
+}
+
+void LED_Toggle(void) {
+    GPIOD->ODR ^= (1 << 5);
+}
+
+void IWDG_Init(void) {
+    IWDG->KR = 0x5555;    // Enable register access
+
+    IWDG->PR = IWDG_PR_PR_2 | IWDG_PR_PR_1 | IWDG_PR_PR_0;  // Prescaler = 256
+
+    // LSI ≈ 32kHz → 32,000 / 256 ≈ 125Hz → 1 tick = 8ms
+    // 2 seconds / 8ms ≈ 250 ticks
+    IWDG->RLR = 250;
+
+    IWDG->KR = 0xAAAA;    // Initial refresh
+    IWDG->KR = 0xCCCC;    // Start watchdog
+}

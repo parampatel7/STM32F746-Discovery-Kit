@@ -1,0 +1,55 @@
+#include "stm32f7xx.h"
+
+void SysTick_Init(void);
+void delay_ms(uint32_t ms);
+void LED_Init(void);
+void LED_Toggle(void);
+
+int main(void) {
+    LED_Init();         // Initialize PD5 as output
+    SysTick_Init();     // Initialize SysTick timer
+
+    while (1) {
+        LED_Toggle();   // Toggle LED
+        delay_ms(2000); // Wait 2 seconds
+    }
+}
+
+void LED_Init(void) {
+    // Enable GPIOD clock
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
+
+    // Set PD5 as output
+    GPIOD->MODER &= ~(0x3 << (5 * 2));      // Clear mode bits
+    GPIOD->MODER |=  (0x1 << (5 * 2));      // Set to General Purpose Output
+
+    // Set output type to push-pull
+    GPIOD->OTYPER &= ~(1 << 5);
+
+    // Set speed to low
+    GPIOD->OSPEEDR &= ~(0x3 << (5 * 2));
+
+    // No pull-up/pull-down
+    GPIOD->PUPDR &= ~(0x3 << (5 * 2));
+
+    // Set initial state (LED OFF - active low)
+    GPIOD->ODR |= (1 << 5);
+}
+
+void SysTick_Init(void) {
+    // Assuming SystemCoreClock = 216MHz
+    SysTick->LOAD = 216000 - 1;  // 1 ms delay
+    SysTick->VAL = 0;            // Reset current value
+    SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk |
+                    SysTick_CTRL_ENABLE_Msk;
+}
+
+void delay_ms(uint32_t ms) {
+    for (uint32_t i = 0; i < ms; i++) {
+        while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == 0);
+    }
+}
+
+void LED_Toggle(void) {
+    GPIOD->ODR ^= (1 << 5);  // Toggle PD5
+}

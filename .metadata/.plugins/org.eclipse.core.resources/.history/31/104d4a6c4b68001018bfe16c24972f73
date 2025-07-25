@@ -1,0 +1,77 @@
+#include "stm32f7xx.h"
+
+void SysTick_Init(void);
+void delay_ms(uint32_t ms);
+void LED_Init(void);
+void LED_Toggle(void);
+void IWDG_Init(void);
+
+int main(void) {
+    SysTick_Init();     // 1 ms delay using SysTick
+    LED_Init();         // Configure PD5 for output
+    IWDG_Init();        // Set up Independent Watchdog
+
+    uint8_t refresh_count = 0;
+
+    while (1) {
+        LED_Toggle();
+        delay_ms(1000); // Wait 1 second
+
+        if (refresh_count < 5) {
+            IWDG->KR = 0xAAAA;  // Refresh watchdog
+            refresh_count++;
+        }
+        // After 5 loops, watchdog isn’t refreshed → MCU reset
+    }
+}
+
+void SysTick_Init(void) {
+    SysTick->LOAD = 216000 - 1;        // 1 ms delay assuming 216MHz clock
+    SysTick->VAL = 0;
+    SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk |
+                    SysTick_CTRL_ENABLE_Msk;
+}
+
+void delay_ms(uint32_t ms) {
+    for (uint32_t i = 0; i < ms; i++) {
+        while ((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) == 0);
+    }
+}
+
+void LED_Init(void) {
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
+    GPIOD->MODER &= ~(0x3 << (5 * 2));
+    GPIOD->MODER |=  (0x1 << (5 * 2));
+    GPIOD->OTYPER &= ~(1 << 5);
+    GPIOD->OSPEEDR &= ~(0x3 << (5 * 2));
+    GPIOD->PUPDR &= ~(0x3 << (5 * 2));
+    GPIOD->ODR |= (1 << 5);            // LED OFF (active low)
+}
+
+void LED_Toggle(void) {
+    GPIOD->ODR ^= (1 << 5);
+}
+
+void IWDG_Init(void) {
+    // Step 1: Enable write access to IWDG_PR and IWDG_RLR
+    IWDG->KR = 0x5555;
+
+    // Step 2: Wait until prescaler update is complete
+    while (IWDG->SR & IWDG_SR_PVU);
+
+    // Step 3: Set prescaler to divide LSI (≈ 32kHz) by 256
+    IWDG->PR = IWDG_PR_PR_0 | IWDG_PR_PR_1 | IWDG_PR_PR_2; // PR = 0x07
+
+    // Step 4: Wait until reload value update is complete
+    while (IWDG->SR & IWDG_SR_RVU);
+
+    // Step 5: Set reload value to 250 for ~2 second timeout
+    // Calculation: (LSI / 256) = 125 Hz ⇒ 1 tick ≈ 8 ms ⇒ 250 * 8 ms ≈ 2000 ms
+    IWDG->RLR = 250;
+
+    // Step 6: Refresh watchdog immediately after config
+    IWDG->KR = 0xAAAA;
+
+    // Step 7: Start the watchdog
+    IWDG->KR = 0xCCCC;
+}

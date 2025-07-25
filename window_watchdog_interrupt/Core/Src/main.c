@@ -1,0 +1,194 @@
+#include "stm32f7xx.h"
+#include "main.h"
+
+void SystemClock_Config(void);
+void GPIO_Init(void);
+void WWDG_Init(void);
+void Error_Handler(void);
+
+// Flag for pushbutton
+volatile uint8_t button_pressed = 0;
+
+int main(void)
+{
+    HAL_Init();
+    SystemClock_Config();
+    GPIO_Init();
+    WWDG_Init();
+
+    // Start WWDG counter (max 0x7F)
+    WWDG->CR = WWDG_CR_WDGA | 0x7F;
+
+    while (1)
+    {
+        // Wait for button interrupt to toggle LED inside ISR
+        // Optionally refresh WWDG here if needed:
+        if (button_pressed)
+        {
+            button_pressed = 0;
+            WWDG->CR = WWDG_CR_WDGA | 0x7F;  // Refresh
+        }
+
+        HAL_Delay(10);  // Small delay to avoid flooding
+    }
+}
+
+/**
+  * @brief Configure PD5 (LED) and PI11 (Button)
+  */
+void GPIO_Init(void)
+{
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+    __HAL_RCC_GPIOI_CLK_ENABLE();
+
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+    // LED PD5 (active-low output)
+    GPIO_InitStruct.Pin = GPIO_PIN_5;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5, GPIO_PIN_SET);  // LED off initially
+
+    // Button PI11 (input with pull-up)
+    GPIO_InitStruct.Pin = GPIO_PIN_11;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+}
+
+/**
+  * @brief Configure WWDG with interrupt enabled
+  */
+void WWDG_Init(void)
+{
+    __HAL_RCC_WWDG_CLK_ENABLE();
+
+    // APB1 = 54 MHz → WWDG Clock = 54MHz / 4096 / 8 ≈ 1.647 ms/tick
+    // Refresh window: Counter must be between 0x7F and 0x50
+
+    // Enable EWI interrupt, set window to 0x50 (threshold), prescaler = /8
+    WWDG->CFR = WWDG_CFR_EWI
+              | (3U << WWDG_CFR_WDGTB_Pos)
+              | (0x50U << WWDG_CFR_W_Pos);
+
+    NVIC_EnableIRQ(WWDG_IRQn);  // Enable WWDG interrupt
+}
+
+/**
+  * @brief WWDG interrupt handler
+  *        Fires when counter drops below window (0x50)
+  */
+void WWDG_IRQHandler(void)
+{
+    if (WWDG->SR & WWDG_SR_EWIF)
+    {
+        WWDG->SR = 0;  // Clear interrupt flag
+
+        // Read pushbutton: active-low, so 0 when pressed
+        if (HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_11) == GPIO_PIN_RESET)
+        {
+            // Toggle LED (active-low)
+            GPIOD->ODR ^= (1 << 5);
+            button_pressed = 1;
+        }
+    }
+}
+
+
+/**
+  * @brief Configure system clock to ensure APB1 = 54 MHz
+  *        (Assuming HSE input; customize for your setup)
+  */
+
+
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Configure the main internal regulator output voltage
+  */
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 25;
+  RCC_OscInitStruct.PLL.PLLN = 400;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = 9;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Activate the Over-Drive mode
+  */
+  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_6) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  { GPIOD-> ODR &= ~(1 << 5);
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
