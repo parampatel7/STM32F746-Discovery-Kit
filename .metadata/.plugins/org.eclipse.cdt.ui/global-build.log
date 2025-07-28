@@ -3411,3 +3411,825 @@ Finished building: default.size.stdout
  
 Finished building: window_watchdog_interrupt.list
  
+09:05:31 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5360	     12	   1572	   6944	   1b20	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+09:05:41 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-size  window_watchdogtimer.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5360	     12	   1572	   6944	   1b20	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+09:09:35 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5336	     12	   1572	   6920	   1b08	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+09:09:39 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-size  window_watchdogtimer.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5336	     12	   1572	   6920	   1b08	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+09:10:40 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-size  window_watchdogtimer.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5336	     12	   1572	   6920	   1b08	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+09:11:39 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5352	     12	   1572	   6936	   1b18	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+09:12:03 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5352	     12	   1572	   6936	   1b18	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+09:13:07 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:51:12: warning: implicit declaration of function 'WWDG_Init'; did you mean 'wwdg_init'? [-Wimplicit-function-declaration]
+   51 |            WWDG_Init();
+      |            ^~~~~~~~~
+      |            wwdg_init
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.18.1/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/main.o: in function `main':
+/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/Debug/../Core/Src/main.c:51:(.text.main+0x54): undefined reference to `WWDG_Init'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: window_watchdogtimer.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+09:13:21 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:51:12: warning: implicit declaration of function 'wwdt_init'; did you mean 'wwdg_init'? [-Wimplicit-function-declaration]
+   51 |            wwdt_init();
+      |            ^~~~~~~~~
+      |            wwdg_init
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.18.1/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/main.o: in function `main':
+/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/Debug/../Core/Src/main.c:51:(.text.main+0x54): undefined reference to `wwdt_init'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: window_watchdogtimer.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+09:13:42 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:39:5: warning: implicit declaration of function 'wwdt_init'; did you mean 'wwdg_init'? [-Wimplicit-function-declaration]
+   39 |     wwdt_init();
+      |     ^~~~~~~~~
+      |     wwdg_init
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+/opt/st/stm32cubeide_1.18.1/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld: ./Core/Src/main.o: in function `main':
+/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/Debug/../Core/Src/main.c:39:(.text.main+0x12): undefined reference to `wwdt_init'
+collect2: error: ld returned 1 exit status
+make: *** [makefile:64: window_watchdogtimer.elf] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+09:14:21 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5404	     12	   1572	   6988	   1b4c	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+09:14:40 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5400	     12	   1572	   6984	   1b48	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+09:15:10 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-size  window_watchdogtimer.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5400	     12	   1572	   6984	   1b48	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+09:18:11 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5400	     12	   1572	   6984	   1b48	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+09:19:56 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5420	     12	   1572	   7004	   1b5c	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+10:27:26 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5420	     12	   1572	   7004	   1b5c	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+10:28:29 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5420	     12	   1572	   7004	   1b5c	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+10:29:20 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:61:24: error: expected expression before ';' token
+   61 |             WWDG->CR = ;
+      |                        ^
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+10:29:38 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5420	     12	   1572	   7004	   1b5c	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+10:31:02 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5420	     12	   1572	   7004	   1b5c	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+10:32:56 **** Incremental Build of configuration Debug for project window_watchdogtimer ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdogtimer.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdogtimer/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdogtimer.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdogtimer.elf
+ 
+arm-none-eabi-size  window_watchdogtimer.elf 
+arm-none-eabi-objdump -h -S window_watchdogtimer.elf  > "window_watchdogtimer.list"
+   text	   data	    bss	    dec	    hex	filename
+   5420	     12	   1572	   7004	   1b5c	window_watchdogtimer.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdogtimer.list
+ 
+11:03:57 **** Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_exti.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_flash_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_i2c_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o"
+arm-none-eabi-gcc "../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.d" -MT"Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o"
+arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -DDEBUG -c -I../Core/Inc -I../FATFS/Target -I../FATFS/App -I../USB_HOST/App -I../USB_HOST/Target -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/Third_Party/FatFs/src -I../Middlewares/ST/STM32_USB_Host_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32f746nghx.d" -MT"Core/Startup/startup_stm32f746nghx.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32f746nghx.o" "../Core/Startup/startup_stm32f746nghx.s"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_hal_msp.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_hal_msp.d" -MT"Core/Src/stm32f7xx_hal_msp.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32f7xx.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32f7xx.d" -MT"Core/Src/system_stm32f7xx.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32f7xx.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:38:6: error: 'RCC_CSR' undeclared (first use in this function)
+   38 |   if(RCC_CSR & RCC_CSR_WWDGRSTF ==1)
+      |      ^~~~~~~
+../Core/Src/main.c:38:6: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+11:04:16 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:38:6: error: 'RCC_CSR' undeclared (first use in this function)
+   38 |   if(RCC_CSR & RCC_CSR_WWDGRSTF )
+      |      ^~~~~~~
+../Core/Src/main.c:38:6: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+11:05:37 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:38:6: error: 'RCC_CSR' undeclared (first use in this function)
+   38 |   if(RCC_CSR & RCC_CSR_WWDGRSTF )
+      |      ^~~~~~~
+../Core/Src/main.c:38:6: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+11:06:29 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5432	     12	   1572	   7016	   1b68	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:07:33 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:62:3: error: expected ';' before 'while'
+   62 |   while (1)
+      |   ^~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+11:07:43 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5432	     12	   1572	   7016	   1b68	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:13:13 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:15:02 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:15:46 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:18:20 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:18:51 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:19:27 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:24:02 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:25:04 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:26:38 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5432	     12	   1572	   7016	   1b68	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:28:10 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:60:3: error: 'CLEAR_RESET_FLAGS' undeclared (first use in this function); did you mean 'CLEAR_RESET_FLAG'?
+   60 |   CLEAR_RESET_FLAGS;
+      |   ^~~~~~~~~~~~~~~~~
+      |   CLEAR_RESET_FLAG
+../Core/Src/main.c:60:3: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+11:28:20 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5432	     12	   1572	   7016	   1b68	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:31:15 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5484	     12	   1572	   7068	   1b9c	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:31:47 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5496	     12	   1572	   7080	   1ba8	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:33:57 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:34:28 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:35:15 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:36:21 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:41:41 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5488	     12	   1572	   7072	   1ba0	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:43:34 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:44:06 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:44:52 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:45:15 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:47:46 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:49:24 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:49:53 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:51:20 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:51:55 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:52:26 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:52:54 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:53:14 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:54:10 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:55:28 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:57:55 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+11:58:10 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+11:58:31 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+12:00:23 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5464	     12	   1572	   7048	   1b88	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+12:01:12 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5464	     12	   1572	   7048	   1b88	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+12:01:26 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5464	     12	   1572	   7048	   1b88	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+12:01:44 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5476	     12	   1572	   7060	   1b94	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+12:01:55 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5464	     12	   1572	   7048	   1b88	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 
+12:05:08 **** Incremental Build of configuration Debug for project window_watchdog_csr_register ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "window_watchdog_csr_register.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/window_watchdog_csr_register/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="window_watchdog_csr_register.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: window_watchdog_csr_register.elf
+ 
+arm-none-eabi-size  window_watchdog_csr_register.elf 
+arm-none-eabi-objdump -h -S window_watchdog_csr_register.elf  > "window_watchdog_csr_register.list"
+   text	   data	    bss	    dec	    hex	filename
+   5464	     12	   1572	   7048	   1b88	window_watchdog_csr_register.elf
+Finished building: default.size.stdout
+ 
+Finished building: window_watchdog_csr_register.list
+ 

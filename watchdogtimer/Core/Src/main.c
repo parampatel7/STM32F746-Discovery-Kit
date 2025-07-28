@@ -6,6 +6,9 @@ void LED_Init(void);
 void LED_Toggle(void);
 void IWDG_Init(void);
 void SystemClock_Config(void) ;
+
+
+
 int main(void) {
 	SystemClock_Config();
     SysTick_Init();     // 1 ms delay using SysTick

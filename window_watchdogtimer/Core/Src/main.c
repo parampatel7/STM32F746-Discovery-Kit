@@ -12,7 +12,17 @@
 /*The WWDG 7-bit down-counter can hold values from 0x7F (127) down to 0x40 (64).
 If the counter reaches a value less than 0x40, meaning < 64, it triggers a reset.*/
 
-//interrupt
+#define LED_OFF 								GPIOD-> ODR |=(1<<5);
+#define LED_ON  								GPIOD->ODR &= ~(1<<5);
+#define RESET_Watchdog 							WWDG_CR_WDGA | (0x7F)
+#define RCC_CLOCK_ON 							APB1ENR |= RCC_APB1ENR_WWDGEN
+#define SET_WINDOW_PRESCALER					CFR =  (3U << WWDG_CFR_WDGTB_Pos)| (80U << WWDG_CFR_W_Pos)
+#define CLOCK_TO_GPIO							AHB1ENR |= RCC_AHB1ENR_GPIODEN
+#define CLEAR_MODE_BIT							MODER &= ~(0x3 << (5 * 2))
+#define SET_MODE_BIT							MODER |=  (0x1 << (5 * 2))
+#define SET_TYPE								OTYPER &= ~(1 << 5)
+#define SET_SPEED								OSPEEDR &= ~(0x3 << (5 * 2))
+#define SET_PULLUP_PULLDOWN						PUPDR &= ~(0x3 << (5 * 2))
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void GPIO_Init(void);
@@ -33,43 +43,36 @@ void wwdg_init(void);
 int main(void)
 {
 
-  HAL_Init();
+    HAL_Init();
     SystemClock_Config();
     GPIO_Init();
-
-
-    // Detect if last reset was due to WWDG
-    int is_wwdg_reset = (RCC->CSR & RCC_CSR_WWDGRSTF) ? 1 : 0;
-    RCC->CSR |= RCC_CSR_RMVF;  // Clear reset flags
-
-    // Init WWDG
     wwdg_init();
 
-    // Time tracking
-    uint32_t elapsed_time = 0;
-    uint32_t blink_delay_ms = 0;
-
-    blink_delay_ms = is_wwdg_reset ? 5000 : 2000;
-
-    while (1)
-    {
+   while (1)
+    {	LED_OFF;
+    	HAL_Delay(2000);
         // Toggle LED (active low)
-        GPIOD->ODR ^= (1 << 5);
-        HAL_Delay(blink_delay_ms);
-        elapsed_time += blink_delay_ms;
-
-        // Refresh WWDG only for first 10 seconds
-        if (!is_wwdg_reset && (elapsed_time < 10000))
+	   for(int i=0; i<3; i++)
+	   {
+			LED_ON;
+			HAL_Delay(1000);
+			LED_OFF;
+			HAL_Delay(1000);
+	   }
+	   HAL_Delay(5000);
+        // Refresh WWDG only for first 6 seconds
+        for(int j=0; j < 204; j++)
         {
             // Must refresh after ~28.5 ms but before ~38 ms
             HAL_Delay(30);  // Safe refresh timing
-            WWDG->CR = WWDG_CR_WDGA | (0x7F);
-
+            WWDG->CR = RESET_Watchdog;
+            LED_ON;
         }
 
+
         // After 10 seconds, we skip refresh, WWDG will reset MCU
-        // On reboot, we'll see LED blinking slowly (5s) as a signal
-    }
+        // On reboot, we'll see LED blinking
+        }
   }
   /* USER CODE END 3 */
 
@@ -80,29 +83,28 @@ int main(void)
   */
 void wwdg_init(void)
 {
-    RCC->APB1ENR |= RCC_APB1ENR_WWDGEN;          // Enable WWDG clock as wwdt needs PCLK
+    RCC-> RCC_CLOCK_ON;          // Enable WWDG clock as wwdt needs PCLK
 
     /* Configure CFR: WDGTB=
      *  00: CK counter clock (PCLK div 4096) div 1
 		01: CK counter clock (PCLK div 4096) div 2
 		10: CK counter clock (PCLK div 4096) div 4
 		11: CK counter clock (PCLK div 4096) div 8 */
-    WWDG->CFR =  (3U << WWDG_CFR_WDGTB_Pos)         // prescaler 8
-               | (80U << WWDG_CFR_W_Pos);           // window = 80
+    WWDG-> SET_WINDOW_PRESCALER;           // window = 80
 
     /* Activate WWDG: counter = 127 */
-    WWDG->CR = WWDG_CR_WDGA | ( 0x7F);//<---------------------------
+   // WWDG->CR = WWDG_CR_WDGA | ( 0x7F);//<---------------------------
 }
 
 
 void GPIO_Init(void) {
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
-    GPIOD->MODER &= ~(0x3 << (5 * 2));
-    GPIOD->MODER |=  (0x1 << (5 * 2));
-    GPIOD->OTYPER &= ~(1 << 5);
-    GPIOD->OSPEEDR &= ~(0x3 << (5 * 2));
-    GPIOD->PUPDR &= ~(0x3 << (5 * 2));
-    GPIOD->ODR |= (1 << 5);            // LED OFF (active low)
+    RCC-> CLOCK_TO_GPIO;
+    GPIOD->CLEAR_MODE_BIT;
+    GPIOD->SET_MODE_BIT;
+    GPIOD->SET_TYPE;
+    GPIOD->SET_SPEED;
+    GPIOD->SET_PULLUP_PULLDOWN;
+    LED_OFF;            // LED OFF (active low)
 }
 
 void SystemClock_Config(void)
@@ -168,7 +170,7 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
   while (1)
-  {
+  {LED_ON;
   }
   /* USER CODE END Error_Handler_Debug */
 }

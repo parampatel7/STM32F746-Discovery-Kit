@@ -11,4 +11,15 @@
 	<section name="CResourceRenameRefactoringInputPage">
 		<item key="updateReferences" value="true"/>
 	</section>
+	<section name="PDOMSearchPage">
+		<item key="caseSensitive" value="false"/>
+		<item key="searchFlags" value="227191"/>
+		<list key="previousPatterns">
+			<item value="hal_delay"/>
+			<item value="delay_ms"/>
+			<item value="WWDG_BASE"/>
+			<item value="PERIPH_BASE"/>
+			<item value="APB2PERIPH_BASE"/>
+		</list>
+	</section>
 </section>
