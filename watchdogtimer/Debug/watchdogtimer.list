@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00022ea0  00000000  00000000  00004021  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00001ff5  00000000  00000000  00026ec1  2**0
+ 17 .debug_line   00001ff7  00000000  00000000  00026ec1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000dbfc5  00000000  00000000  00028eb6  2**0
+ 18 .debug_str    000dbfc5  00000000  00000000  00028eb8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00104e7b  2**0
+ 19 .comment      00000043  00000000  00000000  00104e7d  2**0
                   CONTENTS, READONLY
  20 .debug_frame  00000634  00000000  00000000  00104ec0  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -79,11 +79,11 @@ Disassembly of section .text:
  8000204:	080005a4 	.word	0x080005a4
 
 08000208 <main>:
-void delay_ms(uint32_t ms);
-void LED_Init(void);
-void LED_Toggle(void);
 void IWDG_Init(void);
 void SystemClock_Config(void) ;
+
+
+
 int main(void) {
  8000208:	b580      	push	{r7, lr}
  800020a:	b082      	sub	sp, #8

@@ -5,7 +5,7 @@
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration.internal">
-		<item key="size.width" value="448"/>
+		<item key="size.width" value="687"/>
 		<item key="size.height" value="180"/>
 	</section>
 	<section name="CResourceRenameRefactoringInputPage">
@@ -15,6 +15,13 @@
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="XferSize"/>
+			<item value="I2C_GENERATE_START_READ"/>
+			<item value="I2C_CR2_SADD"/>
+			<item value="I2C_TransferConfig"/>
+			<item value="I2C_RequestMemoryRead"/>
+			<item value="HAL_I2C_Init"/>
+			<item value="HAL_I2C_MspInit"/>
 			<item value="hal_delay"/>
 			<item value="delay_ms"/>
 			<item value="WWDG_BASE"/>
