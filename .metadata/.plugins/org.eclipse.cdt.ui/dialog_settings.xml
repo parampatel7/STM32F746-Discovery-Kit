@@ -15,6 +15,13 @@
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="I2C_WaitOnFlagUntilTimeout"/>
+			<item value="I2C_TransferConfighi2c"/>
+			<item value="__HAL_LOCK"/>
+			<item value="I2C_RequestMemoryWrite"/>
+			<item value="HAL_I2C_STATE_READY"/>
+			<item value="State"/>
+			<item value="IS_I2C_MEMADD_SIZE"/>
 			<item value="XferSize"/>
 			<item value="I2C_GENERATE_START_READ"/>
 			<item value="I2C_CR2_SADD"/>
@@ -28,5 +35,19 @@
 			<item value="PERIPH_BASE"/>
 			<item value="APB2PERIPH_BASE"/>
 		</list>
+	</section>
+	<section name="ConvertToMakeWizard.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="573"/>
+		<item key="DIALOG_Y_ORIGIN" value="92"/>
+		<item key="DIALOG_WIDTH" value="722"/>
+		<item key="DIALOG_HEIGHT" value="642"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu Sans|11.0|0|GTK|1|"/>
+	</section>
+	<section name="org.eclipse.cdt.ui.OPEN_ACTION_SELECTION_DIALOG_SECTION">
+		<item key="DIALOG_X_ORIGIN" value="709"/>
+		<item key="DIALOG_Y_ORIGIN" value="176"/>
+		<item key="DIALOG_WIDTH" value="450"/>
+		<item key="DIALOG_HEIGHT" value="517"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu Sans|11.0|0|GTK|1|"/>
 	</section>
 </section>

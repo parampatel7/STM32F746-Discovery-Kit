@@ -22,14 +22,16 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /*7bit i2c address: 1010xxx
- * xxx are hardware configurable, A2 A1 A0 baasically grounded as seen from diagram of "Factory RAM"
+ * xxx depends on hardware: In our ram its EN | A9 | A8 | R/W
  * 7bits +1bit R/W
+ * For factory RAM EN is 0, For application RAM EN is 1
+ * After these 8 bits we need to add our address location (A7 - A0)
  * 0x50 is the device’s 7-bit address from the datasheet.
  * 0x50 << 1 (equals 0xA0) converts it to the 8-bit form STM32 HAL needs.*/
-#define EEPROM_I2C_ADDR     (0x50 << 1)    // 7-bit address shifted left for HAL
+#define EEPROM_I2C_ADDR     (0xA2)    // 7-bit address shifted left for HAL
 #define EEPROM_TIMEOUT      100				//This timeout defines how long the function will wait (block) for the I²C operation to complete before giving up and returning an error. It prevents your program from hanging forever if something goes wrong on the I²C bus (e.g., no device response, bus stuck, or hardware fault).
 #define EEPROM_MEM_ADDR     0x00
-uint8_t writeData[] = "STM32F7";
+uint8_t writeData[] = "Param";
 uint8_t readData[sizeof(writeData)] = {0};
 /* USER CODE END Includes */
 
@@ -50,7 +52,7 @@ uint8_t readData[sizeof(writeData)] = {0};
 
 /* Private variables ---------------------------------------------------------*/
 
-I2C_HandleTypeDef hi2c1;
+I2C_HandleTypeDef hi2c1; //pointer to structure
 
 /* USER CODE BEGIN PV */
 

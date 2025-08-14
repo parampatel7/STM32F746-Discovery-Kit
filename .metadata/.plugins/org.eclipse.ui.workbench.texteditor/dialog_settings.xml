@@ -3,6 +3,9 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="DevAddress"/>
+		<item value="EEPROM_MEM_ADDR"/>
+		<item value="IS_I2C_MEMADD_SIZE"/>
 		<item value="XferSize"/>
 		<item value="MX_I2C1_Init"/>
 		<item value="HAL_I2C_MspInit"/>

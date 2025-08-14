@@ -1,4 +1,4 @@
-10:48:05 **** Incremental Build of configuration Debug for project i2c_both_ram ****
+15:35:47 **** Incremental Build of configuration Debug for project i2c_both_ram ****
 make -j12 all 
 arm-none-eabi-size  i2c_both_ram.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  i2c_both_ram.elf
 Finished building: default.size.stdout
  
 
-10:48:05 Build Finished. 0 errors, 0 warnings. (took 79ms)
+15:35:47 Build Finished. 0 errors, 0 warnings. (took 80ms)
 

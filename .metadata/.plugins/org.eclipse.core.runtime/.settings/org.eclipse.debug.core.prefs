@@ -5,4 +5,4 @@
 //org.eclipse.debug.core.PREFERRED_DELEGATES/org.eclipse.cdt.launch.remoteApplicationLaunchType=org.eclipse.rse.remotecdt.dsf.debug,debug,;
 eclipse.preferences.version=1
 org.eclipse.debug.core.USE_STEP_FILTERS=false
-prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n    <expression enabled\="true" text\="writeStatus"/>\n    <expression enabled\="true" text\="readStatus"/>\n    <expression enabled\="true" text\="writeStatus_application_ram"/>\n    <expression enabled\="true" text\="readStatus_application_ram"/>\n</watchExpressions>\n
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n    <expression enabled\="true" text\="writeData"/>\n    <expression enabled\="true" text\="readData"/>\n</watchExpressions>\n

@@ -23,7 +23,7 @@
 #define EEPROM_I2C_ADDR     (0x54 << 1)
 #define EEPROM_TIMEOUT      100				//This timeout defines how long the function will wait (block) for the I²C operation to complete before giving up and returning an error. It prevents your program from hanging forever if something goes wrong on the I²C bus (e.g., no device response, bus stuck, or hardware fault).
 #define EEPROM_MEM_ADDR     0x00
-uint8_t writeData[] = "Application RAM";
+uint8_t writeData[] = "LEMT";
 uint8_t readData[sizeof(writeData)] = {0};
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
