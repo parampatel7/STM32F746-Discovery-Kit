@@ -1,0 +1,24 @@
+15:18:14 **** Incremental Build of configuration Debug for project i2c_temperature_sensor ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'LM73_SetResolution_11bit':
+../Core/Src/main.c:360:15: warning: 'ctrl_data' is used uninitialized [-Wuninitialized]
+  360 |     ctrl_data &= ~(0x3 << 5);
+      |     ~~~~~~~~~~^~~~~~~~~~~~~~
+../Core/Src/main.c:350:13: note: 'ctrl_data' was declared here
+  350 |     uint8_t ctrl_data;
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "i2c_temperature_sensor.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/i2c_temperature_sensor/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="i2c_temperature_sensor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: i2c_temperature_sensor.elf
+ 
+arm-none-eabi-size  i2c_temperature_sensor.elf 
+arm-none-eabi-objdump -h -S i2c_temperature_sensor.elf  > "i2c_temperature_sensor.list"
+   text	   data	    bss	    dec	    hex	filename
+  11664	     12	   1660	  13336	   3418	i2c_temperature_sensor.elf
+Finished building: default.size.stdout
+ 
+Finished building: i2c_temperature_sensor.list
+ 
+
+15:18:14 Build Finished. 0 errors, 1 warnings. (took 234ms)
+

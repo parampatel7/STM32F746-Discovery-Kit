@@ -416,8 +416,8 @@ int main(void)
  800055e:	4b15      	ldr	r3, [pc, #84]	@ (80005b4 <main+0x80>)
  8000560:	9300      	str	r3, [sp, #0]
  8000562:	2301      	movs	r3, #1
- 8000564:	2208      	movs	r2, #8
- 8000566:	21a6      	movs	r1, #166	@ 0xa6
+ 8000564:	2200      	movs	r2, #0
+ 8000566:	21a8      	movs	r1, #168	@ 0xa8
  8000568:	4813      	ldr	r0, [pc, #76]	@ (80005b8 <main+0x84>)
  800056a:	f000 fddf 	bl	800112c <HAL_I2C_Mem_Write>
  800056e:	4603      	mov	r3, r0
@@ -440,8 +440,8 @@ int main(void)
  8000580:	4b0e      	ldr	r3, [pc, #56]	@ (80005bc <main+0x88>)
  8000582:	9300      	str	r3, [sp, #0]
  8000584:	2301      	movs	r3, #1
- 8000586:	2208      	movs	r2, #8
- 8000588:	21a6      	movs	r1, #166	@ 0xa6
+ 8000586:	2200      	movs	r2, #0
+ 8000588:	21a8      	movs	r1, #168	@ 0xa8
  800058a:	480b      	ldr	r0, [pc, #44]	@ (80005b8 <main+0x84>)
  800058c:	f000 fee2 	bl	8001354 <HAL_I2C_Mem_Read>
  8000590:	4603      	mov	r3, r0

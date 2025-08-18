@@ -31,21 +31,23 @@
  Power efficiency is a priority — more CPU cycles = more power.
  Timing accuracy is critical (e.g., real-time systems).
  Your application demands robust, reliable communication under load.*/
-
+//led, both ram in same code
 #include "main.h"
 #include "stm32f7xx.h"
 #include <string.h>
 #include <stdbool.h>
-#define EEPROM_ADDR			0xA0
+#define EEPROM_ADDR			0xA6
 #define EEPROM_MEM_ADDR		0x00
 
-uint8_t writeData[]= "Lucy Electric";
+uint8_t writeData[]= "Param ";
 uint8_t readData[sizeof(writeData)] = {0};
 
 #define clk_high	GPIOB->ODR |= (1U << 6)
 #define clk_low		GPIOB->ODR &= ~(1U << 6)
 #define sda_high	GPIOB->ODR |= (1U << 7)
 #define sda_low		GPIOB->ODR &= ~(1U << 7)
+#define GPIO_INPUT	GPIOB->MODER &= ~(0x3 << 14)
+#define GPIO_OUTPUT	GPIOB->MODER |=  (0x1 << (14))
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -136,7 +138,7 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   // Write to EEPROM
-  eeprom_write(EEPROM_MEM_ADDR, writeData, sizeof(writeData));
+ eeprom_write(EEPROM_MEM_ADDR, writeData, sizeof(writeData));
   HAL_Delay(5); // Wait for EEPROM internal write cycle
 
   // Read back
@@ -149,11 +151,16 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
+		  if(memcmp(writeData, readData, sizeof(writeData))==0)
+		  {
+			  HAL_GPIO_TogglePin(GPIOH, GPIO_PIN_8 );
+			  HAL_Delay(1000);
+		  }
     /* USER CODE BEGIN 3 */
-  }
+
   /* USER CODE END 3 */
 }
-
+}
 /**
   * @brief System Clock Configuration
   * @retval None
@@ -195,7 +202,7 @@ void write_bit(uint8_t bit)
 uint8_t read_bit(void)
 {
 	uint8_t bit;
-	GPIOB->MODER &= ~(0x3 << 14);
+	GPIO_INPUT;
 	sda_high;
 	delay_us(2);
 	clk_high;
@@ -203,7 +210,7 @@ uint8_t read_bit(void)
 	bit= (GPIOB->IDR >> 7) & 0x01;
 	clk_low;
 	delay_us(4);
-	GPIOB->MODER |=  (0x1 << (7 * 2));
+	GPIO_OUTPUT;
 	return bit;
 }
 bool write_byte(uint8_t byte, bool do_start, bool do_stop)
@@ -216,9 +223,9 @@ bool write_byte(uint8_t byte, bool do_start, bool do_stop)
 			write_bit((byte & 0x80) != 0);
 			byte <<=1;
 		}
-		GPIOB->MODER &= ~(0x3 << 14);
+		GPIO_INPUT;
 		uint8_t ack= !read_bit();
-		GPIOB->MODER |=  (0x1 << (7 * 2));
+		GPIO_OUTPUT;
 		if(do_stop) stop();
 		return ack;
 
@@ -245,6 +252,14 @@ uint8_t read_byte(bool ack, bool do_stop)
 void eeprom_write(uint8_t mem_addr, uint8_t* data, uint8_t len)
 {
     start();
+    if((EEPROM_ADDR == 0xA8) | (EEPROM_ADDR == 0xAA) | (EEPROM_ADDR == 0xAC) | (EEPROM_ADDR == 0xAE))
+    {
+    	HAL_GPIO_WritePin(GPIOG, GPIO_PIN_12, GPIO_PIN_RESET);
+    }
+    else
+    {
+    	HAL_GPIO_WritePin(GPIOG, GPIO_PIN_12, GPIO_PIN_SET);
+    }
     write_byte(EEPROM_ADDR & ~0x01, false, false); // Write mode
     write_byte(mem_addr, false, false);
 
@@ -258,6 +273,14 @@ void eeprom_read(uint8_t mem_addr, uint8_t* data, uint8_t len)
 {
     // Set EEPROM address to read from
     start();
+    if((EEPROM_ADDR == 0xA8) | (EEPROM_ADDR == 0xAA) | (EEPROM_ADDR == 0xAC) | (EEPROM_ADDR == 0xAE))
+        {
+        	HAL_GPIO_WritePin(GPIOG, GPIO_PIN_12, GPIO_PIN_RESET);
+        }
+    else
+        {
+        	HAL_GPIO_WritePin(GPIOG, GPIO_PIN_12, GPIO_PIN_SET);
+        }
     write_byte(EEPROM_ADDR & ~0x01, false, false); // Write mode
     write_byte(mem_addr, false, false);
 
@@ -286,6 +309,7 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
+
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
@@ -330,25 +354,31 @@ void SystemClock_Config(void)
 static void MX_GPIO_Init(void)
 {
   /* USER CODE BEGIN MX_GPIO_Init_1 */
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOHEN;
 	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOGEN;
     GPIOB->MODER &= ~(0x3 << (6 * 2)); // Clear MODER6
     GPIOB->MODER &= ~(0x3 << (7 * 2)); // Clear MODER7
-
+    GPIOG->MODER &= ~(0x3 << (12 * 2));
     // Set to 01: General purpose output mode
     GPIOB->MODER |= (0x1 << (6 * 2)); // Set MODER6
     GPIOB->MODER |= (0x1 << (7 * 2)); // Set MODER7
-
+    GPIOH->MODER |= (0x1 << (8 * 2)); // Set MODER8
+    GPIOG->MODER |= (0x1 << (12 * 2)); // Set MODER8
     // 3. Set output type to push-pull (default)
     GPIOB->OTYPER &= ~((1 << 6) | (1 << 7));
-
+    GPIOH->OTYPER &= ~(1 << 8);
+    GPIOG->OTYPER &= ~(1 << 12);
     // 4. Set output speed (optional — here: high speed)
     GPIOB->OSPEEDR |= (0x3 << (6 * 2)); // High speed for PB6
     GPIOB->OSPEEDR |= (0x3 << (7 * 2)); // High speed for PB7
-
+    GPIOH->OSPEEDR |= (0x3 << (8 * 2));
+    GPIOG->OSPEEDR |= (0x3 << (12 * 2));
     // 5. Set no pull-up/pull-down
     GPIOB->PUPDR &= ~(0x3 << (6 * 2));
     GPIOB->PUPDR &= ~(0x3 << (7 * 2));
-
+    GPIOH->PUPDR &= ~(0x3 << (8 * 2));
+    GPIOG->PUPDR &= ~(0x3 << (12 * 2));
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */

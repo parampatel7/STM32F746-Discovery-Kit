@@ -1,0 +1,10 @@
+16:23:11 **** Incremental Build of configuration Debug for project I2C_Interrupt ****
+make -j12 all 
+arm-none-eabi-size  I2C_Interrupt.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12948	     20	   1660	  14628	   3924	I2C_Interrupt.elf
+Finished building: default.size.stdout
+ 
+
+16:23:11 Build Finished. 0 errors, 0 warnings. (took 68ms)
+

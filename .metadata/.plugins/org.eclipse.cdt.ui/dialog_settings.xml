@@ -15,6 +15,7 @@
 		<item key="caseSensitive" value="false"/>
 		<item key="searchFlags" value="227191"/>
 		<list key="previousPatterns">
+			<item value="HAL_GPIO_ToggleLED"/>
 			<item value="I2C_WaitOnFlagUntilTimeout"/>
 			<item value="I2C_TransferConfighi2c"/>
 			<item value="__HAL_LOCK"/>
