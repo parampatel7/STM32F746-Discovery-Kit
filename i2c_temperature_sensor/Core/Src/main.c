@@ -349,14 +349,12 @@ void LM73_SetResolution_11bit(void)
 {
     uint8_t ctrl_data;
 
-
-    // Read current control register
     uint8_t reg = LM73_CTRL_REG;
-    if (HAL_I2C_Master_Transmit(&hi2c1, LM73_I2C_ADDRESS, &reg, 1, HAL_MAX_DELAY) != HAL_OK) {
+   /* if (HAL_I2C_Master_Transmit(&hi2c1, LM73_I2C_ADDRESS, &reg, 1, HAL_MAX_DELAY) != HAL_OK) {
         Error_Handler();
     }
-
-    // Set bits 6 and 5 to '11' for 11-bit resolution
+*/
+    // Clear bits 6 and 5 to '00' for 11-bit resolution
     ctrl_data &= ~(0x3 << 5);
 
     // Write back to control register

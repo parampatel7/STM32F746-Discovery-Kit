@@ -252,7 +252,7 @@ uint8_t read_byte(bool ack, bool do_stop)
 void eeprom_write(uint8_t mem_addr, uint8_t* data, uint8_t len)
 {
     start();
-    if((EEPROM_ADDR == 0xA8) | (EEPROM_ADDR == 0xAA) | (EEPROM_ADDR == 0xAC) | (EEPROM_ADDR == 0xAE))
+    if((EEPROM_ADDR == 0xA8) || (EEPROM_ADDR == 0xAA) || (EEPROM_ADDR == 0xAC) || (EEPROM_ADDR == 0xAE))
     {
     	HAL_GPIO_WritePin(GPIOG, GPIO_PIN_12, GPIO_PIN_RESET);
     }
