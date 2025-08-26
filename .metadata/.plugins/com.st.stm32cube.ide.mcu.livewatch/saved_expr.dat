@@ -1,3 +1,4 @@
-data
-volts
-adc_result
+read_value
+debug_buffer
+write_debug_buffer
+write_value
