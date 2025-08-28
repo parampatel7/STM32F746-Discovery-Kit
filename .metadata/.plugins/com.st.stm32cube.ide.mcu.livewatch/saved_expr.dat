@@ -1,4 +1,2 @@
-read_value
-debug_buffer
-write_debug_buffer
-write_value
+msg
+rx_data
