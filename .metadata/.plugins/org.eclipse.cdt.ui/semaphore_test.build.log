@@ -1,0 +1,10 @@
+15:27:07 **** Incremental Build of configuration Debug for project semaphore_test ****
+make -j12 all 
+arm-none-eabi-size  semaphore_test.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24152	     16	  18088	  42256	   a510	semaphore_test.elf
+Finished building: default.size.stdout
+ 
+
+15:27:07 Build Finished. 0 errors, 0 warnings. (took 137ms)
+

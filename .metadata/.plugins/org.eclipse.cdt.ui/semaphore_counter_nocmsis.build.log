@@ -1,0 +1,10 @@
+08:50:04 **** Incremental Build of configuration Debug for project semaphore_counter_nocmsis ****
+make -j12 all 
+arm-none-eabi-size  semaphore_counter_nocmsis.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25736	     28	  18092	  43856	   ab50	semaphore_counter_nocmsis.elf
+Finished building: default.size.stdout
+ 
+
+08:50:04 Build Finished. 0 errors, 0 warnings. (took 70ms)
+

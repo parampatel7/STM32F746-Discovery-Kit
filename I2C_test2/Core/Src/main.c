@@ -21,8 +21,8 @@
 #include <string.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-/*7bit i2c address: 1010xxx
- * xxx depends on hardware: In our ram its EN | A9 | A8 | R/W
+/*7bit i2c address: 1010xxxx
+ * xxxx depends on hardware: In our ram its EN | A9 | A8 | R/W
  * 7bits +1bit R/W
  * For factory RAM EN is 0, For application RAM EN is 1
  * After these 8 bits we need to add our address location (A7 - A0)

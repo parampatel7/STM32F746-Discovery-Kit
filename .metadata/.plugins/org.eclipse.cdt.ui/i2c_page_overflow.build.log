@@ -1,0 +1,33 @@
+16:41:51 **** Incremental Build of configuration Debug for project i2c_page_overflow ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:119:23: warning: unused variable 'readStatus_3' [-Wunused-variable]
+  119 |     HAL_StatusTypeDef readStatus_3 = HAL_I2C_Mem_Read(&hi2c1,EEPROM_I2C_ADDR, EEPROM_MEM_ADDR, I2C_MEMADD_SIZE_8BIT, readData, sizeof(readData), EEPROM_TIMEOUT);
+      |                       ^~~~~~~~~~~~
+../Core/Src/main.c:115:23: warning: unused variable 'readStatus_2' [-Wunused-variable]
+  115 |     HAL_StatusTypeDef readStatus_2 = HAL_I2C_Mem_Read(&hi2c1, EEPROM_I2C_ADDR, EEPROM_MEM_END_ADDR, I2C_MEMADD_SIZE_8BIT, readendData, sizeof(readendData), EEPROM_TIMEOUT);
+      |                       ^~~~~~~~~~~~
+../Core/Src/main.c:110:22: warning: unused variable 'writeStatus_2' [-Wunused-variable]
+  110 |    HAL_StatusTypeDef writeStatus_2 = HAL_I2C_Mem_Write(&hi2c1, EEPROM_I2C_ADDR, EEPROM_MEM_END_ADDR, I2C_MEMADD_SIZE_8BIT, endData, sizeof(endData), EEPROM_TIMEOUT);
+      |                      ^~~~~~~~~~~~~
+../Core/Src/main.c:107:21: warning: unused variable 'readStatus_1' [-Wunused-variable]
+  107 |   HAL_StatusTypeDef readStatus_1 = HAL_I2C_Mem_Read(&hi2c1, EEPROM_I2C_ADDR, EEPROM_MEM_ADDR, I2C_MEMADD_SIZE_8BIT, readData, sizeof(readData), EEPROM_TIMEOUT);
+      |                     ^~~~~~~~~~~~
+../Core/Src/main.c:102:21: warning: unused variable 'writeStatus_1' [-Wunused-variable]
+  102 |   HAL_StatusTypeDef writeStatus_1 = HAL_I2C_Mem_Write(&hi2c1, EEPROM_I2C_ADDR, EEPROM_MEM_ADDR, I2C_MEMADD_SIZE_8BIT, writeData, sizeof(writeData), EEPROM_TIMEOUT);
+      |                     ^~~~~~~~~~~~~
+arm-none-eabi-gcc -o "i2c_page_overflow.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/i2c_page_overflow/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="i2c_page_overflow.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: i2c_page_overflow.elf
+ 
+arm-none-eabi-size  i2c_page_overflow.elf 
+arm-none-eabi-objdump -h -S i2c_page_overflow.elf  > "i2c_page_overflow.list"
+   text	   data	    bss	    dec	    hex	filename
+  11696	     48	   1688	  13432	   3478	i2c_page_overflow.elf
+Finished building: default.size.stdout
+ 
+Finished building: i2c_page_overflow.list
+ 
+
+16:41:51 Build Finished. 0 errors, 5 warnings. (took 284ms)
+

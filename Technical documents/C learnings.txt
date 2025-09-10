@@ -1,0 +1,129 @@
+C learnings:
+how to write cleaner code?
+there are tools like jinja which should be used to manage spaces and for better readability in our codes.
+-----C in depth by shrivastava
+
+Strings:
+Take full line string:
+Take till space:
+Take character:
+str[6]="Hello" //6 as here number of elements are 6 as in array
+str[0]='j' would make it "jello" //when pointing it starts at str[0]
+
+strchr(str, ch): Finds the first occurrence of the character ch in the string str.
+char *ptr = strchr("Hello", 'e');  // ptr points to 'e'
+
+strstr(str, substr): Finds the first occurrence of the substring substr in the string str.
+char *ptr = strstr("Hello, World", "World");  // ptr points to "World"
+
+char *str = (char *)malloc(6 * sizeof(char));  // Allocate space for 5 chars + '\0'
+strcpy(str, "Hello");
+
+
+int result = strcmp("apple", "banana");
+if (result == 0) {
+    printf("The strings are equal.\n");
+} else if (result < 0) {
+    printf("First string is lexicographically smaller.\n");
+} else {
+    printf("First string is lexicographically larger.\n");
+}
+
+char fruits[3][10] = {"Apple", "Banana", "Cherry"};
+This creates a 2D array with 3 rows and 10 columns (the maximum size of each string).
+
+char str[100];
+char str[10];
+scanf("%9s", str);  // Limit input to 9 characters to avoid overflow
+int x, y;
+scanf("%d %*d", &x, &y);  // Read the first integer into x, but ignore the second integer Use * to discard input in scanf().
+scanf("%s", str);  // Reads a single word, stops at space
+scanf("%[^\n]", str);  // Reads until newline is encountered
+gets(str);  // Avoid using gets in modern C code
+fgets(str, sizeof(str), stdin);  // Read a string with spaces
+fgets(str, 50, stdin);  // Read a string
+gets does not check the array bounds, which can lead to buffer overflow if the input exceeds the buffer size.
+Deprecated: Due to its unsafe nature, gets has been removed from the C11 standard.
+The fgets function reads a line from the specified stream and stores it into the string pointed to by str. It stops when either (n-1) characters are read, the newline character is read, or the end-of-file is reached, whichever comes first. The syntax for fgets is:
+char *fgets(char *str, int n, FILE *stream);
+
+The strtok() function is used to split a string into tokens (substrings) based on delimiters. It is a common task for parsing strings in C.
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[] = "apple,banana,orange";
+    char *token = strtok(str, ",");  // Split by commas
+    
+    while (token != NULL) {
+        printf("Token: %s\n", token);
+        token = strtok(NULL, ",");  // Get next token
+    }
+
+    return 0;
+}
+strtok() splits the string into tokens. The first call provides the string and delimiter, while subsequent calls pass NULL to continue from the last token.
+
+It modifies the original string by replacing delimiters with \0.
+
+
+int x;
+scanf("%d", &x);  // The address of x is passed, so scanf can modify it
+char str[50];
+scanf("%s", str);  // No need for & because str is already a pointer
+
+C provides functions like atoi(), atof(), and itoa() (non-standard) for converting between strings and other data types.
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    char str[] = "1234";
+    int num = atoi(str);  // Converts the string to integer
+    printf("Converted number: %d\n", num); // Output: 1234
+    return 0;
+}
+int main() {
+    char str[] = "3.14";
+    float f = atof(str);  // Converts string to float
+    printf("Converted float: %f\n", f); // Output: 3.140000
+int main() {
+    int num = 1234;
+    char str[20];
+    sprintf(str, "%d", num);  // Converts integer to string
+    printf("Converted string: %s\n", str); // Output: "1234"
+    return 0;    
+atoi() and atof() are standard C functions, but they don’t handle errors well (e.g., if the string isn't a valid number).
+
+sprintf() is useful for converting any data type to a string format, but be cautious of buffer overflow.
+
+When you need to copy or move data between memory locations, including strings, C provides memcpy() and memmove(). They work on raw memory blocks, making them useful for copying strings.
+memcpy(): Used to copy a block of memory from one location to another. It doesn't handle overlapping regions.
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str1[] = "Hello";
+    char str2[6];
+    memcpy(str2, str1, 6);  // Copies 6 bytes (including null terminator)
+    printf("str2: %s\n", str2); // Output: Hello
+    return 0;
+}
+memmove(): Similar to memcpy(), but it handles overlapping memory regions safely.
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char str[] = "Hello, World!";
+    memmove(str + 7, str, 6);  // Moves the first 6 characters to index 7
+    printf("str: %s\n", str);  // Output: "HelloHello, World!"
+    return 0;
+}
+
+pointers:
+pointers with 2d array, 3d array:
+pointer with functions:
+pointer with 
+
+
+file operations:
+

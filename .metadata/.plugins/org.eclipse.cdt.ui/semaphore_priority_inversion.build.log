@@ -1,0 +1,10 @@
+08:48:50 **** Incremental Build of configuration Debug for project semaphore_priority_inversion ****
+make -j12 all 
+arm-none-eabi-size  semaphore_priority_inversion.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24180	     16	  18088	  42284	   a52c	semaphore_priority_inversion.elf
+Finished building: default.size.stdout
+ 
+
+08:48:51 Build Finished. 0 errors, 0 warnings. (took 72ms)
+
