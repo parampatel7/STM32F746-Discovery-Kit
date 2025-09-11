@@ -3,8 +3,8 @@
 	<section name="WorkbenchPreferenceDialog.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="453"/>
 		<item key="DIALOG_Y_ORIGIN" value="105"/>
-		<item key="DIALOG_WIDTH" value="917"/>
-		<item key="DIALOG_HEIGHT" value="841"/>
+		<item key="DIALOG_WIDTH" value="952"/>
+		<item key="DIALOG_HEIGHT" value="842"/>
 		<item key="DIALOG_FONT_NAME" value="1|Ubuntu Sans|11.0|0|GTK|1|"/>
 	</section>
 	<section name="NewWizardAction">

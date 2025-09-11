@@ -1,0 +1,10 @@
+14:40:08 **** Incremental Build of configuration Debug for project rtos_queues_nocmsis ****
+make -j12 all 
+arm-none-eabi-size  rtos_queues_nocmsis.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25924	     96	  18424	  44444	   ad9c	rtos_queues_nocmsis.elf
+Finished building: default.size.stdout
+ 
+
+14:40:08 Build Finished. 0 errors, 0 warnings. (took 191ms)
+

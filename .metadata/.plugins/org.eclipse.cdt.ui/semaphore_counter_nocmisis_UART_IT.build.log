@@ -1,4 +1,4 @@
-10:23:33 **** Incremental Build of configuration Debug for project semaphore_counter_nocmisis_UART_IT ****
+13:52:44 **** Incremental Build of configuration Debug for project semaphore_counter_nocmisis_UART_IT ****
 make -j12 all 
 arm-none-eabi-size  semaphore_counter_nocmisis_UART_IT.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  semaphore_counter_nocmisis_UART_IT.elf
 Finished building: default.size.stdout
  
 
-10:23:34 Build Finished. 0 errors, 0 warnings. (took 74ms)
+13:52:45 Build Finished. 0 errors, 0 warnings. (took 136ms)
 
