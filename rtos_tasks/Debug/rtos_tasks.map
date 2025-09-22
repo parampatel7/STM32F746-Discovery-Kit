@@ -3313,53 +3313,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x7e ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
  .debug_macro   0x00000000       0x19 ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
  .debug_macro   0x00000000       0xf2 ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .text          0x00000000        0x0 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .data          0x00000000        0x0 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .bss           0x00000000        0x0 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_info    0x00000000       0x77 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_abbrev  0x00000000       0x28 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_aranges
-                0x00000000       0x18 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0xe3 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000      0xad8 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000      0x190 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0x22 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0x8e ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0x51 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000      0x103 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0x6a ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000      0x1df ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0xea ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000      0x15a ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0xde ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0x1c ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0x26 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000      0x4e8 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0xb5 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0xaa ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_macro   0x00000000       0x43 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_line    0x00000000      0x487 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .debug_str     0x00000000     0x8421 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .comment       0x00000000       0x44 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
- .ARM.attributes
-                0x00000000       0x34 ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
  .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
  .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
  .group         0x00000000        0xc ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
@@ -4387,7 +4340,6 @@ LOAD ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o
 LOAD ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
 LOAD ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
 LOAD ./Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.o
-LOAD ./Middlewares/Third_Party/FreeRTOS/Source/croutine.o
 LOAD ./Middlewares/Third_Party/FreeRTOS/Source/event_groups.o
 LOAD ./Middlewares/Third_Party/FreeRTOS/Source/list.o
 LOAD ./Middlewares/Third_Party/FreeRTOS/Source/queue.o

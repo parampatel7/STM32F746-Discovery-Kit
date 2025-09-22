@@ -5916,29 +5916,29 @@ LOAD /opt/st/stm32cubeide_1.18.1/plugins/com.st.stm32cube.ide.mcu.externaltools.
  .debug_macro   0x00027465      0x184 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.o
  .debug_macro   0x000275e9      0x1ae ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
 
-.debug_line     0x00000000    0x14e87
+.debug_line     0x00000000    0x14e89
  .debug_line    0x00000000      0x7b9 ./Core/Src/freertos.o
- .debug_line    0x000007b9      0xc55 ./Core/Src/main.o
- .debug_line    0x0000140e      0x72f ./Core/Src/stm32f7xx_hal_msp.o
- .debug_line    0x00001b3d      0x729 ./Core/Src/stm32f7xx_hal_timebase_tim.o
- .debug_line    0x00002266      0x757 ./Core/Src/stm32f7xx_it.o
- .debug_line    0x000029bd      0x72a ./Core/Src/system_stm32f7xx.o
- .debug_line    0x000030e7       0x7a ./Core/Startup/startup_stm32f746nghx.o
- .debug_line    0x00003161      0x9dd ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o
- .debug_line    0x00003b3e      0xc5d ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o
- .debug_line    0x0000479b      0xf2a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o
- .debug_line    0x000056c5      0xb37 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o
- .debug_line    0x000061fc      0x9ad ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.o
- .debug_line    0x00006ba9      0xed0 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o
- .debug_line    0x00007a79      0xe0e ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o
- .debug_line    0x00008887     0x3c78 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
- .debug_line    0x0000c4ff     0x1a0b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
- .debug_line    0x0000df0a     0x2c18 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
- .debug_line    0x00010b22      0x6c5 ./Middlewares/Third_Party/FreeRTOS/Source/list.o
- .debug_line    0x000111e7     0x14f8 ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
- .debug_line    0x000126df     0x17e0 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
- .debug_line    0x00013ebf      0x748 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.o
- .debug_line    0x00014607      0x880 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
+ .debug_line    0x000007b9      0xc57 ./Core/Src/main.o
+ .debug_line    0x00001410      0x72f ./Core/Src/stm32f7xx_hal_msp.o
+ .debug_line    0x00001b3f      0x729 ./Core/Src/stm32f7xx_hal_timebase_tim.o
+ .debug_line    0x00002268      0x757 ./Core/Src/stm32f7xx_it.o
+ .debug_line    0x000029bf      0x72a ./Core/Src/system_stm32f7xx.o
+ .debug_line    0x000030e9       0x7a ./Core/Startup/startup_stm32f746nghx.o
+ .debug_line    0x00003163      0x9dd ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal.o
+ .debug_line    0x00003b40      0xc5d ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.o
+ .debug_line    0x0000479d      0xf2a ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dma.o
+ .debug_line    0x000056c7      0xb37 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_gpio.o
+ .debug_line    0x000061fe      0x9ad ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pwr_ex.o
+ .debug_line    0x00006bab      0xed0 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc.o
+ .debug_line    0x00007a7b      0xe0e ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rcc_ex.o
+ .debug_line    0x00008889     0x3c78 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim.o
+ .debug_line    0x0000c501     0x1a0b ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_tim_ex.o
+ .debug_line    0x0000df0c     0x2c18 ./Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.o
+ .debug_line    0x00010b24      0x6c5 ./Middlewares/Third_Party/FreeRTOS/Source/list.o
+ .debug_line    0x000111e9     0x14f8 ./Middlewares/Third_Party/FreeRTOS/Source/queue.o
+ .debug_line    0x000126e1     0x17e0 ./Middlewares/Third_Party/FreeRTOS/Source/tasks.o
+ .debug_line    0x00013ec1      0x748 ./Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/port.o
+ .debug_line    0x00014609      0x880 ./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o
 
 .debug_str      0x00000000    0xf7620
  .debug_str     0x00000000    0xf7620 ./Core/Src/freertos.o

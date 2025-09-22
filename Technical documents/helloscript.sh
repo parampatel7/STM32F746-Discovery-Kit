@@ -404,15 +404,54 @@ fi
 #Terminal: man grep
 '
 
+
+: '
+#awk
 echo "Enter File name to print from awk: " C learnings.txt
 read fileName
 
 if [[ -f "$fileName" ]]
 then
 	#awk '{print}' "$fileName"
-	awk '/code/ {print}' "$fileName" #prints the line containing code
+	#awk '/code/ {print}' "$fileName" #prints the line containing code
+	#awk '/code/ {print $2}' "$fileName" #Prints the second word of the line where our searched word is located
+	awk '/code/ {print $2, $4}' "$fileName" #prints 2nd and 4rd word
 else
 	echo " File doesnt exist: $fileName"
 fi
+#Terminal:man awk
+'
+
+: '
+#sed
+echo "Enter File name to substitute using sed "
+read fileName
+
+if [[ -f "$fileName" ]]
+then
+	#cat sedfile.txt | sed 's/i/I/g'
+	sed 's/code/CODE/g' "$fileName"
+	#s-> substitute, code-> which thing to substitute, CODE->this will be substituted, g-> global
+else
+	echo " File doesnt exist: $fileName"
+fi
+#Terminal: man sed
+'
+
+: '
+To debug a script 3 ways:
+-in terminal: bash -x ./helloscript.sh
+-Change first line to :#! /bin/bash -x
+-To debug a specific part of code:
+	set -x
+	code lines
+	set +x
+this will debug only code lines of whole script
 
 
+#sample code to debug
+for (( i=0; i<10; i++ ))
+do
+	echo $i
+done
+' 

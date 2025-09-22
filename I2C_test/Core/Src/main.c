@@ -130,7 +130,7 @@ int main(void)
 uint8_t tx_buffer[3];
 tx_buffer[0]= 0x00; //EEPROM Memory address
 tx_buffer[1]= write_data[0]; // 'H'
-tx_buffer[2]= write_data[0]; // 'i'
+tx_buffer[2]= write_data[1]; // 'i'
 /*Search for why HAL_I2C_Master_Transmit not used for EEPROMs*/
 if (HAL_I2C_Master_Transmit(&hi2c1, 0xA0, tx_buffer, 3, HAL_MAX_DELAY) != HAL_OK) //0xA0= (0x50 << 1)
   {

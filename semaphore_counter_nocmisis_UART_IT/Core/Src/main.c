@@ -297,26 +297,25 @@ void HPT_TASK ( void *pvParameters)
 	{
 		char str[300];
 		strcpy(str, "\rEntered HPT Task\r\nAbout to ACQUIRE the semaphore\r\n\n");
-				semcount = uxSemaphoreGetCount(CountingSem);
-				itoa(semcount, ssemcount, 10);
-				strcat(str, "Tokens available are: ");
-				strcat(str, ssemcount);
-				//strcat(str, "\n\n");
+		semcount = uxSemaphoreGetCount(CountingSem);
+		itoa(semcount, ssemcount, 10);
+		strcat(str, "Tokens available are: ");
+		strcat(str, ssemcount);
+		//strcat(str, "\n\n");
+        HAL_UART_Transmit(&huart6, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
 
-		        HAL_UART_Transmit(&huart6, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
+        // Acquire semaphore
+        xSemaphoreTake(CountingSem, portMAX_DELAY);
 
-		        // Acquire semaphore
-		        xSemaphoreTake(CountingSem, portMAX_DELAY);
+        // Prepare second message
+		itoa(resource[indx], sresource, 10);
+		strcpy(str, "\r\nLeaving HPT Task\r\nData ACCESSED :: ");
+		strcat(str, sresource);
+		strcat(str, "\r\nNot releasing the Semaphore\r\n\n");
 
-		        // Prepare second message
-		        itoa(resource[indx], sresource, 10);
-		        strcpy(str, "\r\nLeaving HPT Task\r\nData ACCESSED :: ");
-		        strcat(str, sresource);
-		        strcat(str, "\r\nNot releasing the Semaphore\r\n\n");
+		HAL_UART_Transmit(&huart6, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
 
-		        HAL_UART_Transmit(&huart6, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
-
-		        indx++;
+		indx++;
 		if(indx>2) indx=0;
 //		vTaskDelay(3000);
 		vTaskDelete(NULL);

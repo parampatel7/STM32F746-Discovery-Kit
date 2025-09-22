@@ -3,9 +3,9 @@
 ../Core/Src/main.c:233:13:MX_USART6_UART_Init	2
 ../Core/Src/main.c:268:13:MX_GPIO_Init	1
 ../Core/Src/main.c:285:6:HPT_TASK	3
-../Core/Src/main.c:326:6:MPT_TASK	3
-../Core/Src/main.c:355:6:LPT_TASK	3
-../Core/Src/main.c:385:6:VLPT_TASK	3
-../Core/Src/main.c:414:6:HAL_UART_RxCpltCallback	3
-../Core/Src/main.c:443:6:HAL_TIM_PeriodElapsedCallback	2
-../Core/Src/main.c:461:6:Error_Handler	1
+../Core/Src/main.c:325:6:MPT_TASK	3
+../Core/Src/main.c:354:6:LPT_TASK	3
+../Core/Src/main.c:384:6:VLPT_TASK	3
+../Core/Src/main.c:413:6:HAL_UART_RxCpltCallback	3
+../Core/Src/main.c:442:6:HAL_TIM_PeriodElapsedCallback	2
+../Core/Src/main.c:460:6:Error_Handler	1

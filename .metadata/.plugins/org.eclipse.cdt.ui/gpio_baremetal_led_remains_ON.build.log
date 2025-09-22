@@ -1,4 +1,4 @@
-11:53:35 **** Incremental Build of configuration Debug for project gpio_baremetal_led_remains_ON ****
+11:20:12 **** Build of configuration Debug for project gpio_baremetal_led_remains_ON ****
 make -j12 all 
 arm-none-eabi-size  gpio_baremetal_led_remains_ON.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  gpio_baremetal_led_remains_ON.elf
 Finished building: default.size.stdout
  
 
-11:53:35 Build Finished. 0 errors, 0 warnings. (took 78ms)
+11:20:12 Build Finished. 0 errors, 0 warnings. (took 77ms)
 

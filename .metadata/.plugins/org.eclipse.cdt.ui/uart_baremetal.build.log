@@ -1,4 +1,4 @@
-14:17:19 **** Incremental Build of configuration Debug for project uart_baremetal ****
+15:10:15 **** Build of configuration Debug for project uart_baremetal ****
 make -j12 all 
 arm-none-eabi-size  uart_baremetal.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  uart_baremetal.elf
 Finished building: default.size.stdout
  
 
-14:17:19 Build Finished. 0 errors, 0 warnings. (took 75ms)
+15:10:16 Build Finished. 0 errors, 0 warnings. (took 134ms)
 

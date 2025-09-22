@@ -1,0 +1,5 @@
+1758083375819	Move 'FreeRTOS_test.ioc' to 'FreeRTOS_test'
+1758091855290	Move 'FreeRTOSConfig.h' to 'Inc'
+1758092113819	Move 'Middlewares' to 'FreeRTOS_test'
+1758099251362	Move 'Middlewares' to 'FreeRTOS_test'
+1758101927641	Rename resource 'FreeRTOS-Kernel-main'

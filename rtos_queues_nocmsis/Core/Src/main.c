@@ -320,6 +320,31 @@ void Receiver_Task (void *argument)
 		vTaskDelay(TickDelay);
 	}
 }
+//
+//void HAL_RxCpltCallback(UART_HandleTypeDef *huart)
+//{
+//	HAL_UART_Receive_IT(huartm &rx_data, 1);
+//	int ToSend=123456789;
+//	if(rx_data == 'r')
+//	{
+//		/*The xHigherPriorityTaskWoken parameter must be initialized to pdFALSE as it will get set to pdTRUE
+//		 * inside the interrupt sage API function if a context switch is required*/
+//		BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+//
+//		if(xQueueSendToFrontFromISR(SimpleQueue, &ToSend, &HigherPriorityTaskWoken) == pdPASS)
+//		{
+//			HAL_UART_Transmit(huart, (uint8_t *)"\n\nSent from ISR\r\n", 17, 500);
+//		}
+//		/*Pass the xHigherPriorityTaskWoken value into portEND_SWITCHING_ISR().
+//		  If xHigherPriorityTaskWoken was set to pdTRUE inside xSemaphoreGiveFromISR()
+//		  xHigherPriorityTaskWoken is still pdFALSE then calling portEND_SWITCHING_ISR()
+//		  will have no effect*/
+//
+//		portEND_SWITCHING_ISR(xHigherPriorityTaskWoken);
+//	}
+//}
+
+
 /* USER CODE END 4 */
 
 

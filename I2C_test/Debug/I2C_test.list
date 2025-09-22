@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  00004010  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00008428  00000000  00000000  00004040  2**0
+ 12 .debug_info   0000842c  00000000  00000000  00004040  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001741  00000000  00000000  0000c468  2**0
+ 13 .debug_abbrev 00001753  00000000  00000000  0000c46c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000007d0  00000000  00000000  0000dbb0  2**3
+ 14 .debug_aranges 000007d0  00000000  00000000  0000dbc0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 000005e9  00000000  00000000  0000e380  2**0
+ 15 .debug_rnglists 000005e9  00000000  00000000  0000e390  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00023d92  00000000  00000000  0000e969  2**0
+ 16 .debug_macro  00023d92  00000000  00000000  0000e979  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000a008  00000000  00000000  000326fb  2**0
+ 17 .debug_line   0000a008  00000000  00000000  0003270b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000de0fe  00000000  00000000  0003c703  2**0
+ 18 .debug_str    000de0fe  00000000  00000000  0003c713  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  0011a801  2**0
+ 19 .comment      00000043  00000000  00000000  0011a811  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00001ee0  00000000  00000000  0011a844  2**2
+ 20 .debug_frame  00001ee0  00000000  00000000  0011a854  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000005c  00000000  00000000  0011c724  2**0
+ 21 .debug_line_str 0000005c  00000000  00000000  0011c734  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -411,11 +411,12 @@ tx_buffer[1]= write_data[0]; // 'H'
  800054e:	4b1d      	ldr	r3, [pc, #116]	@ (80005c4 <main+0x90>)
  8000550:	781b      	ldrb	r3, [r3, #0]
  8000552:	717b      	strb	r3, [r7, #5]
-tx_buffer[2]= write_data[0]; // 'i'
+tx_buffer[2]= write_data[1]; // 'i'
  8000554:	4b1b      	ldr	r3, [pc, #108]	@ (80005c4 <main+0x90>)
- 8000556:	781b      	ldrb	r3, [r3, #0]
+ 8000556:	785b      	ldrb	r3, [r3, #1]
  8000558:	71bb      	strb	r3, [r7, #6]
-if (HAL_I2C_Master_Transmit(&hi2c1, 0xA0, tx_buffer, 3, HAL_MAX_DELAY) != HAL_OK)
+/*Search for why HAL_I2C_Master_Transmit not used for EEPROMs*/
+if (HAL_I2C_Master_Transmit(&hi2c1, 0xA0, tx_buffer, 3, HAL_MAX_DELAY) != HAL_OK) //0xA0= (0x50 << 1)
  800055a:	1d3a      	adds	r2, r7, #4
  800055c:	f04f 33ff 	mov.w	r3, #4294967295	@ 0xffffffff
  8000560:	9300      	str	r3, [sp, #0]

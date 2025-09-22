@@ -3,9 +3,9 @@
 ../Core/Src/main.c:233:13:MX_USART6_UART_Init	8	static
 ../Core/Src/main.c:268:13:MX_GPIO_Init	24	static
 ../Core/Src/main.c:285:6:HPT_TASK	352	static
-../Core/Src/main.c:326:6:MPT_TASK	344	static
-../Core/Src/main.c:355:6:LPT_TASK	200	static
-../Core/Src/main.c:385:6:VLPT_TASK	344	static
-../Core/Src/main.c:414:6:HAL_UART_RxCpltCallback	24	static,ignoring_inline_asm
-../Core/Src/main.c:443:6:HAL_TIM_PeriodElapsedCallback	16	static
-../Core/Src/main.c:461:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:325:6:MPT_TASK	344	static
+../Core/Src/main.c:354:6:LPT_TASK	200	static
+../Core/Src/main.c:384:6:VLPT_TASK	344	static
+../Core/Src/main.c:413:6:HAL_UART_RxCpltCallback	24	static,ignoring_inline_asm
+../Core/Src/main.c:442:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Core/Src/main.c:460:6:Error_Handler	4	static,ignoring_inline_asm

@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  00027797  00000000  00000000  00020e42  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00014e87  00000000  00000000  000485d9  2**0
+ 17 .debug_line   00014e89  00000000  00000000  000485d9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000f7620  00000000  00000000  0005d460  2**0
+ 18 .debug_str    000f7620  00000000  00000000  0005d462  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00154a80  2**0
+ 19 .comment      00000043  00000000  00000000  00154a82  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00004878  00000000  00000000  00154ac4  2**2
+ 20 .debug_frame  00004878  00000000  00000000  00154ac8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000076  00000000  00000000  0015933c  2**0
+ 21 .debug_line_str 00000076  00000000  00000000  00159340  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -887,20 +887,20 @@ void HPT_TASK ( void *pvParameters)
  8000866:	6020      	str	r0, [r4, #0]
  8000868:	3404      	adds	r4, #4
  800086a:	7021      	strb	r1, [r4, #0]
-				semcount = uxSemaphoreGetCount(CountingSem);
+		semcount = uxSemaphoreGetCount(CountingSem);
  800086c:	4b51      	ldr	r3, [pc, #324]	@ (80009b4 <HPT_TASK+0x1a8>)
  800086e:	681b      	ldr	r3, [r3, #0]
  8000870:	4618      	mov	r0, r3
  8000872:	f004 fb81 	bl	8004f78 <uxQueueMessagesWaiting>
  8000876:	4603      	mov	r3, r0
  8000878:	f8c7 3144 	str.w	r3, [r7, #324]	@ 0x144
-				itoa(semcount, ssemcount, 10);
+		itoa(semcount, ssemcount, 10);
  800087c:	f507 739a 	add.w	r3, r7, #308	@ 0x134
  8000880:	220a      	movs	r2, #10
  8000882:	4619      	mov	r1, r3
  8000884:	f8d7 0144 	ldr.w	r0, [r7, #324]	@ 0x144
  8000888:	f006 f9a0 	bl	8006bcc <itoa>
-				strcat(str, "Tokens available are: ");
+		strcat(str, "Tokens available are: ");
  800088c:	f107 0308 	add.w	r3, r7, #8
  8000890:	4618      	mov	r0, r3
  8000892:	f7ff fcbd 	bl	8000210 <strlen>
@@ -923,15 +923,14 @@ void HPT_TASK ( void *pvParameters)
  80008b8:	82a3      	strh	r3, [r4, #20]
  80008ba:	4613      	mov	r3, r2
  80008bc:	75a3      	strb	r3, [r4, #22]
-				strcat(str, ssemcount);
+		strcat(str, ssemcount);
  80008be:	f507 729a 	add.w	r2, r7, #308	@ 0x134
  80008c2:	f107 0308 	add.w	r3, r7, #8
  80008c6:	4611      	mov	r1, r2
  80008c8:	4618      	mov	r0, r3
  80008ca:	f006 f9cb 	bl	8006c64 <strcat>
-				//strcat(str, "\n\n");
-
-		        HAL_UART_Transmit(&huart6, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
+		//strcat(str, "\n\n");
+        HAL_UART_Transmit(&huart6, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
  80008ce:	f107 0308 	add.w	r3, r7, #8
  80008d2:	4618      	mov	r0, r3
  80008d4:	f7ff fc9c 	bl	8000210 <strlen>
@@ -942,16 +941,16 @@ void HPT_TASK ( void *pvParameters)
  80008e4:	4836      	ldr	r0, [pc, #216]	@ (80009c0 <HPT_TASK+0x1b4>)
  80008e6:	f002 fc1f 	bl	8003128 <HAL_UART_Transmit>
 
-		        // Acquire semaphore
-		        xSemaphoreTake(CountingSem, portMAX_DELAY);
+        // Acquire semaphore
+        xSemaphoreTake(CountingSem, portMAX_DELAY);
  80008ea:	4b32      	ldr	r3, [pc, #200]	@ (80009b4 <HPT_TASK+0x1a8>)
  80008ec:	681b      	ldr	r3, [r3, #0]
  80008ee:	f04f 31ff 	mov.w	r1, #4294967295	@ 0xffffffff
  80008f2:	4618      	mov	r0, r3
  80008f4:	f004 fa28 	bl	8004d48 <xQueueSemaphoreTake>
 
-		        // Prepare second message
-		        itoa(resource[indx], sresource, 10);
+        // Prepare second message
+		itoa(resource[indx], sresource, 10);
  80008f8:	4b32      	ldr	r3, [pc, #200]	@ (80009c4 <HPT_TASK+0x1b8>)
  80008fa:	681b      	ldr	r3, [r3, #0]
  80008fc:	4a32      	ldr	r2, [pc, #200]	@ (80009c8 <HPT_TASK+0x1bc>)
@@ -960,7 +959,7 @@ void HPT_TASK ( void *pvParameters)
  8000906:	220a      	movs	r2, #10
  8000908:	4618      	mov	r0, r3
  800090a:	f006 f95f 	bl	8006bcc <itoa>
-		        strcpy(str, "\r\nLeaving HPT Task\r\nData ACCESSED :: ");
+		strcpy(str, "\r\nLeaving HPT Task\r\nData ACCESSED :: ");
  800090e:	f107 0308 	add.w	r3, r7, #8
  8000912:	4a2e      	ldr	r2, [pc, #184]	@ (80009cc <HPT_TASK+0x1c0>)
  8000914:	461c      	mov	r4, r3
@@ -973,13 +972,13 @@ void HPT_TASK ( void *pvParameters)
  8000924:	6020      	str	r0, [r4, #0]
  8000926:	3404      	adds	r4, #4
  8000928:	8021      	strh	r1, [r4, #0]
-		        strcat(str, sresource);
+		strcat(str, sresource);
  800092a:	f507 729e 	add.w	r2, r7, #316	@ 0x13c
  800092e:	f107 0308 	add.w	r3, r7, #8
  8000932:	4611      	mov	r1, r2
  8000934:	4618      	mov	r0, r3
  8000936:	f006 f995 	bl	8006c64 <strcat>
-		        strcat(str, "\r\nNot releasing the Semaphore\r\n\n");
+		strcat(str, "\r\nNot releasing the Semaphore\r\n\n");
  800093a:	f107 0308 	add.w	r3, r7, #8
  800093e:	4618      	mov	r0, r3
  8000940:	f7ff fc66 	bl	8000210 <strlen>
@@ -1007,7 +1006,7 @@ void HPT_TASK ( void *pvParameters)
  8000974:	7812      	ldrb	r2, [r2, #0]
  8000976:	701a      	strb	r2, [r3, #0]
 
-		        HAL_UART_Transmit(&huart6, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
+		HAL_UART_Transmit(&huart6, (uint8_t *)str, strlen(str), HAL_MAX_DELAY);
  8000978:	f107 0308 	add.w	r3, r7, #8
  800097c:	4618      	mov	r0, r3
  800097e:	f7ff fc47 	bl	8000210 <strlen>
@@ -1018,7 +1017,7 @@ void HPT_TASK ( void *pvParameters)
  800098e:	480c      	ldr	r0, [pc, #48]	@ (80009c0 <HPT_TASK+0x1b4>)
  8000990:	f002 fbca 	bl	8003128 <HAL_UART_Transmit>
 
-		        indx++;
+		indx++;
  8000994:	4b0b      	ldr	r3, [pc, #44]	@ (80009c4 <HPT_TASK+0x1b8>)
  8000996:	681b      	ldr	r3, [r3, #0]
  8000998:	3301      	adds	r3, #1

@@ -1,0 +1,171 @@
+20:28:55 **** Incremental Build of configuration Debug for project FreeRTOS_test ****
+make -j12 all 
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/RP2040/port.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/RP2040/port.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/RP2040/port.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/RP2040/port.o"
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.o"
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.o"
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ATmega/port.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ATmega/port.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ATmega/port.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ATmega/port.o"
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARM_TFM/os_wrapper_freertos.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARM_TFM/os_wrapper_freertos.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARM_TFM/os_wrapper_freertos.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARM_TFM/os_wrapper_freertos.o"
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_freertos_exceptions.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_freertos_exceptions.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_freertos_exceptions.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_freertos_exceptions.o"
+arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_support.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_support.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_support.o" "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_support.s"
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/port.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/port.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/port.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/port.o"
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_freertos_exceptions.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_freertos_exceptions.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_freertos_exceptions.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_freertos_exceptions.o"
+arm-none-eabi-gcc -mcpu=cortex-m7 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_support.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_support.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_support.o" "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_support.s"
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/freertos_tls.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/freertos_tls.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/freertos_tls.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/freertos_tls.o"
+arm-none-eabi-gcc "../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/port.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Middlewares/FreeRTOS/Source/include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/port.d" -MT"FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/port.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/port.o"
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_support.s:41:10: fatal error: arc/arc.h: No such file or directory
+   41 | #include "arc/arc.h"
+      |          ^~~~~~~~~~~
+compilation terminated.
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_support.s:41:10: fatal error: arc/arc.h: No such file or directory
+   41 | #include "arc/arc.h"
+      |          ^~~~~~~~~~~
+compilation terminated.
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARM_TFM/os_wrapper_freertos.c:31:10: fatal error: os_wrapper/mutex.h: No such file or directory
+   31 | #include "os_wrapper/mutex.h"
+      |          ^~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/subdir.mk:34: FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/arc_support.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/subdir.mk:31: FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/arc_support.o] Error 1
+make: *** [FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARM_TFM/subdir.mk:19: FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARM_TFM/os_wrapper_freertos.o] Error 1
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ATmega/port.c:32:10: fatal error: avr/io.h: No such file or directory
+   32 | #include <avr/io.h>
+      |          ^~~~~~~~~~
+compilation terminated.
+make: *** [FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ATmega/subdir.mk:19: FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ATmega/port.o] Error 1
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/RP2040/port.c:36:10: fatal error: rp2040_config.h: No such file or directory
+   36 | #include "rp2040_config.h"
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/RP2040/subdir.mk:19: FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/RP2040/port.o] Error 1
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/port.c:37:10: fatal error: arc/arc_exception.h: No such file or directory
+   37 | #include "arc/arc_exception.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/subdir.mk:29: FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_v1/port.o] Error 1
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/port.c:37:10: fatal error: arc/arc_exception.h: No such file or directory
+   37 | #include "arc/arc_exception.h"
+      |          ^~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make: *** [FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/subdir.mk:32: FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/ARC_EM_HS/port.o] Error 1
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c: In function 'event_create':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:51:9: warning: implicit declaration of function 'pthread_mutexattr_init' [-Wimplicit-function-declaration]
+   51 |         pthread_mutexattr_init( &ev->mutexattr );
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:53:13: warning: implicit declaration of function 'pthread_mutexattr_setrobust' [-Wimplicit-function-declaration]
+   53 |             pthread_mutexattr_setrobust( &ev->mutexattr, PTHREAD_MUTEX_ROBUST );
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:53:58: error: 'PTHREAD_MUTEX_ROBUST' undeclared (first use in this function)
+   53 |             pthread_mutexattr_setrobust( &ev->mutexattr, PTHREAD_MUTEX_ROBUST );
+      |                                                          ^~~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:53:58: note: each undeclared identifier is reported only once for each function it appears in
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:55:9: warning: implicit declaration of function 'pthread_mutex_init' [-Wimplicit-function-declaration]
+   55 |         pthread_mutex_init( &ev->mutex, &ev->mutexattr );
+      |         ^~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:56:9: warning: implicit declaration of function 'pthread_cond_init' [-Wimplicit-function-declaration]
+   56 |         pthread_cond_init( &ev->cond, NULL );
+      |         ^~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c: In function 'event_delete':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:65:5: warning: implicit declaration of function 'pthread_mutex_destroy' [-Wimplicit-function-declaration]
+   65 |     pthread_mutex_destroy( &ev->mutex );
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:66:5: warning: implicit declaration of function 'pthread_mutexattr_destroy' [-Wimplicit-function-declaration]
+   66 |     pthread_mutexattr_destroy( &ev->mutexattr );
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:67:5: warning: implicit declaration of function 'pthread_cond_destroy' [-Wimplicit-function-declaration]
+   67 |     pthread_cond_destroy( &ev->cond );
+      |     ^~~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c: In function 'event_wait':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:74:9: warning: implicit declaration of function 'pthread_mutex_lock' [-Wimplicit-function-declaration]
+   74 |     if( pthread_mutex_lock( &ev->mutex ) == EOWNERDEAD )
+      |         ^~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:78:13: warning: implicit declaration of function 'pthread_mutex_consistent' [-Wimplicit-function-declaration]
+   78 |             pthread_mutex_consistent( &ev->mutex );
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:84:9: warning: implicit declaration of function 'pthread_cond_wait' [-Wimplicit-function-declaration]
+   84 |         pthread_cond_wait( &ev->cond, &ev->mutex );
+      |         ^~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:88:5: warning: implicit declaration of function 'pthread_mutex_unlock' [-Wimplicit-function-declaration]
+   88 |     pthread_mutex_unlock( &ev->mutex );
+      |     ^~~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c: In function 'event_wait_timed':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:99:5: warning: implicit declaration of function 'clock_gettime' [-Wimplicit-function-declaration]
+   99 |     clock_gettime( CLOCK_REALTIME, &ts );
+      |     ^~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:112:15: warning: implicit declaration of function 'pthread_cond_timedwait' [-Wimplicit-function-declaration]
+  112 |         ret = pthread_cond_timedwait( &ev->cond, &ev->mutex, &ts );
+      |               ^~~~~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c: In function 'event_signal':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.c:136:5: warning: implicit declaration of function 'pthread_cond_signal' [-Wimplicit-function-declaration]
+  136 |     pthread_cond_signal( &ev->cond );
+      |     ^~~~~~~~~~~~~~~~~~~
+make: *** [FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/subdir.mk:19: FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/utils/wait_for_event.o] Error 1
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:104:41: error: 'PTHREAD_ONCE_INIT' undeclared here (not in a function)
+  104 | static pthread_once_t hSigSetupThread = PTHREAD_ONCE_INIT;
+      |                                         ^~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'prvInitThreadKey':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:142:5: warning: implicit declaration of function 'pthread_key_create' [-Wimplicit-function-declaration]
+  142 |     pthread_key_create( &xThreadKey, prvThreadKeyDestructor );
+      |     ^~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'prvMarkAsFreeRTOSThread':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:152:14: warning: implicit declaration of function 'pthread_once'; did you mean 'pthread_kill'? [-Wimplicit-function-declaration]
+  152 |     ( void ) pthread_once( &hThreadKeyOnce, prvInitThreadKey );
+      |              ^~~~~~~~~~~~
+      |              pthread_kill
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:159:5: warning: implicit declaration of function 'pthread_setspecific' [-Wimplicit-function-declaration]
+  159 |     pthread_setspecific( xThreadKey, pucThreadData );
+      |     ^~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'prvIsFreeRTOSThread':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:170:35: warning: implicit declaration of function 'pthread_getspecific' [-Wimplicit-function-declaration]
+  170 |     pucThreadData = ( uint8_t * ) pthread_getspecific( xThreadKey );
+      |                                   ^~~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'prvDestroyThreadKey':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:183:5: warning: implicit declaration of function 'pthread_key_delete' [-Wimplicit-function-declaration]
+  183 |     pthread_key_delete( xThreadKey );
+      |     ^~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'prvPortSetCurrentThreadName':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:203:9: warning: implicit declaration of function 'pthread_setname_np' [-Wimplicit-function-declaration]
+  203 |         pthread_setname_np( pthread_self(), pxThreadName );
+      |         ^~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:203:29: warning: implicit declaration of function 'pthread_self'; did you mean 'pthread_kill'? [-Wimplicit-function-declaration]
+  203 |         pthread_setname_np( pthread_self(), pxThreadName );
+      |                             ^~~~~~~~~~~~
+      |                             pthread_kill
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'pxPortInitialiseStack':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:238:5: warning: implicit declaration of function 'pthread_attr_init' [-Wimplicit-function-declaration]
+  238 |     pthread_attr_init( &xThreadAttributes );
+      |     ^~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:244:12: warning: implicit declaration of function 'pthread_create' [-Wimplicit-function-declaration]
+  244 |     iRet = pthread_create( &thread->pthread, &xThreadAttributes,
+      |            ^~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'vPortEndScheduler':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:332:5: warning: implicit declaration of function 'pthread_join'; did you mean 'pthread_kill'? [-Wimplicit-function-declaration]
+  332 |     pthread_join( hTimerTickThread, NULL );
+      |     ^~~~~~~~~~~~
+      |     pthread_kill
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:350:5: warning: implicit declaration of function 'pthread_testcancel' [-Wimplicit-function-declaration]
+  350 |     pthread_testcancel();
+      |     ^~~~~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'prvGetTimeNs':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:442:5: warning: implicit declaration of function 'clock_gettime' [-Wimplicit-function-declaration]
+  442 |     clock_gettime( CLOCK_MONOTONIC, &t );
+      |     ^~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:442:20: error: 'CLOCK_MONOTONIC' undeclared (first use in this function)
+  442 |     clock_gettime( CLOCK_MONOTONIC, &t );
+      |                    ^~~~~~~~~~~~~~~
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:442:20: note: each undeclared identifier is reported only once for each function it appears in
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'vPortCancelThread':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:538:5: warning: implicit declaration of function 'pthread_cancel'; did you mean 'pthread_kill'? [-Wimplicit-function-declaration]
+  538 |     pthread_cancel( pxThreadToCancel->pthread );
+      |     ^~~~~~~~~~~~~~
+      |     pthread_kill
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c: In function 'prvSwitchThread':
+../FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.c:594:13: warning: implicit declaration of function 'pthread_exit'; did you mean 'pthread_kill'? [-Wimplicit-function-declaration]
+  594 |             pthread_exit( NULL );
+      |             ^~~~~~~~~~~~
+      |             pthread_kill
+make: *** [FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/subdir.mk:19: FreeRTOS-Kernel-main/Source/portable/ThirdParty/GCC/Posix/port.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+
+20:28:56 Build Failed. 20 errors, 28 warnings. (took 268ms)
+

@@ -5,5 +5,5 @@
 ../Core/Src/main.c:264:6:Sender_HPT_Task	2
 ../Core/Src/main.c:282:6:Sender_LPT_Task	2
 ../Core/Src/main.c:301:6:Receiver_Task	2
-../Core/Src/main.c:334:6:HAL_TIM_PeriodElapsedCallback	2
-../Core/Src/main.c:352:6:Error_Handler	1
+../Core/Src/main.c:359:6:HAL_TIM_PeriodElapsedCallback	2
+../Core/Src/main.c:377:6:Error_Handler	1

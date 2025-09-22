@@ -3,6 +3,7 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="configUSE_TICKLESS_IDLE"/>
 		<item value="adc_init"/>
 		<item value="DevAddress"/>
 		<item value="EEPROM_MEM_ADDR"/>

@@ -1,4 +1,4 @@
-13:52:44 **** Incremental Build of configuration Debug for project rtos_tasks ****
+15:10:15 **** Build of configuration Debug for project rtos_tasks ****
 make -j12 all 
 arm-none-eabi-size  rtos_tasks.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  rtos_tasks.elf
 Finished building: default.size.stdout
  
 
-13:52:44 Build Finished. 0 errors, 0 warnings. (took 140ms)
+15:10:15 Build Finished. 0 errors, 0 warnings. (took 139ms)
 
