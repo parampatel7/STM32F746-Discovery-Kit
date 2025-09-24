@@ -1,8 +1,9 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=linux
-configDescList=org.eclipse.launchbar.core.descriptorType.default\:i2c_bit_banging Debug,org.eclipse.launchbar.core.descriptorType.default\:I2C_test2 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:uart Debug (1),org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:uartinterrupt Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:uart debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:semaphore_counter_nocmisis_UART_IT Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:rtos_tasks Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:uart Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:custom_RTOS Debug,org.eclipse.launchbar.core.descriptorType.default\:custom_FreeRTOS Debug (1),org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:custom_FreeRTOS Debug
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:i2c_bit_banging Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:AMMBoardSTM32JLink,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:AMMBoardSTM32STLink,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:I2C_test2,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:DMA_Debug,org.eclipse.launchbar.core.descriptorType.default\:I2C_test2 Debug
 eclipse.preferences.version=1
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:AMMBoardSTM32JLink/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:FreeRTOS_test\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:FreeRTOS_test\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:I2C_test2/activeLaunchMode=debug
@@ -12,6 +13,7 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:adc_interrupt_eoc\ Debug\ (1)/a
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:adc_interrupt_eoc\ Debug\ (1)/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:adc_interrupt_eoc\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:adc_interrupt_eoc\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:custom_FreeRTOS\ Debug\ (1)/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:custom_RTOS\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:delete\ Debug\ (1)/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:delete\ Debug\ (1)/activeLaunchTarget=null\:---
@@ -28,6 +30,7 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:i2c_bit_banging\ Debug\ (1)/act
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:i2c_bit_banging\ Debug\ (1)/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:i2c_both_ram\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:i2c_both_ram\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:i2c_debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:i2c_page_overflow\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:i2c_temperature_sensor\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:pusbhutton_timecapture\ Debug/activeLaunchMode=run

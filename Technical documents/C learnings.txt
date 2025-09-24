@@ -124,6 +124,27 @@ pointers with 2d array, 3d array:
 pointer with functions:
 pointer with 
 
+Scope refers to where a variable is accessible in your code.
+Types of Scope:
+Block Scope: Variable is accessible only inside a block {} (local variable).
+Function Scope: Labels (used with goto) are visible throughout the function.
+File Scope: Global variables, accessible from the point of declaration to the end of the file.
+Program Scope: When a variable is declared with extern, and used across multiple files.
+
+A storage class defines:
+Scope (where it can be accessed)
+Default initial value
+Memory location
+Lifetime (how long it exists)
+
++--------------+----------------------+-------------------+-------------------+------------------------+-----------------------------------------------------------+
+| Storage Class| Scope                | Lifetime          | Default Value     | Stored In              | Usage                                                     |
++--------------+----------------------+-------------------+-------------------+------------------------+-----------------------------------------------------------+
+| auto         | Local (block)        | Until block ends  | Garbage           | RAM (Stack)            | Default for local variables                               |
+| static       | Local / File         | Entire program    | Zero              | RAM (Data segment)     | Preserve value between function calls or file-local global|
+| extern       | Global (across files)| Entire program    | Zero              | RAM (Data segment)     | Access global variable defined in another file            |
+| register     | Local (block)        | Until block ends  | Garbage           | CPU Register (if avail)| Faster access for frequently used local variables         |
++--------------+----------------------+-------------------+-------------------+------------------------+-----------------------------------------------------------+
 
 file operations:
 

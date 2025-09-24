@@ -11,4 +11,21 @@
 		<item key="DIALOG_HEIGHT" value="491"/>
 		<item key="DIALOG_FONT_NAME" value="1|Ubuntu Sans|11.0|0|GTK|1|"/>
 	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/invadl0640/Desktop/workspace/gemini_30_software/Development/G3/RTU/slaveBoards/AMMBoard/amm_app"/>
+			<item value="/home/invadl0640/Desktop/workspace/gemini_30_software/Development/G3/RTU/slaveBoards/AMMBoard/amm_AppBootProg"/>
+		</list>
+		<section name="SmartImportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="479"/>
+			<item key="DIALOG_Y_ORIGIN" value="55"/>
+			<item key="DIALOG_WIDTH" value="911"/>
+			<item key="DIALOG_HEIGHT" value="698"/>
+			<item key="DIALOG_FONT_NAME" value="1|Ubuntu Sans|11.0|0|GTK|1|"/>
+		</section>
+	</section>
 </section>

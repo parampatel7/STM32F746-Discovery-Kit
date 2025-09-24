@@ -1,0 +1,48 @@
+15:41:29 **** Build of configuration Debug for project amm_app ****
+make all 
+[  0%] Generating svnRevision.h
+Retrieving SVN revision...
+Full Git revision:8ce081fa
+
+GIT short hash:0x8ce081fa ...
+Svn revision number generated from GIT short hash:2363523578
+Generated: /home/invadl0640/Desktop/workspace/gemini_30_software/Development/G3/RTU/slaveBoards/commom/includeGenerated/svnRevision.h
+[  0%] Built target svnRevision
+[  0%] Built target createDirNVRAMDef
+[  0%] Built target createDirModuleProtocol
+[  0%] Built target createDirSysAlarm
+[ 13%] Built target globalHeaders
+[ 14%] Built target StandaloneConfig
+[ 14%] Built target FileManager
+[ 15%] Built target ETHProtocol
+[ 16%] Built target StatusManager
+[ 17%] Built target WaveformRec
+[ 19%] Built target Measurements
+[ 20%] Built target ADCScheduler
+[ 22%] Built target AMMIOManager
+[ 22%] Built target BrdCalibration
+[ 23%] Built target CANModuleProtocol
+[ 25%] Built target ConfigurationManager
+[ 35%] Built target ProtectionFunction
+[ 39%] Built target ptpd
+[ 68%] Built target stm32f746_cubemx
+[ 75%] Built target AMMCommonLib
+[ 76%] Built target SlaveBinImage
+[ 78%] Built target systemUtils
+[ 79%] Built target Crc32
+[ 79%] Built target Crc16
+[ 82%] Built target IOManager
+[ 83%] Built target Calibration
+[ 85%] Built target LinearInterpolation
+[ 85%] Built target NVRam
+[ 86%] Built target CANProtocolFraming
+[ 86%] Built target CANProtocolCodec
+[ 88%] Built target ModbusProtocolFraming
+[ 89%] Built target ModbusSTM32F7XX
+[ 90%] Built target ModbusProtocolCodec
+[ 91%] Built target FileTransfer
+[ 91%] Built target digiFilter
+[100%] Built target AMMBoardSTM32.axf
+
+15:41:30 Build Finished. 0 errors, 0 warnings. (took 877ms)
+
