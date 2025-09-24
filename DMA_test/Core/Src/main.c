@@ -38,7 +38,7 @@
 //uint8_t writeData[] = "Param";
 //uint8_t readData[sizeof(writeData)] = {0};
 uint8_t readData[EEPROM_DATA_SIZE] = {0};
-volatile uint8_t dma_rx_done = 0;
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -49,8 +49,8 @@ volatile uint8_t dma_rx_done = 0;
 /* Private variables ---------------------------------------------------------*/
 
 I2C_HandleTypeDef hi2c1;
-//DMA_HandleTypeDef hdma_i2c1_tx;
-//DMA_HandleTypeDef hdma_i2c1_rx;
+DMA_HandleTypeDef hdma_i2c1_rx;
+DMA_HandleTypeDef hdma_i2c1_tx;
 
 /* USER CODE BEGIN PV */
 
@@ -102,16 +102,17 @@ int main(void)
   MX_DMA_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  //HAL_I2C_Mem_Read_DMA(&hi2c1, EEPROM_I2C_ADDR, EEPROM_MEM_ADDR, I2C_MEMADD_SIZE_8BIT, readData, EEPROM_DATA_SIZE);
-  HAL_StatusTypeDef readStatus = HAL_I2C_Mem_Read(
-        &hi2c1,
-        EEPROM_I2C_ADDR,
-        EEPROM_MEM_ADDR,
-        I2C_MEMADD_SIZE_8BIT,
-        readData,
-        sizeof(readData),
-        EEPROM_TIMEOUT
-    );
+  HAL_StatusTypeDef readStatus = HAL_I2C_Mem_Read_DMA(&hi2c1, EEPROM_I2C_ADDR, EEPROM_MEM_ADDR, I2C_MEMADD_SIZE_8BIT, readData, EEPROM_DATA_SIZE);
+  /*Below works above doesnot*/
+//  HAL_StatusTypeDef readStatus = HAL_I2C_Mem_Read(
+//        &hi2c1,
+//        EEPROM_I2C_ADDR,
+//        EEPROM_MEM_ADDR,
+//        I2C_MEMADD_SIZE_8BIT,
+//        readData,
+//        sizeof(readData),
+//        EEPROM_TIMEOUT
+//    );
   HAL_Delay(100);
   /* USER CODE END 2 */
 

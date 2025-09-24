@@ -1,16 +1,21 @@
-15:57:35 **** Incremental Build of configuration Debug for project DMA_test ****
+16:42:29 **** Incremental Build of configuration Debug for project DMA_test ****
 make -j12 all 
-arm-none-eabi-gcc "../Core/Src/stm32f7xx_hal_msp.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_hal_msp.d" -MT"Core/Src/stm32f7xx_hal_msp.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_hal_msp.o"
-../Core/Src/stm32f7xx_hal_msp.c: In function 'HAL_I2C_MspInit':
-../Core/Src/stm32f7xx_hal_msp.c:125:5: error: 'hdma_i2c1_tx' undeclared (first use in this function)
-  125 |     hdma_i2c1_tx.Instance = DMA1_Stream6;
-      |     ^~~~~~~~~~~~
-../Core/Src/stm32f7xx_hal_msp.c:125:5: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/stm32f7xx_hal_msp.c:143:5: error: 'hdma_i2c1_rx' undeclared (first use in this function)
-  143 |     hdma_i2c1_rx.Instance = DMA1_Stream0;
-      |     ^~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:34: Core/Src/stm32f7xx_hal_msp.o] Error 1
-"make -j12 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:105:21: warning: unused variable 'readStatus' [-Wunused-variable]
+  105 |   HAL_StatusTypeDef readStatus = HAL_I2C_Mem_Read_DMA(&hi2c1, EEPROM_I2C_ADDR, EEPROM_MEM_ADDR, I2C_MEMADD_SIZE_8BIT, readData, EEPROM_DATA_SIZE);
+      |                     ^~~~~~~~~~
+arm-none-eabi-gcc -o "DMA_test.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/STM32 Codes/DMA_test/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DMA_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DMA_test.elf
+ 
+arm-none-eabi-size  DMA_test.elf 
+arm-none-eabi-objdump -h -S DMA_test.elf  > "DMA_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  17580	     12	   1852	  19444	   4bf4	DMA_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: DMA_test.list
+ 
 
-15:57:35 Build Failed. 3 errors, 0 warnings. (took 130ms)
+16:42:29 Build Finished. 0 errors, 1 warnings. (took 282ms)
 
