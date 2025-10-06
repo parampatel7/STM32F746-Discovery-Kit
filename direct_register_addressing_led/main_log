@@ -1,0 +1,171 @@
+
+main.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <delay>:
+   0:	b480      	push	{r7}
+   2:	b083      	sub	sp, #12
+   4:	af00      	add	r7, sp, #0
+   6:	6078      	str	r0, [r7, #4]
+   8:	e000      	b.n	c <delay+0xc>
+   a:	bf00      	nop
+   c:	687b      	ldr	r3, [r7, #4]
+   e:	1e5a      	subs	r2, r3, #1
+  10:	607a      	str	r2, [r7, #4]
+  12:	2b00      	cmp	r3, #0
+  14:	d1f9      	bne.n	a <delay+0xa>
+  16:	bf00      	nop
+  18:	bf00      	nop
+  1a:	370c      	adds	r7, #12
+  1c:	46bd      	mov	sp, r7
+  1e:	bc80      	pop	{r7}
+  20:	4770      	bx	lr
+
+00000022 <SystemClock_Config>:
+  22:	b480      	push	{r7}
+  24:	af00      	add	r7, sp, #0
+  26:	4b28      	ldr	r3, [pc, #160]	@ (c8 <SystemClock_Config+0xa6>)
+  28:	681b      	ldr	r3, [r3, #0]
+  2a:	4a27      	ldr	r2, [pc, #156]	@ (c8 <SystemClock_Config+0xa6>)
+  2c:	f443 3380 	orr.w	r3, r3, #65536	@ 0x10000
+  30:	6013      	str	r3, [r2, #0]
+  32:	bf00      	nop
+  34:	4b24      	ldr	r3, [pc, #144]	@ (c8 <SystemClock_Config+0xa6>)
+  36:	681b      	ldr	r3, [r3, #0]
+  38:	f403 3300 	and.w	r3, r3, #131072	@ 0x20000
+  3c:	2b00      	cmp	r3, #0
+  3e:	d0f9      	beq.n	34 <SystemClock_Config+0x12>
+  40:	4b22      	ldr	r3, [pc, #136]	@ (cc <SystemClock_Config+0xaa>)
+  42:	681b      	ldr	r3, [r3, #0]
+  44:	4a21      	ldr	r2, [pc, #132]	@ (cc <SystemClock_Config+0xaa>)
+  46:	f043 5380 	orr.w	r3, r3, #268435456	@ 0x10000000
+  4a:	6013      	str	r3, [r2, #0]
+  4c:	4b20      	ldr	r3, [pc, #128]	@ (d0 <SystemClock_Config+0xae>)
+  4e:	681b      	ldr	r3, [r3, #0]
+  50:	4a1f      	ldr	r2, [pc, #124]	@ (d0 <SystemClock_Config+0xae>)
+  52:	f443 3380 	orr.w	r3, r3, #65536	@ 0x10000
+  56:	6013      	str	r3, [r2, #0]
+  58:	bf00      	nop
+  5a:	4b1e      	ldr	r3, [pc, #120]	@ (d4 <SystemClock_Config+0xb2>)
+  5c:	681b      	ldr	r3, [r3, #0]
+  5e:	f403 3380 	and.w	r3, r3, #65536	@ 0x10000
+  62:	2b00      	cmp	r3, #0
+  64:	d0f9      	beq.n	5a <SystemClock_Config+0x38>
+  66:	4b1a      	ldr	r3, [pc, #104]	@ (d0 <SystemClock_Config+0xae>)
+  68:	681b      	ldr	r3, [r3, #0]
+  6a:	4a19      	ldr	r2, [pc, #100]	@ (d0 <SystemClock_Config+0xae>)
+  6c:	f443 3300 	orr.w	r3, r3, #131072	@ 0x20000
+  70:	6013      	str	r3, [r2, #0]
+  72:	bf00      	nop
+  74:	4b17      	ldr	r3, [pc, #92]	@ (d4 <SystemClock_Config+0xb2>)
+  76:	681b      	ldr	r3, [r3, #0]
+  78:	f403 3300 	and.w	r3, r3, #131072	@ 0x20000
+  7c:	2b00      	cmp	r3, #0
+  7e:	d0f9      	beq.n	74 <SystemClock_Config+0x52>
+  80:	4b15      	ldr	r3, [pc, #84]	@ (d8 <SystemClock_Config+0xb6>)
+  82:	f240 3207 	movw	r2, #775	@ 0x307
+  86:	601a      	str	r2, [r3, #0]
+  88:	4b14      	ldr	r3, [pc, #80]	@ (dc <SystemClock_Config+0xba>)
+  8a:	4a15      	ldr	r2, [pc, #84]	@ (e0 <SystemClock_Config+0xbe>)
+  8c:	601a      	str	r2, [r3, #0]
+  8e:	4b0e      	ldr	r3, [pc, #56]	@ (c8 <SystemClock_Config+0xa6>)
+  90:	681b      	ldr	r3, [r3, #0]
+  92:	4a0d      	ldr	r2, [pc, #52]	@ (c8 <SystemClock_Config+0xa6>)
+  94:	f043 7380 	orr.w	r3, r3, #16777216	@ 0x1000000
+  98:	6013      	str	r3, [r2, #0]
+  9a:	bf00      	nop
+  9c:	4b0a      	ldr	r3, [pc, #40]	@ (c8 <SystemClock_Config+0xa6>)
+  9e:	681b      	ldr	r3, [r3, #0]
+  a0:	f003 7300 	and.w	r3, r3, #33554432	@ 0x2000000
+  a4:	2b00      	cmp	r3, #0
+  a6:	d0f9      	beq.n	9c <SystemClock_Config+0x7a>
+  a8:	4b0e      	ldr	r3, [pc, #56]	@ (e4 <SystemClock_Config+0xc2>)
+  aa:	f249 4202 	movw	r2, #37890	@ 0x9402
+  ae:	601a      	str	r2, [r3, #0]
+  b0:	bf00      	nop
+  b2:	4b0c      	ldr	r3, [pc, #48]	@ (e4 <SystemClock_Config+0xc2>)
+  b4:	681b      	ldr	r3, [r3, #0]
+  b6:	f003 030c 	and.w	r3, r3, #12
+  ba:	2b08      	cmp	r3, #8
+  bc:	d1f9      	bne.n	b2 <SystemClock_Config+0x90>
+  be:	bf00      	nop
+  c0:	bf00      	nop
+  c2:	46bd      	mov	sp, r7
+  c4:	bc80      	pop	{r7}
+  c6:	4770      	bx	lr
+  c8:	40023800 	.word	0x40023800
+  cc:	40023840 	.word	0x40023840
+  d0:	40007000 	.word	0x40007000
+  d4:	40007004 	.word	0x40007004
+  d8:	40023c00 	.word	0x40023c00
+  dc:	40023804 	.word	0x40023804
+  e0:	09406c19 	.word	0x09406c19
+  e4:	40023808 	.word	0x40023808
+
+000000e8 <MX_GPIO_Init>:
+  e8:	b480      	push	{r7}
+  ea:	af00      	add	r7, sp, #0
+  ec:	4b13      	ldr	r3, [pc, #76]	@ (13c <MX_GPIO_Init+0x54>)
+  ee:	681b      	ldr	r3, [r3, #0]
+  f0:	4a12      	ldr	r2, [pc, #72]	@ (13c <MX_GPIO_Init+0x54>)
+  f2:	f043 0308 	orr.w	r3, r3, #8
+  f6:	6013      	str	r3, [r2, #0]
+  f8:	4b11      	ldr	r3, [pc, #68]	@ (140 <MX_GPIO_Init+0x58>)
+  fa:	681b      	ldr	r3, [r3, #0]
+  fc:	4a10      	ldr	r2, [pc, #64]	@ (140 <MX_GPIO_Init+0x58>)
+  fe:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
+ 102:	6013      	str	r3, [r2, #0]
+ 104:	4b0e      	ldr	r3, [pc, #56]	@ (140 <MX_GPIO_Init+0x58>)
+ 106:	681b      	ldr	r3, [r3, #0]
+ 108:	4a0d      	ldr	r2, [pc, #52]	@ (140 <MX_GPIO_Init+0x58>)
+ 10a:	f443 6380 	orr.w	r3, r3, #1024	@ 0x400
+ 10e:	6013      	str	r3, [r2, #0]
+ 110:	4b0c      	ldr	r3, [pc, #48]	@ (144 <MX_GPIO_Init+0x5c>)
+ 112:	681b      	ldr	r3, [r3, #0]
+ 114:	4a0b      	ldr	r2, [pc, #44]	@ (144 <MX_GPIO_Init+0x5c>)
+ 116:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
+ 11a:	6013      	str	r3, [r2, #0]
+ 11c:	4b09      	ldr	r3, [pc, #36]	@ (144 <MX_GPIO_Init+0x5c>)
+ 11e:	681b      	ldr	r3, [r3, #0]
+ 120:	4a08      	ldr	r2, [pc, #32]	@ (144 <MX_GPIO_Init+0x5c>)
+ 122:	f443 6380 	orr.w	r3, r3, #1024	@ 0x400
+ 126:	6013      	str	r3, [r2, #0]
+ 128:	4b07      	ldr	r3, [pc, #28]	@ (148 <MX_GPIO_Init+0x60>)
+ 12a:	681b      	ldr	r3, [r3, #0]
+ 12c:	4a06      	ldr	r2, [pc, #24]	@ (148 <MX_GPIO_Init+0x60>)
+ 12e:	f423 6340 	bic.w	r3, r3, #3072	@ 0xc00
+ 132:	6013      	str	r3, [r2, #0]
+ 134:	bf00      	nop
+ 136:	46bd      	mov	sp, r7
+ 138:	bc80      	pop	{r7}
+ 13a:	4770      	bx	lr
+ 13c:	40023830 	.word	0x40023830
+ 140:	40020c00 	.word	0x40020c00
+ 144:	40020c08 	.word	0x40020c08
+ 148:	40020c0c 	.word	0x40020c0c
+
+0000014c <main>:
+ 14c:	b580      	push	{r7, lr}
+ 14e:	af00      	add	r7, sp, #0
+ 150:	f7ff fffe 	bl	22 <SystemClock_Config>
+ 154:	f7ff fffe 	bl	e8 <MX_GPIO_Init>
+ 158:	4b09      	ldr	r3, [pc, #36]	@ (180 <main+0x34>)
+ 15a:	681b      	ldr	r3, [r3, #0]
+ 15c:	4a08      	ldr	r2, [pc, #32]	@ (180 <main+0x34>)
+ 15e:	f023 0320 	bic.w	r3, r3, #32
+ 162:	6013      	str	r3, [r2, #0]
+ 164:	4807      	ldr	r0, [pc, #28]	@ (184 <main+0x38>)
+ 166:	f7ff fffe 	bl	0 <delay>
+ 16a:	4b05      	ldr	r3, [pc, #20]	@ (180 <main+0x34>)
+ 16c:	681b      	ldr	r3, [r3, #0]
+ 16e:	4a04      	ldr	r2, [pc, #16]	@ (180 <main+0x34>)
+ 170:	f043 0320 	orr.w	r3, r3, #32
+ 174:	6013      	str	r3, [r2, #0]
+ 176:	4803      	ldr	r0, [pc, #12]	@ (184 <main+0x38>)
+ 178:	f7ff fffe 	bl	0 <delay>
+ 17c:	e7ec      	b.n	158 <main+0xc>
+ 17e:	bf00      	nop
+ 180:	40020c14 	.word	0x40020c14
+ 184:	019bfcc0 	.word	0x019bfcc0

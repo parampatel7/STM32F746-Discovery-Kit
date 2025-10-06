@@ -1,0 +1,59 @@
+2025-09-30 08:16:42,766 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
+2025-09-30 19:26:18,265 [INFO] Activator:176 - 
+
+
+2025-09-30 19:26:18,266 [INFO] Activator:177 - !SESSION log4j initialized
+2025-09-30 19:26:20,069 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2025-09-30 19:26:20,313 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2025-09-30 19:26:20,314 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2025-09-30 19:26:20,314 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2025-09-30 19:26:21,038 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] java.net.URISyntaxException: Illegal character in path at index 35: file:/home/invadl0640/Desktop/STM32 Codes/.metadata/.log4j2.xml
+2025-09-30 19:26:21,039 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+2025-09-30 19:26:21,039 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+2025-09-30 19:26:21,039 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+2025-09-30 19:26:21,039 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI$Parser.parse(URI.java:3196)
+2025-09-30 19:26:21,039 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI.<init>(URI.java:645)
+2025-09-30 19:26:21,039 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URL.toURI(URL.java:1220)
+2025-09-30 19:26:21,040 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.common.mx.core.CubeMxInstance.getInstance(CubeMxInstance.java:81)
+2025-09-30 19:26:21,040 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.common.mx.userauth.UserAuthAdapter.<init>(UserAuthAdapter.java:25)
+2025-09-30 19:26:21,040 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.common.mx.userauth.UserAuthProvider.getUserAuthAdapter(UserAuthProvider.java:16)
+2025-09-30 19:26:21,040 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.common.ecosystemintegration.ui.core.MCUEcoSystemIntegrationUiHelper.getUserAuth(MCUEcoSystemIntegrationUiHelper.java:100)
+2025-09-30 19:26:21,040 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.ide.mcu.userauth.UserAuthStartup.earlyStartup(UserAuthStartup.java:32)
+2025-09-30 19:26:21,041 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+2025-09-30 19:26:21,041 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+2025-09-30 19:26:21,041 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+2025-09-30 19:26:21,041 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.Workbench$39.run(Workbench.java:2733)
+2025-09-30 19:26:21,041 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+2025-09-30 19:26:25,006 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 19:26:25,006 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 19:26:25,006 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 19:26:25,006 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 19:26:25,007 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 21:55:18,128 [INFO] Activator:176 - 
+
+
+2025-09-30 21:55:18,129 [INFO] Activator:177 - !SESSION log4j initialized
+2025-09-30 21:55:20,764 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2025-09-30 21:55:22,004 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] java.net.URISyntaxException: Illegal character in path at index 35: file:/home/invadl0640/Desktop/STM32 Codes/.metadata/.log4j2.xml
+2025-09-30 21:55:22,005 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI$Parser.fail(URI.java:2995)
+2025-09-30 21:55:22,005 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI$Parser.checkChars(URI.java:3166)
+2025-09-30 21:55:22,005 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3248)
+2025-09-30 21:55:22,006 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI$Parser.parse(URI.java:3196)
+2025-09-30 21:55:22,006 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URI.<init>(URI.java:645)
+2025-09-30 21:55:22,006 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.net.URL.toURI(URL.java:1220)
+2025-09-30 21:55:22,006 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.common.mx.core.CubeMxInstance.getInstance(CubeMxInstance.java:81)
+2025-09-30 21:55:22,006 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.common.mx.userauth.UserAuthAdapter.<init>(UserAuthAdapter.java:25)
+2025-09-30 21:55:22,007 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.common.mx.userauth.UserAuthProvider.getUserAuthAdapter(UserAuthProvider.java:16)
+2025-09-30 21:55:22,007 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.common.ecosystemintegration.ui.core.MCUEcoSystemIntegrationUiHelper.getUserAuth(MCUEcoSystemIntegrationUiHelper.java:100)
+2025-09-30 21:55:22,007 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at com.st.stm32cube.ide.mcu.userauth.UserAuthStartup.earlyStartup(UserAuthStartup.java:32)
+2025-09-30 21:55:22,007 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:79)
+2025-09-30 21:55:22,008 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:55)
+2025-09-30 21:55:22,008 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+2025-09-30 21:55:22,008 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.ui.internal.Workbench$39.run(Workbench.java:2733)
+2025-09-30 21:55:22,008 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+2025-09-30 21:55:25,930 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 21:55:25,931 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 21:55:25,931 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 21:55:25,931 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 21:55:25,931 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 1 : Invalid condition id : UX_CORESTACK_Condition cause : null
+2025-09-30 22:59:12,148 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 

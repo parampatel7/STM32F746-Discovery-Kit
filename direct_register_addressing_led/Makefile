@@ -1,0 +1,43 @@
+CC = arm-none-eabi-gcc
+OBJCOPY = arm-none-eabi-objcopy
+CFLAGS = -mcpu=cortex-m7 -mthumb -Wall -g -O0 -Iinc
+LDFLAGS = -Tstm32f746.ld
+
+SRCS = main.c startup_stm32f746xx.s syscalls.c
+
+all: main.bin
+
+main.elf: $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) -o $@ $(LDFLAGS)
+
+main.bin: main.elf
+	$(OBJCOPY) -O binary $< $@
+
+clean:
+	rm -f *.o *.elf *.bin
+
+
+
+
+#multiple target:dependancy possible
+# led.o:led.c
+#all:main.o led.o :::make command checks for dependeny
+
+	#$(CC) $(CFLAGS) $^ -o $@
+	#$^ is for dependancy,  $@ is for target
+	
+#CC=arm-none-eabi-gcc
+#MACH=cortex-m7
+#CFLAGS= -c -mcpu=$(MACH) -mthumb -std=gnu11 -Wall -O0
+
+#all:main.o stm32_startup.o
+#target:dependancy
+#main.o:main.c
+#	$(CC) $(CFLAGS) main.c -o main.o
+	
+#stm32_startup.o:stm32_startup.c
+#	$(CC) $(CFLAGS) -o $@ $^
+	
+#clean:
+#	rm -rf *.o *.elf
+	

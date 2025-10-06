@@ -17,6 +17,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/invadl0640/Desktop/workspace/gemini_30_software/Development/G3/RTU"/>
+			<item value="/home/invadl0640/Desktop/workspace/gemini_30_software/Development/G3/RTU/slaveBoards/AMMBoard/amm_boot"/>
 			<item value="/home/invadl0640/Desktop/workspace/gemini_30_software/Development/G3/RTU/slaveBoards/AMMBoard/amm_app"/>
 			<item value="/home/invadl0640/Desktop/workspace/gemini_30_software/Development/G3/RTU/slaveBoards/AMMBoard/amm_AppBootProg"/>
 		</list>
@@ -27,5 +29,12 @@
 			<item key="DIALOG_HEIGHT" value="698"/>
 			<item key="DIALOG_FONT_NAME" value="1|Ubuntu Sans|11.0|0|GTK|1|"/>
 		</section>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="628"/>
+		<item key="DIALOG_Y_ORIGIN" value="110"/>
+		<item key="DIALOG_WIDTH" value="613"/>
+		<item key="DIALOG_HEIGHT" value="616"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu Sans|11.0|0|GTK|1|"/>
 	</section>
 </section>
