@@ -1,0 +1,10 @@
+16:09:11 **** Incremental Build of configuration Release for project Ethernet_ping ****
+make -j12 all 
+arm-none-eabi-size  Ethernet_ping.elf 
+   text	   data	    bss	    dec	    hex	filename
+  45276	    452	  33620	  79348	  135f4	Ethernet_ping.elf
+Finished building: default.size.stdout
+ 
+
+16:09:11 Build Finished. 0 errors, 0 warnings. (took 137ms)
+
