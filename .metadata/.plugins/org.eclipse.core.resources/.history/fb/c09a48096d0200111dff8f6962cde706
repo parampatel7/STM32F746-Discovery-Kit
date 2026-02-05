@@ -1,0 +1,17 @@
+/*
+ * udp_server.c
+ *
+ *  Created on: Feb 5, 2026
+ *      Author: invadl0640
+ */
+
+
+#include "lwip/pbuf.h"  // Provides structures and functions for packet buffers.
+#include "lwip/udp.h"   // Includes UDP-specific functionality.
+#include "lwip/tcp.h"   // Used for TCP/IP stack functionality (though not required for UDP operations).
+
+#include "stdio.h"      // Standard input/output library.
+#include "udp_server.h"  // Custom header file for this server (likely contains function prototypes).
+
+// Callback function declaration.
+void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port);

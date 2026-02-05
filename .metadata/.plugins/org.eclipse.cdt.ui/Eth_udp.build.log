@@ -1,0 +1,10 @@
+16:19:30 **** Incremental Build of configuration Debug for project Eth_udp ****
+make -j12 all 
+arm-none-eabi-size  Eth_udp.elf 
+   text	   data	    bss	    dec	    hex	filename
+  78164	    456	  33640	 112260	  1b684	Eth_udp.elf
+Finished building: default.size.stdout
+ 
+
+16:19:30 Build Finished. 0 errors, 0 warnings. (took 127ms)
+
