@@ -1,7 +1,7 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=linux
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:lwip,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:New_configuration,org.eclipse.launchbar.core.descriptorType.default\:i2c_bit_banging Debug,org.eclipse.launchbar.core.descriptorType.default\:eth debug,org.eclipse.launchbar.core.descriptorType.default\:I2C_test2 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Eth_udp_client Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Eth_udp Debug
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:lwip,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:New_configuration,org.eclipse.launchbar.core.descriptorType.default\:i2c_bit_banging Debug,org.eclipse.launchbar.core.descriptorType.default\:eth debug,org.eclipse.launchbar.core.descriptorType.default\:I2C_test2 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Eth_udp Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:HTTP_Server Debug
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:AIM_APP_DEBUG_JLink/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:AMMBoardSTM32JLink/activeLaunchTarget=null\:---
@@ -16,6 +16,7 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Ethernet_ping\ Debug/activeLaun
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Ethernet_test\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:FreeRTOS_test\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:FreeRTOS_test\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:HTTP_Server\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:I2C_test2/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:I2C_test2/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:New_configuration/activeLaunchMode=debug

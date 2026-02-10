@@ -3441,3 +3441,6 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-02-10 14:15:58.202
 !MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2026-02-10 14:55:55.212
+!MESSAGE Indexed 'HTTP_Server' (81 sources, 149 headers) in 5.4 sec: 17,163 declarations; 131,235 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0013%)
