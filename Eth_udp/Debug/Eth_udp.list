@@ -31,9 +31,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  13 .ARM.attributes 00000030  00000000  00000000  000151c8  2**0
                   CONTENTS, READONLY
- 14 .debug_info   0001dd86  00000000  00000000  000151f8  2**0
+ 14 .debug_info   0001dd88  00000000  00000000  000151f8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_abbrev 00005329  00000000  00000000  00032f7e  2**0
+ 15 .debug_abbrev 00005328  00000000  00000000  00032f80  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_aranges 000014b8  00000000  00000000  000382a8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -41,15 +41,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  18 .debug_macro  0003206d  00000000  00000000  0003a7ec  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_line   0002308e  00000000  00000000  0006c859  2**0
+ 19 .debug_line   0002308f  00000000  00000000  0006c859  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_str    000fe8ce  00000000  00000000  0008f8e7  2**0
+ 20 .debug_str    000fe8ce  00000000  00000000  0008f8e8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .comment      00000043  00000000  00000000  0018e1b5  2**0
+ 21 .comment      00000043  00000000  00000000  0018e1b6  2**0
                   CONTENTS, READONLY
- 22 .debug_frame  00005c0c  00000000  00000000  0018e1f8  2**2
+ 22 .debug_frame  00005c0c  00000000  00000000  0018e1fc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_line_str 0000006a  00000000  00000000  00193e04  2**0
+ 23 .debug_line_str 0000006a  00000000  00000000  00193e08  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1542,7 +1542,7 @@ void udpServer_init(void)
  8000b3a:	607b      	str	r3, [r7, #4]
 
     // Bind the UDP control block to the IP and port 1100.
-    err = udp_bind(upcb, &myIPADDR, 1100);
+    err = udp_bind(upcb, &myIPADDR, 1100); //Make sure to enter same port in packetsender
  8000b3c:	1d3b      	adds	r3, r7, #4
  8000b3e:	f240 424c 	movw	r2, #1100	@ 0x44c
  8000b42:	4619      	mov	r1, r3

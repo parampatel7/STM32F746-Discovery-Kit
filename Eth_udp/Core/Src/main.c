@@ -19,7 +19,57 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "lwip.h"
+
 /*
+ * Source: Controllers Tech Ethernet playlist + rafalbartoszak.com
+ * Case 1 – PC sends, STM32 receives
+		STM32 = UDP server
+		PC = UDP client
+   Case 2 – STM32 sends, PC receives
+		PC = UDP server
+		STM32 = UDP client
+
+ * The only real code difference is:
+		Server code calls bind() and waits
+		Client code calls sendto() first
+ * UDP Server:
+ * 		Chooses a fixed port
+ * 		Binds to that port
+ * 		Waits for packets from any sender
+ * 		Learns sender IP/port when a packet arrives
+ *
+ * 	UDP Client:
+ * 		Does NOT bind (or uses random port)
+ * 		Knows the destination IP + port
+ * 		Sends first
+ * 		May or may not wait for a reply
+ *
+ * 		The device that must always be reachable should be the UDP server.
+ * 		The device that just “talks to it” should be the UDP client.
+ *
+ * 	Use UDP Server when…
+		✅ You need a fixed port that others talk to
+			Commands
+			Configuration
+			Status requests
+		✅ The device should work even if the peer changes IP
+			PC IP changes
+			Multiple PCs
+			DHCP environments
+		✅ The device should “just sit there and wait”
+		Typical STM32 case (most common)
+		STM32 = UDP Server
+
+ * 	Use UDP Client when…
+		✅ The device must initiate communication
+			Periodic data push
+			Logging
+			Telemetry
+		✅ The destination IP + port are known and fixed
+			One PC
+			One server
+			Cloud endpoint
+
  * This is the code for UDP Server.
  * On sending UDP00/UDP11(ASCII), 1100(Port), LAN IP, UDP from packetsender
  * Open Minicom with command minicom -D /dev/ttyACM0 -b 115200

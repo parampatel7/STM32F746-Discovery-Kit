@@ -89,7 +89,9 @@ void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const
     udp_connect(upcb, addr, port);
 
     /* Send a reply to the client */
-    udp_send(upcb, txBuf);
+    udp_send(upcb, txBuf); //How to find reply is received or not?
+    //Hercules by HW Studio for windows.
+
 
     /* Disconnect the UDP connection to allow new clients */
     udp_disconnect(upcb);
