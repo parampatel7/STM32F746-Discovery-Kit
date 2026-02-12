@@ -25,7 +25,10 @@
 #include "lwip/apps/httpd.h"
 /*
  * https://www.youtube.com/watch?v=l7pDTva5IMQ
- * Middlewares>Third_Party>LwIP>apps>http added fsdata.c and fsdata_custom.c, also removed these files from build*/
+ * Middlewares>Third_Party>LwIP>apps>http added fsdata.c and fsdata_custom.c, also removed these files from build
+ * How to convert .html files to .c file: in terminal: perl makefsdata.pl
+ * How is data dumped onto ethernet?
+ * */
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

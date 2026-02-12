@@ -22,7 +22,97 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+/*Use Python script to make pc as server*/
+/*
+Understanding Client vs Server Roles
+🔵 UDP SERVER (udp_server.c)
+Who does what:
 
+STM32: Acts as SERVER (waits for commands)
+PC/Packet Sender: Acts as CLIENT (sends commands)
+
+Communication flow:
+1. PC sends command "UDP00" → STM32 (server listening on port 1100)
+2. STM32 receives and processes command
+3. STM32 sends response "UDP00 + Hello World" → PC
+4. PC receives response
+When to use:
+
+✅ PC needs to control STM32 (send commands)
+✅ STM32 should always be reachable at a fixed port
+✅ Multiple PCs might need to connect to STM32
+✅ Example: Control panel, configuration tool, command interface
+
+Packet Sender usage: ✅ WORKS PERFECTLY
+
+Packet Sender = Client (sends commands)
+STM32 = Server (receives and responds)
+
+
+🔴 UDP CLIENT (udp_client.c)
+Who does what:
+
+STM32: Acts as CLIENT (initiates communication)
+PC: Acts as SERVER (waits for data)
+
+Communication flow:
+1. STM32 sends data "Hello World" → PC (server listening on port 12)
+2. PC receives data
+3. PC sends response "Server received: Hello World" → STM32
+4. STM32 receives response
+When to use:
+
+✅ STM32 needs to push data to PC (telemetry, logging)
+✅ STM32 initiates communication
+✅ PC should receive data periodically
+✅ Example: Sensor data logger, telemetry system
+
+Packet Sender usage: ❌ DOESN'T WORK
+
+Packet Sender = Client tool (sends packets, not a server)
+STM32 = Also client (sends packets)
+Problem: Both are clients, nobody is server!
+Solution: Use Python UDP server script on PC
+
+Scenario 1: STM32 as UDP SERVER
+┌─────────────────┐         ┌─────────────────┐
+│   PC (Client)   │         │ STM32 (Server)  │
+│  Packet Sender  │         │  udp_server.c   │
+│  10.4.90.58     │         │  10.4.90.100    │
+│                 │         │  Port: 1100     │
+└─────────────────┘         └─────────────────┘
+         │                           │
+         │  1. Send "UDP00"          │
+         │──────────────────────────>│
+         │                           │
+         │         2. Receive        │
+         │         3. Process        │
+         │                           │
+         │  4. Send "UDP00 + Hello"  │
+         │<──────────────────────────│
+         │  5. Receive response      │
+
+
+Scenario 2: STM32 as UDP CLIENT
+┌─────────────────┐         ┌─────────────────┐
+│   PC (Server)   │         │ STM32 (Client)  │
+│  Python Script  │         │  udp_client.c   │
+│  10.4.90.58     │         │  10.4.90.100    │
+│  Port: 12       │         │  Port: 1100     │
+└─────────────────┘         └─────────────────┘
+         │                           │
+         │  1. Send "Hello World"    │
+         │<──────────────────────────│
+         │  2. Receive               │
+         │                           │
+         │  3. Send response         │
+         │──────────────────────────>│
+         │         4. Receive        │
+
+
+CLIENT = sends first (initiator)
+SERVER = receives first (waiter)
+ */
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

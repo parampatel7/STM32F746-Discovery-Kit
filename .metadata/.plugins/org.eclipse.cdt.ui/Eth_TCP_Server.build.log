@@ -1,0 +1,10 @@
+11:45:13 **** Incremental Build of configuration Debug for project Eth_TCP_Server ****
+make -j12 all 
+arm-none-eabi-size  Eth_TCP_Server.elf 
+   text	   data	    bss	    dec	    hex	filename
+  86256	    456	  33640	 120352	  1d620	Eth_TCP_Server.elf
+Finished building: default.size.stdout
+ 
+
+11:45:13 Build Finished. 0 errors, 0 warnings. (took 135ms)
+

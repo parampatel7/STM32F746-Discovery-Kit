@@ -1,17 +1,10 @@
-16:26:15 **** Incremental Build of configuration Debug for project HTTP_Server ****
+10:46:28 **** Incremental Build of configuration Debug for project HTTP_Server ****
 make -j12 all 
-arm-none-eabi-gcc "../Middlewares/Third_Party/LwIP/src/apps/http/fs.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Middlewares/Third_Party/LwIP/src/apps/http -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Middlewares/Third_Party/LwIP/src/apps/http/fs.d" -MT"Middlewares/Third_Party/LwIP/src/apps/http/fs.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Middlewares/Third_Party/LwIP/src/apps/http/fs.o"
-arm-none-eabi-gcc -o "HTTP_Server.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/ST/STM32F746-Discovery-Kit/HTTP_Server/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HTTP_Server.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: HTTP_Server.elf
- 
 arm-none-eabi-size  HTTP_Server.elf 
-arm-none-eabi-objdump -h -S HTTP_Server.elf  > "HTTP_Server.list"
    text	   data	    bss	    dec	    hex	filename
   78232	    456	  34576	 113264	  1ba70	HTTP_Server.elf
 Finished building: default.size.stdout
  
-Finished building: HTTP_Server.list
- 
 
-16:26:16 Build Finished. 0 errors, 0 warnings. (took 379ms)
+10:46:28 Build Finished. 0 errors, 0 warnings. (took 133ms)
 

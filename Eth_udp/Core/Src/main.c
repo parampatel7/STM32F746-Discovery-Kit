@@ -82,7 +82,125 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+/*==============================MINICOM OUTPUT ================================
 
+========================================
+UDP SERVER INITIALIZATION STARTED
+========================================
+[INFO] UDP control block created successfully
+[INFO] �
+========================================
+UDP SERVER INITIALIZATION STARTED
+========================================
+[INFO] UDP control block created successfully
+[INFO] Binding to IP: 10.4.90.100, Port: 1100
+[SUCCESS] UDP server bound successfully!
+[INFO] UDP receive callback registered
+========================================
+UDP SERVER READY - Waiting for packets...
+========================================
+
+Started udp server init
+
+========================================
+UDP PACKET RECEIVED
+========================================
+[INFO] From Client IP: 10.4.90.58
+[INFO] From Client Port: 58934
+[INFO] Packet Length: 5 bytes
+[INFO] Total Length: 5 bytes
+
+--- DATA RECEIVED FROM CLIENT ---
+UDP00
+--- END OF RECEIVED DATA ---
+
+[INFO] Command recognized: UDP00
+[INFO] Response: Hello World
+
+--- DATA TO SEND TO CLIENT ---
+UDP00 + Hello World
+--- END OF DATA TO SEND ---
+[INFO] Response length: 19 bytes
+
+[INFO] Transmission buffer allocated (19 bytes)
+[INFO] Response data copied to buffer
+[INFO] Connected to client 10.4.90.58:58934
+[INFO] Sending response to client...
+[SUCCESS] Response sent successfully!
+[INFO] Disconnected from client
+[INFO] Transmission buffer freed
+[INFO] Receive buffer freed
+========================================
+PACKET PROCESSING COMPLETE
+========================================
+
+
+========================================
+UDP PACKET RECEIVED
+========================================
+[INFO] From Client IP: 10.4.90.58
+[INFO] From Client Port: 58934
+[INFO] Packet Length: 5 bytes
+[INFO] Total Length: 5 bytes
+
+--- DATA RECEIVED FROM CLIENT ---
+UDP01
+--- END OF RECEIVED DATA ---
+
+[INFO] Command recognized: UDP01
+[INFO] Response: Param Patel
+
+--- DATA TO SEND TO CLIENT ---
+UDP01 + Param Patel
+--- END OF DATA TO SEND ---
+[INFO] Response length: 19 bytes
+
+[INFO] Transmission buffer allocated (19 bytes)
+[INFO] Response data copied to buffer
+[INFO] Connected to client 10.4.90.58:58934
+[INFO] Sending response to client...
+[SUCCESS] Response sent successfully!
+[INFO] Disconnected from client
+[INFO] Transmission buffer freed
+[INFO] Receive buffer freed
+========================================
+PACKET PROCESSING COMPLETE
+========================================
+
+
+========================================
+UDP PACKET RECEIVED
+========================================
+[INFO] From Client IP: 10.4.90.58
+[INFO] From Client Port: 58934
+[INFO] Packet Length: 5 bytes
+[INFO] Total Length: 5 bytes
+
+--- DATA RECEIVED FROM CLIENT ---
+UDP02
+--- END OF RECEIVED DATA ---
+
+[WARN] Unknown command received
+[INFO] Response: ERROR
+
+--- DATA TO SEND TO CLIENT ---
+UDP02 + ERROR
+--- END OF DATA TO SEND ---
+[INFO] Response length: 13 bytes
+
+[INFO] Transmission buffer allocated (13 bytes)
+[INFO] Response data copied to buffer
+[INFO] Connected to client 10.4.90.58:58934
+[INFO] Sending response to client...
+[SUCCESS] Response sent successfully!
+[INFO] Disconnected from client
+[INFO] Transmission buffer freed
+[INFO] Receive buffer freed
+========================================
+PACKET PROCESSING COMPLETE
+========================================
+
+ */
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/

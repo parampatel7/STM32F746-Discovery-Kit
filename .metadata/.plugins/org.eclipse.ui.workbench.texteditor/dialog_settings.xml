@@ -3,14 +3,20 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
-		<item value="netif_is_link_up"/>
-		<item value="configUSE_TICKLESS_IDLE"/>
-		<item value="adc_init"/>
-		<item value="DevAddress"/>
-		<item value="EEPROM_MEM_ADDR"/>
-		<item value="IS_I2C_MEMADD_SIZE"/>
-		<item value="XferSize"/>
-		<item value="MX_I2C1_Init"/>
-		<item value="HAL_I2C_MspInit"/>
+		<item value="tco_accept"/>
+		<item value="tcp_bind"/>
+		<item value="tcp_connect(tpcb, &amp;destIP, 31, callback)"/>
+		<item value="tcp_connect"/>
+		<item value="58"/>
+		<item value="111"/>
+		<item value="100"/>
+		<item value="hal_tim"/>
+		<item value="htim"/>
+		<item value="tcp_server_handle"/>
+		<item value="Sending data chunk"/>
+		<item value="Sending data chunk: 0 bytes"/>
+		<item value="Freeing original received pbuf"/>
+		<item value="httpd_init"/>
+		<item value="udp_receive_callback"/>
 	</list>
 </section>

@@ -1,0 +1,630 @@
+/**
+ * Copyright (c) 2001-2004 Swedish Institute of Computer Science.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 3. The name of the author may not be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+ * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+ * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ *
+ * This file is part of and a contribution to the lwIP TCP/IP stack.
+ *
+ * Credits go to Adam Dunkels (and the current maintainers) of this software.
+ *
+ * Christiaan Simons rewrote this file to get a more stable  application.
+ *
+ **/
+
+ /* This file was modified by ST */
+ /* Enhanced with comprehensive logging */
+
+#include "tcpClientRAW.h"
+#include "lwip/tcp.h"
+#include <stdio.h>
+#include <string.h>
+
+/*  protocol states */
+enum tcp_client_states
+{
+  ES_NONE = 0,
+  ES_CONNECTED,
+  ES_RECEIVING,
+  ES_CLOSING
+};
+
+/* structure for maintaining connection infos to be passed as argument
+   to LwIP callbacks*/
+struct tcp_client_struct
+{
+  u8_t state;             /* current connection state */
+  u8_t retries;
+  struct tcp_pcb *pcb;    /* pointer on the current tcp_pcb */
+  struct pbuf *p;         /* pointer on the received/to be transmitted pbuf */
+};
+
+/* Helper function to get state name string */
+static const char* get_state_name(u8_t state)
+{
+  switch(state)
+  {
+    case ES_NONE:      return "ES_NONE";
+    case ES_CONNECTED: return "ES_CONNECTED";
+    case ES_RECEIVING: return "ES_RECEIVING";
+    case ES_CLOSING:   return "ES_CLOSING";
+    default:           return "UNKNOWN";
+  }
+}
+
+/* This callback will be called, when the client is connected to the server */
+static err_t tcp_client_connected(void *arg, struct tcp_pcb *tpcb, err_t err);
+
+/* This callback will be called, when the client receive data from the server */
+static err_t tcp_client_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
+
+/* This callback will be called, when the server Polls for the Client */
+static err_t tcp_client_poll(void *arg, struct tcp_pcb *tpcb);
+
+/* This callback will be called, when the server acknowledges the data sent by the client */
+static err_t tcp_client_sent(void *arg, struct tcp_pcb *tpcb, u16_t len);
+
+/* A Function to send the data to the server */
+static void tcp_client_send(struct tcp_pcb *tpcb, struct tcp_client_struct *es);
+
+/* Function to close the connection */
+static void tcp_client_connection_close(struct tcp_pcb *tpcb, struct tcp_client_struct *es);
+
+/* This is the part where we are going to handle the incoming data from the server */
+static void tcp_client_handle (struct tcp_pcb *tpcb, struct tcp_client_struct *es);
+
+/* Error callback */
+static void tcp_client_error(void *arg, err_t err);
+
+int counter = 0;
+uint8_t data[100];
+
+extern TIM_HandleTypeDef htim1;
+
+/* create a struct to store data */
+struct tcp_client_struct *esTx = 0;
+
+struct tcp_pcb *pcbTx = 0;
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	char buf[100];
+
+	/* Prepare the message to send to the server */
+	int len = sprintf(buf, "Sending TCPclient Message %d\n", counter);
+
+	if (counter != 0)
+	{
+		printf("\r\n[TIMER] Timer callback triggered (Message #%d)\r\n", counter);
+
+		/* allocate pbuf */
+		esTx->p = pbuf_alloc(PBUF_TRANSPORT, len, PBUF_POOL);
+
+		if (esTx->p != NULL)
+		{
+			printf("[TIMER] Buffer allocated (%d bytes)\r\n", len);
+
+			/* copy data to pbuf */
+			pbuf_take(esTx->p, (char*)buf, len);
+			printf("[TIMER] Data copied to buffer\r\n");
+
+			printf("\r\n--- DATA TO SEND TO SERVER ---\r\n");
+			printf("%s", buf);
+			printf("--- END OF DATA TO SEND ---\r\n\r\n");
+
+			tcp_client_send(pcbTx, esTx);
+
+			pbuf_free(esTx->p);
+			printf("[TIMER] Buffer freed\r\n");
+		}
+		else
+		{
+			printf("[ERROR] Failed to allocate buffer in timer callback\r\n");
+		}
+	}
+}
+
+/* IMPLEMENTATION FOR TCP CLIENT
+
+1. Create TCP block.
+2. connect to the server
+3. start communicating
+*/
+
+void tcp_client_init(void)
+{
+	printf("\r\n========================================\r\n");
+	printf("TCP CLIENT INITIALIZATION STARTED\r\n");
+	printf("========================================\r\n");
+
+	/* 1. create new tcp pcb */
+	struct tcp_pcb *tpcb;
+
+	tpcb = tcp_new();
+
+	if (tpcb == NULL)
+	{
+		printf("[ERROR] Failed to create TCP PCB\r\n");
+		printf("========================================\r\n\r\n");
+		return;
+	}
+	printf("[INFO] TCP PCB created successfully\r\n");
+
+	/* 2. Connect to the server */
+	ip_addr_t destIPADDR;
+	IP_ADDR4(&destIPADDR, 10, 4, 90, 58);  // Server IP
+
+	printf("[INFO] Connecting to server IP: 10.4.90.58, Port: 31\r\n");
+	printf("[INFO] STM32 Client initiating connection...\r\n");
+	ip_addr_t myIPADDR;
+	IP_ADDR4(&myIPADDR, 10, 4, 90, 111);
+	tcp_bind(tpcb, &myIPADDR, 0);
+	err_t err = tcp_connect(tpcb, &destIPADDR, 31, tcp_client_connected);
+
+	if (err == ERR_OK)
+	{
+		printf("[INFO] Connection initiated successfully\r\n");
+		printf("[INFO] Waiting for server response...\r\n");
+		printf("========================================\r\n\r\n");
+	}
+	else
+	{
+		printf("[ERROR] Connection initiation failed. Error code: %d\r\n", err);
+		printf("========================================\r\n\r\n");
+	}
+}
+
+/** This callback is called, when the client is connected to the server
+ * Here we will initialise few other callbacks
+ * and in the end, call the client handle function
+  */
+static err_t tcp_client_connected(void *arg, struct tcp_pcb *newpcb, err_t err)
+{
+	printf("\r\n========================================\r\n");
+	printf("TCP CLIENT CONNECTED TO SERVER\r\n");
+	printf("========================================\r\n");
+
+	err_t ret_err;
+	struct tcp_client_struct *es;
+
+	LWIP_UNUSED_ARG(arg);
+
+	if (err != ERR_OK)
+	{
+		printf("[ERROR] Connection callback with error: %d\r\n", err);
+		printf("========================================\r\n\r\n");
+		return err;
+	}
+
+	/* Get server information */
+	ip4_addr_t server_ip = newpcb->remote_ip;
+	uint16_t server_port = newpcb->remote_port;
+	char *server_ip_str = ipaddr_ntoa(&server_ip);
+
+	printf("[INFO] Connected to server: %s:%u\r\n", server_ip_str, server_port);
+
+	/* Get local information */
+	ip4_addr_t local_ip = newpcb->local_ip;
+	uint16_t local_port = newpcb->local_port;
+	char *local_ip_str = ipaddr_ntoa(&local_ip);
+
+	printf("[INFO] Local address: %s:%u\r\n", local_ip_str, local_port);
+
+	/* allocate structure es to maintain tcp connection information */
+	es = (struct tcp_client_struct *)mem_malloc(sizeof(struct tcp_client_struct));
+	if (es != NULL)
+	{
+		printf("[INFO] Connection structure allocated\r\n");
+
+		es->state = ES_CONNECTED;
+		es->pcb = newpcb;
+		es->retries = 0;
+		es->p = NULL;
+
+		printf("[INFO] Connection state: %s\r\n", get_state_name(es->state));
+
+		/* pass newly allocated es structure as argument to newpcb */
+		tcp_arg(newpcb, es);
+
+		/* initialize lwip tcp_recv callback function for newpcb  */
+		tcp_recv(newpcb, tcp_client_recv);
+
+		/* initialize lwip tcp_poll callback function for newpcb */
+		tcp_poll(newpcb, tcp_client_poll, 0);
+
+		/* initialize LwIP tcp_sent callback function */
+		tcp_sent(newpcb, tcp_client_sent);
+
+		/* initialize LwIP tcp_err callback function */
+		tcp_err(newpcb, tcp_client_error);
+
+		printf("[INFO] All callbacks initialized\r\n");
+		printf("========================================\r\n");
+		printf("TCP CLIENT READY - Starting communication\r\n");
+		printf("========================================\r\n\r\n");
+
+		/* handle the TCP data */
+		tcp_client_handle(newpcb, es);
+
+		ret_err = ERR_OK;
+	}
+	else
+	{
+		printf("[ERROR] Failed to allocate connection structure\r\n");
+
+		/*  close tcp connection */
+		tcp_client_connection_close(newpcb, es);
+		printf("[INFO] Connection closed due to memory error\r\n");
+
+		/* return memory error */
+		ret_err = ERR_MEM;
+		printf("========================================\r\n\r\n");
+	}
+	return ret_err;
+}
+
+
+/** This callback is called, when the client receives some data from the server
+ * if the data received is valid, we will handle the data in the client handle function
+  */
+static err_t tcp_client_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
+{
+	struct tcp_client_struct *es;
+	err_t ret_err;
+
+	LWIP_ASSERT("arg != NULL",arg != NULL);
+
+	es = (struct tcp_client_struct *)arg;
+
+	/* Get server information for logging */
+	ip4_addr_t server_ip = tpcb->remote_ip;
+	uint16_t server_port = tpcb->remote_port;
+	char *server_ip_str = ipaddr_ntoa(&server_ip);
+
+	/* if we receive an empty tcp frame from server => close connection */
+	if (p == NULL)
+	{
+		printf("\r\n[RECV] Empty frame received from server [%s:%u]\r\n", server_ip_str, server_port);
+		printf("[INFO] Server closed connection\r\n");
+		printf("[INFO] Current state: %s -> ES_CLOSING\r\n", get_state_name(es->state));
+
+		/* remote host closed connection */
+		es->state = ES_CLOSING;
+		if(es->p == NULL)
+		{
+			printf("[INFO] No pending data, closing connection\r\n");
+			/* we're done sending, close connection */
+			tcp_client_connection_close(tpcb, es);
+		}
+		else
+		{
+			printf("[WARN] Pending data exists while closing\r\n");
+		}
+		ret_err = ERR_OK;
+	}
+	/* else : a non empty frame was received from server but for some reason err != ERR_OK */
+	else if(err != ERR_OK)
+	{
+		printf("\r\n[ERROR] Non-empty frame received with error\r\n");
+		printf("[ERROR] From server [%s:%u], Error code: %d\r\n", server_ip_str, server_port, err);
+
+		/* free received pbuf*/
+		if (p != NULL)
+		{
+			printf("[INFO] Freeing received pbuf\r\n");
+			es->p = NULL;
+			pbuf_free(p);
+		}
+		ret_err = err;
+	}
+	else if(es->state == ES_CONNECTED)
+	{
+		printf("\r\n========================================\r\n");
+		printf("DATA RECEIVED FROM SERVER\r\n");
+		printf("========================================\r\n");
+		printf("[INFO] From server [%s:%u]\r\n", server_ip_str, server_port);
+		printf("[INFO] Current state: %s\r\n", get_state_name(es->state));
+		printf("[INFO] Data length: %u bytes\r\n", p->len);
+		printf("[INFO] Total length: %u bytes\r\n", p->tot_len);
+
+		/* Print received data */
+		printf("\r\n--- DATA RECEIVED FROM SERVER ---\r\n");
+		char recv_buffer[p->tot_len + 1];
+		memset(recv_buffer, 0, sizeof(recv_buffer));
+		pbuf_copy_partial(p, recv_buffer, p->tot_len, 0);
+		recv_buffer[p->tot_len] = '\0';
+		printf("%s\r\n", recv_buffer);
+		printf("--- END OF RECEIVED DATA ---\r\n");
+
+		/* store reference to incoming pbuf (chain) */
+		es->p = p;
+
+		/* Acknowledge the received data */
+		tcp_recved(tpcb, p->tot_len);
+		printf("[INFO] Data acknowledged (window updated: %u bytes)\r\n", p->tot_len);
+
+		/* handle the received data */
+		printf("[INFO] Processing received data...\r\n");
+		tcp_client_handle(tpcb, es);
+
+		pbuf_free(p);
+		printf("[INFO] Receive buffer freed\r\n");
+		printf("========================================\r\n\r\n");
+
+		ret_err = ERR_OK;
+	}
+	else if(es->state == ES_CLOSING)
+	{
+		printf("\r\n[WARN] Data received while in closing state from [%s:%u]\r\n", server_ip_str, server_port);
+		printf("[INFO] Discarding data (state: %s)\r\n", get_state_name(es->state));
+
+		/* odd case, remote side closing twice, trash data */
+		tcp_recved(tpcb, p->tot_len);
+		es->p = NULL;
+		pbuf_free(p);
+		ret_err = ERR_OK;
+	}
+	else
+	{
+		printf("\r\n[WARN] Data received in unknown state %d from [%s:%u]\r\n",
+		       es->state, server_ip_str, server_port);
+		printf("[INFO] Discarding data\r\n");
+
+		/* unknown es->state, trash data  */
+		tcp_recved(tpcb, p->tot_len);
+		es->p = NULL;
+		pbuf_free(p);
+		ret_err = ERR_OK;
+	}
+	return ret_err;
+}
+
+static void tcp_client_error(void *arg, err_t err)
+{
+	struct tcp_client_struct *es;
+
+	printf("\r\n========================================\r\n");
+	printf("TCP CONNECTION ERROR OCCURRED\r\n");
+	printf("========================================\r\n");
+	printf("[ERROR] Fatal TCP connection error\r\n");
+	printf("[ERROR] Error code: %d\r\n", err);
+
+	es = (struct tcp_client_struct *)arg;
+	if (es != NULL)
+	{
+		printf("[INFO] Current connection state: %s\r\n", get_state_name(es->state));
+		printf("[INFO] Freeing connection structure memory\r\n");
+
+		/*  free es structure */
+		mem_free(es);
+
+		printf("[INFO] Memory freed successfully\r\n");
+	}
+	printf("========================================\r\n\r\n");
+
+	/* Reset global pointers */
+	esTx = NULL;
+	pcbTx = NULL;
+	counter = 0;
+	printf("[INFO] Connection reset, counter cleared\r\n");
+}
+
+static err_t tcp_client_poll(void *arg, struct tcp_pcb *tpcb)
+{
+	err_t ret_err;
+	struct tcp_client_struct *es;
+
+	es = (struct tcp_client_struct *)arg;
+	if (es != NULL)
+	{
+		if (es->p != NULL)
+		{
+			printf("[POLL] Pending data found\r\n");
+			printf("[INFO] Connection state: %s\r\n", get_state_name(es->state));
+		}
+		else
+		{
+			/* no remaining pbuf (chain)  */
+			if(es->state == ES_CLOSING)
+			{
+				printf("[POLL] Connection in closing state, finalizing\r\n");
+				/*  close tcp connection */
+				tcp_client_connection_close(tpcb, es);
+			}
+		}
+		ret_err = ERR_OK;
+	}
+	else
+	{
+		printf("[POLL] [ERROR] NULL connection structure, aborting\r\n");
+		/* nothing to be done */
+		tcp_abort(tpcb);
+		ret_err = ERR_ABRT;
+	}
+	return ret_err;
+}
+
+/** This callback is called, when the server acknowledges the data sent by the client
+ * If there is no more data left to sent, we will simply close the connection
+  */
+static err_t tcp_client_sent(void *arg, struct tcp_pcb *tpcb, u16_t len)
+{
+	struct tcp_client_struct *es;
+
+	LWIP_UNUSED_ARG(len);
+
+	es = (struct tcp_client_struct *)arg;
+	es->retries = 0;
+
+	printf("[ACK] Received ACK from server for %u bytes\r\n", len);
+	printf("[INFO] Connection state: %s\r\n", get_state_name(es->state));
+
+	if(es->p != NULL)
+	{
+		printf("[INFO] More data pending\r\n");
+	}
+	else
+	{
+		printf("[INFO] No more pending data\r\n");
+		/* if no more data to send and client closed connection*/
+		if(es->state == ES_CLOSING)
+		{
+			printf("[INFO] Closing connection as requested\r\n");
+			tcp_client_connection_close(tpcb, es);
+		}
+	}
+	return ERR_OK;
+}
+
+
+/** A function to send the data to the server
+  */
+static void tcp_client_send(struct tcp_pcb *tpcb, struct tcp_client_struct *es)
+{
+	printf("\r\n[SEND] Starting data transmission to server\r\n");
+	printf("[INFO] Available send buffer: %u bytes\r\n", tcp_sndbuf(tpcb));
+
+	struct pbuf *ptr;
+	err_t wr_err = ERR_OK;
+
+	while ((wr_err == ERR_OK) &&
+	       (es->p != NULL) &&
+	       (es->p->len <= tcp_sndbuf(tpcb)))
+	{
+		/* get pointer on pbuf from es structure */
+		ptr = es->p;
+
+		printf("[SEND] Sending data chunk: %u bytes\r\n", ptr->len);
+
+		/* enqueue data for transmission */
+		wr_err = tcp_write(tpcb, ptr->payload, ptr->len, 1);
+
+		if (wr_err == ERR_OK)
+		{
+			u16_t plen;
+			u8_t freed;
+
+			plen = ptr->len;
+
+			printf("[SEND] Data enqueued successfully\r\n");
+
+			/* continue with next pbuf in chain (if any) */
+			es->p = ptr->next;
+
+			if(es->p != NULL)
+			{
+				printf("[INFO] More data in chain\r\n");
+				/* increment reference count for es->p */
+				pbuf_ref(es->p);
+			}
+			else
+			{
+				printf("[INFO] Last chunk sent\r\n");
+			}
+
+			/* chop first pbuf from chain */
+			do
+			{
+				/* try hard to free pbuf */
+				freed = pbuf_free(ptr);
+			}
+			while(freed == 0);
+
+			printf("[INFO] Pbuf freed\r\n");
+		}
+		else if(wr_err == ERR_MEM)
+		{
+			printf("[WARN] Low memory, deferring send\r\n");
+			/* we are low on memory, try later / harder, defer to poll */
+			es->p = ptr;
+		}
+		else
+		{
+			printf("[ERROR] tcp_write failed with error: %d\r\n", wr_err);
+		}
+	}
+
+	if (es->p == NULL)
+	{
+		printf("[SEND] All data transmitted successfully\r\n\r\n");
+	}
+}
+
+
+static void tcp_client_connection_close(struct tcp_pcb *tpcb, struct tcp_client_struct *es)
+{
+	printf("\r\n========================================\r\n");
+	printf("CLOSING TCP CLIENT CONNECTION\r\n");
+	printf("========================================\r\n");
+
+	/* remove all callbacks */
+	printf("[INFO] Removing all callbacks\r\n");
+	tcp_arg(tpcb, NULL);
+	tcp_sent(tpcb, NULL);
+	tcp_recv(tpcb, NULL);
+	tcp_err(tpcb, NULL);
+	tcp_poll(tpcb, NULL, 0);
+
+	/* delete es structure */
+	if (es != NULL)
+	{
+		printf("[INFO] Freeing connection structure\r\n");
+		mem_free(es);
+	}
+
+	/* close tcp connection */
+	printf("[INFO] Closing TCP PCB\r\n");
+	tcp_close(tpcb);
+
+	printf("[SUCCESS] Connection closed successfully\r\n");
+	printf("========================================\r\n\r\n");
+
+	/* Reset global pointers */
+	esTx = NULL;
+	pcbTx = NULL;
+	counter = 0;
+	printf("[INFO] Connection variables reset\r\n");
+}
+
+/* Handle the incoming TCP Data */
+
+static void tcp_client_handle (struct tcp_pcb *tpcb, struct tcp_client_struct *es)
+{
+	/* get the Remote IP */
+	ip4_addr_t inIP = tpcb->remote_ip;
+	uint16_t inPort = tpcb->remote_port;
+
+	/* Extract the IP */
+	char *remIP = ipaddr_ntoa(&inIP);
+
+	printf("\r\n[HANDLE] Processing data from server %s:%u\r\n", remIP, inPort);
+	printf("[INFO] Connection state: %s\r\n", get_state_name(es->state));
+
+	/* Store connection info globally for timer callback */
+	esTx = es;
+	pcbTx = tpcb;
+
+	counter++;
+	printf("[INFO] Message counter incremented: %d\r\n", counter);
+	printf("[INFO] Timer will send periodic messages\r\n\r\n");
+}
