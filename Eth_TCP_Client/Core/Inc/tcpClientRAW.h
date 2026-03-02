@@ -1,27 +1,40 @@
-/*
-  ***************************************************************************************************************
-  ***************************************************************************************************************
-  ***************************************************************************************************************
+/**
+  ******************************************************************************
+  * @file           : tcpClientRAW.h
+  * @brief          : Header for tcpClientRAW.c file (LwIP RAW API TCP Client)
+  ******************************************************************************
+  * This file contains the TCP Client implementation using LwIP RAW API
+  * Based on the same structure as tcpServerRAW.c for learning purposes
+  ******************************************************************************
+  */
 
-  File:		  tcpClientRAW.h
-  Author:     ControllersTech.com
-  Updated:    29-Jul-2021
+#ifndef __TCP_CLIENT_RAW_H
+#define __TCP_CLIENT_RAW_H
 
-  ***************************************************************************************************************
-  Copyright (C) 2017 ControllersTech.com
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-  This is a free software under the GNU license, you can redistribute it and/or modify it under the terms
-  of the GNU General Public License version 3 as published by the Free Software Foundation.
-  This software library is shared with public for educational purposes, without WARRANTY and Author is not liable for any damages caused directly
-  or indirectly by this software, read more about this on the GNU General Public License.
+/* Includes ------------------------------------------------------------------*/
+#include "lwip/tcp.h"
+#include "lwip/err.h"
 
-  ***************************************************************************************************************
-*/
+/* Server Configuration - MODIFY THESE VALUES --------------------------------*/
+#define TCP_SERVER_IP_ADDR0   10
+#define TCP_SERVER_IP_ADDR1   4
+#define TCP_SERVER_IP_ADDR2   90
+#define TCP_SERVER_IP_ADDR3   58      /* Server IP: 10.4.90.100 */
+#define TCP_SERVER_PORT       8080       /* Server Port */
 
+/* Client Configuration ------------------------------------------------------*/
+#define MAX_BUFFER_SIZE       512
+#define RECONNECT_DELAY_MS    5000    /* Reconnection delay in milliseconds */
 
-#ifndef INC_TCPCLIENTRAW_H_
-#define INC_TCPCLIENTRAW_H_
-
+/* Exported functions --------------------------------------------------------*/
 void tcp_client_init(void);
 
-#endif /* INC_TCPCLIENTRAW_H_ */
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __TCP_CLIENT_RAW_H */

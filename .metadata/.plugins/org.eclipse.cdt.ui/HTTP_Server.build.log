@@ -1,4 +1,4 @@
-10:46:28 **** Incremental Build of configuration Debug for project HTTP_Server ****
+14:35:10 **** Build of configuration Debug for project HTTP_Server ****
 make -j12 all 
 arm-none-eabi-size  HTTP_Server.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  HTTP_Server.elf
 Finished building: default.size.stdout
  
 
-10:46:28 Build Finished. 0 errors, 0 warnings. (took 133ms)
+14:35:11 Build Finished. 0 errors, 0 warnings. (took 127ms)
 

@@ -1,0 +1,149 @@
+CLIENT:
+invadl0640@INVADL0640:~/Desktop/ST/STM32F746-Discovery-Kit/Eth_TCP_Client$ minicom -D /dev/ttyACM0 -b 115200
+
+Welcome to minicom 2.9
+
+OPTIONS: I18n 
+Port /dev/ttyACM0, 15:44:29
+
+Press CTRL-A Z for help on special keys
+
+Timer initialized
+Timer initialized
+
+========================================
+TCP CLIENT INITIALIZATION STARTED
+========================================
+[WARN] Ethernet link is not yet UP. Scheduling retry in 2 seconds...
+========================================
+
+HelloHello[INFO] Retrying TCP connection (link check)...
+
+========================================
+TCP CLIENT INITIALIZATION STARTED
+========================================
+[INFO] Ethernet link is UP. Proceeding with connection.
+[INFO] TCP PCB created successfully
+[INFO] Memory allocated for client structure
+[INFO] Connecting to server: 10.4.90.58:8080
+[INFO] Connection initiated successfully
+[INFO] Client state: ES_CONNECTING
+[INFO] Error callback registered
+========================================
+Waiting for connection to establish...
+========================================
+
+HelloHello
+          ========================================
+CONNECTION ESTABLISHED!
+========================================
+[INFO] Connected to server: 10.4.90.58:8080
+[INFO] Client state: ES_CONNECTED
+[INFO] All callback functions initialized
+[INFO] Sending welcome message to server
+========================================
+
+Hello
+     [ACK] Received ACK from server for 30 bytes
+[INFO] Client state: ES_CONNECTED
+[INFO] No more data to send
+HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello
+                                                                                                    [RECV] 6 bytes receivedr
+
+[STM32 RX] From server:
+  Hey!
+
+[STM32 TX] Echoing back to server:
+  [STM32 ECHO] Hey!
+[STM32] Received & processed OK
+
+Hello
+     [ACK] Received ACK from server for 52 bytes
+[INFO] Client state: ES_CONNECTED
+[INFO] No more data to send
+HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelo
+                                                                                                                           r
+
+[STM32 RX] From server:
+  This is Param from Server.
+
+[STM32 TX] Echoing back to server:
+  [STM32 ECHO] This is Param from Server.
+[STM32] Received & processed OK
+
+Hello
+     [ACK] Received ACK from server for 74 bytes
+[INFO] Client state: ES_CONNECTED
+[INFO] No more data to send
+HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelo
+                                                                                                                           r
+
+[STM32 RX] From server:
+  Data writtern here, like this statement is from server side and writtern from terminal.
+
+[STM32 TX] Echoing back to server:
+  [STM32 ECHO] Data writtern here, like this statement is from server side and writtern from terminal.
+[STM32] Received & processed OK
+
+Hello
+     [ACK] Received ACK from server for 135 bytes
+[INFO] Client state: ES_CONNECTED
+[INFO] No more data to send
+HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelo
+                                                                                                                           n
+
+========================================
+CLOSING TCP CLIENT CONNECTION
+========================================
+[INFO] Removing all callbacks
+[INFO] Freeing client structure
+[INFO] Closing TCP PCB
+[SUCCESS] Connection closed successfully
+========================================
+
+
+
+SERVER:
+invadl0640@INVADL0640:~/Desktop/ST/STM32F746-Discovery-Kit/Eth_TCP_Client$ python3 Eth_TCP_Server.py
+============================================================
+  STM32F746 TCP Test Server  (Interactive Mode)
+============================================================
+  Port    : 8080
+  Control : Type a message + Enter to send to STM32
+  Receive : Prints everything STM32 sends back
+  Loop    : NONE — server never auto-replies
+============================================================
+Press Ctrl+C to stop.
+
+Waiting for STM32 to connect before you can send...
+
+[15:56:24] Listening on 0.0.0.0:8080 ...
+
+[15:56:53] STM32 connected from 10.4.90.100:52432
+Type a message and press Enter to send it to the STM32.
+
+
+[15:56:53] << STM32 says (30 bytes):
+  Hello from STM32 TCP Client!
+> Hey!
+[15:57:14] >> Sent to STM32: Hey!
+> 
+[15:57:14] << STM32 says (52 bytes):
+  [STM32 ECHO] Hey!
+[STM32] Received & processed OK
+> This is Param from Server.
+[15:57:43] >> Sent to STM32: This is Param from Server.
+> 
+[15:57:43] << STM32 says (74 bytes):
+  [STM32 ECHO] This is Param from Server.
+[STM32] Received & processed OK
+> Data writtern here, like this statement is from server side and writtern from terminal.
+[15:59:52] >> Sent to STM32: Data writtern here, like this statement is from server side and writtern from terminal.
+> 
+[15:59:53] << STM32 says (135 bytes):
+  [STM32 ECHO] Data writtern here, like this statement is from server side and writtern from terminal.
+[STM32] Received & processed OK
+> ^C
+
+Shutting down...
+[16:01:38] Server stopped.

@@ -1,21 +1,17 @@
-11:59:39 **** Incremental Build of configuration Debug for project Eth_TCP_Client ****
+16:12:35 **** Incremental Build of configuration Debug for project Eth_TCP_Client ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/tcpClientRAW.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F746xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tcpClientRAW.d" -MT"Core/Src/tcpClientRAW.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tcpClientRAW.o"
-../Core/Src/tcpClientRAW.c: In function 'tcp_client_send':
-../Core/Src/tcpClientRAW.c:484:19: warning: variable 'plen' set but not used [-Wunused-but-set-variable]
-  484 |             u16_t plen;
-      |                   ^~~~
 arm-none-eabi-gcc -o "Eth_TCP_Client.elf" @"objects.list"   -mcpu=cortex-m7 -T"/home/invadl0640/Desktop/ST/STM32F746-Discovery-Kit/Eth_TCP_Client/STM32F746NGHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Eth_TCP_Client.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: Eth_TCP_Client.elf
  
 arm-none-eabi-size  Eth_TCP_Client.elf 
 arm-none-eabi-objdump -h -S Eth_TCP_Client.elf  > "Eth_TCP_Client.list"
    text	   data	    bss	    dec	    hex	filename
-  84876	    456	  33728	 119060	  1d114	Eth_TCP_Client.elf
+  84084	    456	  33720	 118260	  1cdf4	Eth_TCP_Client.elf
 Finished building: default.size.stdout
  
 Finished building: Eth_TCP_Client.list
  
 
-11:59:39 Build Finished. 0 errors, 1 warnings. (took 443ms)
+16:12:36 Build Finished. 0 errors, 0 warnings. (took 742ms)
 

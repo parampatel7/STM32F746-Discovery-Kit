@@ -59,7 +59,9 @@ Core/Src/tcpClientRAW.o: ../Core/Src/tcpClientRAW.c \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/ip6.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h \
  ../Middlewares/Third_Party/LwIP/src/include/lwip/icmp.h \
- ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/icmp.h
+ ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/icmp.h \
+ ../Middlewares/Third_Party/LwIP/src/include/lwip/sys.h \
+ ../Middlewares/Third_Party/LwIP/src/include/lwip/timeouts.h
 ../Core/Inc/tcpClientRAW.h:
 ../Middlewares/Third_Party/LwIP/src/include/lwip/tcp.h:
 ../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h:
@@ -122,3 +124,5 @@ Core/Src/tcpClientRAW.o: ../Core/Src/tcpClientRAW.c \
 ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h:
 ../Middlewares/Third_Party/LwIP/src/include/lwip/icmp.h:
 ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/icmp.h:
+../Middlewares/Third_Party/LwIP/src/include/lwip/sys.h:
+../Middlewares/Third_Party/LwIP/src/include/lwip/timeouts.h:

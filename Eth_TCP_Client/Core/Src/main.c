@@ -24,7 +24,78 @@
 /* USER CODE BEGIN Includes */
 #include <string.h>
 #include "tcpClientRAW.h"
-/*=========================NOT WORKING==========================================*/
+/*=========================WAS NOT WORKING BECAUSE==========================================*/
+/*
+Bug #1 — The root cause of ERR_RTE (-4) (No link-up check)
+
+tcp_client_init()
+ calls tcp_connect() immediately without checking whether the Ethernet link is actually UP:
+
+c
+// No check for netif_is_link_up() anywhere!
+err = tcp_connect(tpcb, &destIPADDR, 31, tcp_client_connected);
+tcp_connect() immediately tries to transmit a SYN packet. If the PHY hasn't finished auto-negotiating the link yet, lwIP has no route → returns -4 (ERR_RTE).
+ A TCP server's tcp_bind()+tcp_listen() is immune because those are purely internal state — no packets are sent. A client is not.
+
+Bug #2 — lwIP called from a timer ISR (undefined behaviour)
+c
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    // ...
+    esTx->p = pbuf_alloc(...);   // ← lwIP heap function in an ISR!
+    pbuf_take(esTx->p, ...);
+    tcp_client_send(pcbTx, esTx); // ← tcp_write() inside an ISR!
+    pbuf_free(esTx->p);
+}
+HAL_TIM_PeriodElapsedCallback() runs inside the timer interrupt handler.
+lwIP's Raw API (no RTOS) is not interrupt-safe — it is designed to be called only from the main loop. Calling pbuf_alloc(), tcp_write(), etc.
+from an ISR can corrupt lwIP's internal memory pools and state, causing crashes or silent data corruption.
+
+Bug #3 — Double-free of the pbuf in the timer callback
+c
+tcp_client_send(pcbTx, esTx);  // ← send() already frees esTx->p internally
+pbuf_free(esTx->p);             // ← attempts to free again!
+esTx->p = NULL;
+Inside
+
+tcp_client_send()
+, after a successful tcp_write():
+
+c
+do { freed = pbuf_free(ptr); } while (freed == 0);
+The pbuf is already freed. Then the timer callback calls
+
+pbuf_free(esTx->p)
+ a second time on the same (or now-NULL) pointer. Depending on lwIP version,
+
+pbuf_free(NULL)
+ may do nothing, but the intent is clearly wrong and masks a memory bug.
+
+Bug #4 — No tcp_arg() or tcp_err() set before tcp_connect()
+c
+err = tcp_connect(tpcb, &destIPADDR, 31, tcp_client_connected);
+// tcp_arg() and tcp_err() are only set INSIDE tcp_client_connected()
+Between the moment tcp_connect() returns ERR_OK and when the SYN-ACK arrives (several milliseconds),
+if anything goes wrong (timeout, RST, etc.), the error callback fires with arg = NULL and no tcp_err handler registered → the error is silently ignored and the PCB memory leaks.
+
+Bug #5 — tcp_poll interval set to 0
+c
+tcp_poll(newpcb, tcp_client_poll, 0);
+The third argument is the interval in units of 500 ms.
+Setting it to 0 means the poll callback never fires (it is only called when the interval counter reaches the value).
+This means pending retransmissions are never retried.
+
+Summary Table
+#	Bug	Effect
+1	No netif_is_link_up() guard before tcp_connect()	ERR_RTE (-4) — the original problem
+2	pbuf_alloc() / tcp_write() called from timer ISR	Corruption of lwIP memory pools, unpredictable crashes
+3	Double
+
+pbuf_free()
+ in timer callback	Memory corruption / wrong ref count
+4	No tcp_arg() / tcp_err() before tcp_connect()	PCB memory leak on early connection failure
+5	tcp_poll(..., 0) interval	Poll callback never fires, no retry on stuck data
+*/
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -120,6 +191,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  printf("Hello");
+	  HAL_Delay(1000);
 	  MX_LWIP_Process();
 	  ethernetif_input(&gnetif);
 	  sys_check_timeouts();
