@@ -1,0 +1,10 @@
+13:51:13 **** Incremental Build of configuration Debug for project FirstBootloader ****
+make -j12 all 
+arm-none-eabi-size  FirstBootloader.elf 
+   text	   data	    bss	    dec	    hex	filename
+  15712	    104	   2040	  17856	   45c0	FirstBootloader.elf
+Finished building: default.size.stdout
+ 
+
+13:51:13 Build Finished. 0 errors, 0 warnings. (took 83ms)
+

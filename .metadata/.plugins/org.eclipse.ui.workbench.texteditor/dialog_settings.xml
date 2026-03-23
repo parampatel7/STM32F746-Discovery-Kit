@@ -3,6 +3,9 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="Reset_Handler"/>
+		<item value="Reser_Handler"/>
+		<item value="IIR"/>
 		<item value="tco_accept"/>
 		<item value="tcp_bind"/>
 		<item value="tcp_connect(tpcb, &amp;destIP, 31, callback)"/>
@@ -15,8 +18,5 @@
 		<item value="tcp_server_handle"/>
 		<item value="Sending data chunk"/>
 		<item value="Sending data chunk: 0 bytes"/>
-		<item value="Freeing original received pbuf"/>
-		<item value="httpd_init"/>
-		<item value="udp_receive_callback"/>
 	</list>
 </section>
